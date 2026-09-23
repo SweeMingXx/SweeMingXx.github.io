@@ -19,7 +19,12 @@ jobs:
       - name: Check JavaScript syntax
         run: node --check layer-form/app.js
       - name: Test responsive layouts and real browser interactions
-        run: node layer-form/tests/verify.mjs
+        run: |
+          node layer-form/tests/verify.mjs > /tmp/layer-form-test.log 2>&1 || { echo "::error::$(tail -n 20 /tmp/layer-form-test.log | tr '\n' ' ')"; cat /tmp/layer-form-test.log; exit 1; }
+          cat /tmp/layer-form-test.log
+      - name: Verify public GitHub Pages URL
+        run: |
+          node --input-type=module -e "const r=await fetch('https://sweemingxx.github.io/layer-form/'); if(r.status!==200)throw Error('Live page HTTP '+r.status);const html=await r.text();if(!html.includes('Layer / Form — 3D print portfolio'))throw Error('Unexpected live page');for(const f of ['style.css','app.js']){const a=await fetch('https://sweemingxx.github.io/layer-form/'+f);if(a.status!==200)throw Error(f+' HTTP '+a.status)}console.log('PASS: Live portfolio HTML, CSS, and JavaScript return HTTP 200');"
       - name: Save browser screenshots
         if: always()
         uses: actions/upload-artifact@v4
