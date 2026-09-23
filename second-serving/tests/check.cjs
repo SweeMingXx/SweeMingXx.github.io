@@ -37,7 +37,12 @@ await page.locator('#file-input').setInputFiles({name:'not-a-photo.txt',mimeType
 await page.locator('#file-input').setInputFiles({name:'corrupt.png',mimeType:'image/png',buffer:Buffer.from('invalid PNG')});await page.waitForFunction(()=>document.querySelector('#status').classList.contains('error'));assert(await page.locator('#upload-btn').isEnabled());pass('Corrupt-image recovery re-enables scanning');
 await page.locator('#how-btn').click();await page.keyboard.press('Escape');assert(!(await page.locator('#info-dialog').isVisible()));pass('Native dialogs support Escape and focus return');
 if(mode==='live'){
-  await page.locator('#camera-btn').click();await page.waitForFunction(()=>!document.querySelector('#capture-btn').disabled,{},{timeout:30000});assert(await page.locator('#camera-video').evaluate(v=>!!v.srcObject&&v.srcObject.active));await page.locator('#camera-dialog .dialog-close').click();assert(await page.locator('#camera-video').evaluate(v=>v.srcObject===null));pass('Real browser media API starts and stops camera tracks');
+  await page.locator('#camera-btn').click();await page.waitForFunction(()=>!document.querySelector('#capture-btn').disabled,{},{timeout:30000});assert(await page.locator('#camera-video').evaluate(v=>!!v.srcObject&&v.srcObject.active));
+  await page.locator('#camera-video').evaluate(v=>{window.__testCameraTracks=v.srcObject.getTracks()});
+  await page.locator('#camera-dialog .dialog-close').click();
+  // HTMLDialogElement.close queues a close event; wait for its listener, not just the DOM mutation.
+  await page.waitForFunction(()=>document.querySelector('#camera-video').srcObject===null&&window.__testCameraTracks.every(t=>t.readyState==='ended'),{},{timeout:5000});
+  pass('Real browser media API starts camera and ends all tracks on dialog close');
   const png=await page.evaluate(()=>{const c=document.createElement('canvas');c.width=320;c.height=240;const ctx=c.getContext('2d');ctx.fillStyle='#ffffff';ctx.fillRect(0,0,320,240);return c.toDataURL('image/png').split(',')[1]});
   await page.locator('#file-input').setInputFiles({name:'blank.png',mimeType:'image/png',buffer:Buffer.from(png,'base64')});
   await page.waitForFunction(()=>document.querySelector('#capture-scene').hidden===false,{},{timeout:15000});
