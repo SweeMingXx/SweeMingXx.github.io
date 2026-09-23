@@ -1,0 +1,41 @@
+name: LUCID LOOP browser and live checks
+on:
+  push:
+    branches: [main]
+    paths: ['lucid-loop/**', '.github/workflows/lucid-loop-check.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser test dependencies
+        working-directory: lucid-loop/tests
+        run: npm install
+      - name: Install Chromium
+        working-directory: lucid-loop/tests
+        run: npx playwright install --with-deps chromium
+      - name: Verify gameplay, responsive layouts and live Pages
+        working-directory: lucid-loop/tests
+        run: |
+          mkdir -p results
+          set +e
+          node check.mjs > results/check.log 2>&1
+          status=$?
+          cat results/check.log
+          if [ "$status" -ne 0 ]; then
+            python3 -c "from pathlib import Path; print('::error::'+Path('results/check.log').read_text()[-12000:].replace('%','%25').replace('\r','%0D').replace('\n','%0A'))"
+          fi
+          exit "$status"
+      - name: Preserve browser report and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lucid-loop-browser-report
+          path: lucid-loop/tests/results/
