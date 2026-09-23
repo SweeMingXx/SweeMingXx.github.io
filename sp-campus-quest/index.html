@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f5f2e9"><meta name="description" content="Your campus. Your story. An original playable 3D adventure inspired by Singapore Polytechnic.">
+  <title>SP Campus Quest — Your campus. Your story.</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+  <canvas id="world" tabindex="0" aria-label="3D campus. Use WASD or arrow keys to move, E to interact, M for the map, and Escape to pause."></canvas>
+  <div class="vignette" aria-hidden="true"></div><div id="labels" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="#" id="home" aria-label="SP Campus Quest — pause"><span class="brand-mark">sp<span>✦</span></span><span>CAMPUS <b>QUEST</b><small>YOUR CAMPUS. YOUR STORY.</small></span></a>
+    <div class="edition"><span class="live-dot"></span> THE DOVER CHAPTER</div>
+    <div class="header-actions"><button class="icon-button" id="sound" title="Toggle sound" aria-label="Enable sound">♪</button><button class="icon-button" id="help" title="Controls and help" aria-label="Controls and help">?</button><button class="icon-button" id="pause" title="Pause · Escape" aria-label="Pause game">Ⅱ</button></div>
+  </header>
+  <main>
+    <section id="welcome" class="welcome" aria-labelledby="welcome-title">
+      <div class="eyebrow"><span></span> A LITTLE CAMPUS. A BIG ADVENTURE.</div>
+      <h1 id="welcome-title">Your next<br>chapter starts<br><em>right here.</em></h1>
+      <p>Take the scenic route. Meet your people.<br>Make a little magic at Singapore Polytechnic.</p>
+      <div class="welcome-actions"><button class="button primary" id="new-game">Let’s explore <span>↗</span></button><button class="button secondary" id="continue" hidden>Continue adventure →</button></div>
+      <div class="welcome-features"><span><i>◇</i> A campus to discover</span><span><i>✧</i> Stories to make your own</span></div>
+      <div class="unofficial">AN INDEPENDENT, CAMPUS-INSPIRED ADVENTURE<br>Fictional layout & characters · Not an official SP product</div>
+    </section>
+    <div id="hud" hidden>
+      <section class="profile panel" aria-label="Player status"><div id="avatar-icon" class="avatar-icon">S</div><div class="profile-info"><strong id="player-name">Freshie</strong><span id="player-role">Campus explorer</span><div class="xp-track"><div id="xp-fill"></div></div></div><div class="level"><small>LVL</small><b id="level">1</b></div></section>
+      <section class="quest-panel panel" aria-label="Tracked quest"><div class="panel-heading"><span>YOUR NEXT CHAPTER</span><button id="journal" aria-label="Open quest journal" title="Quest journal · J">↗</button></div><div class="quest-kicker" id="quest-kicker">01 / 08 · MAIN STORY</div><h2 id="quest-title">A new beginning</h2><p id="quest-text"></p><div class="quest-location"><span>⌖</span><span id="quest-location"></span></div><div class="quest-footer"><span id="quest-reward"></span><span id="quest-distance"></span></div></section>
+      <div class="location-pill"><span class="live-dot"></span><div><small>YOU’RE EXPLORING</small><strong id="location-name">Dover MRT</strong></div><span class="weather">☀</span></div>
+      <section class="map-panel panel" aria-label="Mini map"><button class="map-heading" id="map-button"><span>YOUR LITTLE WORLD</span><span title="Open map · M">⛶</span></button><canvas id="minimap" width="208" height="174" aria-label="Campus minimap, north at the top"></canvas><div class="map-footer"><span><i></i> You are here</span><span id="discovery">1 / 8 places</span></div></section>
+      <div class="counters panel"><span title="Memory sparks collected"><b>✧</b> <span id="spark-count">0 / 12</span></span><span title="Festival tokens"><b>◈</b> <span id="token-count">0</span></span><span title="Recyclables collected"><b>♧</b> <span id="green-count">0 / 6</span></span></div>
+      <div class="bottom-left"><span id="save-status"><i class="live-dot"></i> Progress saved on this device</span><span class="game-note">FICTIONAL CAMPUS · EXPLORE, DON’T NAVIGATE</span></div>
+      <div class="bottom-center"><div class="energy"><span>ENERGY</span><div><i id="energy-fill"></i></div><span id="energy-value">100</span></div><nav class="toolbelt" aria-label="Game tools"><button id="bag" title="Backpack · B"><span>▣</span>Backpack<kbd>B</kbd></button><button id="quests" title="Quest journal · J"><span>▤</span>Journal<kbd>J</kbd></button><button id="open-map" title="Campus map · M"><span>⌖</span>Map<kbd>M</kbd></button><button id="photo" title="Hide interface · P"><span>▧</span>Photo<kbd>P</kbd></button></nav></div>
+      <div class="camera-tools"><button id="rotate" aria-label="Rotate camera" title="Rotate camera · Q / R">⟳</button><button id="zoom-in" aria-label="Zoom in">+</button><button id="zoom-out" aria-label="Zoom out">−</button></div>
+      <div id="interaction" hidden><kbd>E</kbd><span>Talk to Maya</span><button id="interact-button">Interact →</button></div>
+      <div id="relay-status" class="relay-status" hidden></div>
+      <div id="mobile-controls"><div class="dpad"><button data-move="ArrowUp" aria-label="Move forward">↑</button><button data-move="ArrowLeft" aria-label="Move left">←</button><button data-move="ArrowDown" aria-label="Move backward">↓</button><button data-move="ArrowRight" aria-label="Move right">→</button></div><button id="mobile-sprint" aria-label="Hold to sprint">RUN</button></div>
+    </div>
+    <button id="exit-photo" class="button secondary" hidden>← Back to adventure <kbd>P</kbd></button>
+    <div class="intro-bottom" id="intro-bottom"><span><span class="live-dot"></span> SINGAPORE, REIMAGINED</span><span>A place to belong. A story to begin. <span class="tiny-star">✦</span></span></div>
+    <div id="toast" role="status" aria-live="polite" hidden></div>
+    <div id="loading" role="status">Growing your little campus…</div>
+  </main>
+  <dialog id="modal" aria-labelledby="modal-title"><div class="modal-top"><span class="eyebrow" id="modal-eyebrow">CAMPUS QUEST</span><button id="close-modal" class="icon-button" aria-label="Close dialog">×</button></div><div id="modal-body"></div></dialog>
+  <noscript><div class="fatal"><h1>This adventure needs JavaScript</h1><p>Please enable JavaScript and reload to explore the 3D campus.</p></div></noscript>
+  <script type="module" src="./src/game.js"></script>
+</body>
+</html>
