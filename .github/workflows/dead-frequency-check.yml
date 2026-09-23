@@ -1,0 +1,46 @@
+name: DEAD FREQUENCY — gameplay and live deployment
+on:
+  push:
+    paths:
+      - 'dead-frequency/**'
+      - '.github/workflows/dead-frequency-check.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  checks: write
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install declared test dependencies
+        working-directory: dead-frequency
+        run: npm install --no-audit --no-fund
+      - name: Install Chromium
+        working-directory: dead-frequency
+        run: npx playwright install --with-deps chromium
+      - name: Gameplay, responsiveness and live Pages verification
+        working-directory: dead-frequency
+        run: npm test
+      - name: Publish validation artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dead-frequency-browser-validation
+          path: dead-frequency/test-results/
+      - name: Publish readable verification report
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = 'dead-frequency/test-results/results.json';
+            const results = fs.existsSync(path) ? JSON.parse(fs.readFileSync(path,'utf8')) : [{name:'Runner setup',passed:false,detail:'Tests did not start; see workflow logs.'}];
+            const passed = results.length > 0 && results.every(r=>r.passed);
+            const text = results.map(r=>`${r.passed?'PASS':'FAIL'} — ${r.name}\n${r.detail||''}`).join('\n\n');
+            await github.rest.checks.create({owner:context.repo.owner,repo:context.repo.repo,head_sha:context.sha,name:'DEAD FREQUENCY · verification report',status:'completed',conclusion:passed?'success':'failure',output:{title:passed?'Gameplay and live deployment verified':'Validation needs attention',summary:text.slice(0,65000)}});
+            await core.summary.addHeading('DEAD FREQUENCY verification').addCodeBlock(text).write();
