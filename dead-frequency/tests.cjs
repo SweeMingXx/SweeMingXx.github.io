@@ -18,7 +18,7 @@ const server = http.createServer((req, res) => { res.setHeader('Content-Type', '
   const errors = [];
   page.on('pageerror', e => errors.push(e.message));
   await page.goto('http://127.0.0.1:8173/?test=1', { waitUntil: 'networkidle' });
-  await page.waitForFunction(() => window.__game && !document.getElementById('play').disabled, { timeout: 60000 });
+  await page.waitForFunction(() => window.__game && !document.getElementById('play').disabled, null, { timeout: 60000 });
   assert.equal(await page.locator('#fatal').isVisible(), false);
   await page.screenshot({ path: path.join(root,'test-results/01-title-desktop.png') });
   record('Desktop startup', '1440 × 900, WebGL initialized, title interface ready');
@@ -34,21 +34,23 @@ const server = http.createServer((req, res) => { res.setHeader('Content-Type', '
   record('Settings persistence', 'Camera bob preference saved locally');
   await page.click('#play');
   await page.waitForFunction(() => window.__game.state === 'playing');
-  await page.waitForTimeout(300);
   assert.equal(await page.locator('#hud').isVisible(),true);
   record('New run', 'Live first-person HUD and game simulation');
   const initial = await page.evaluate(() => ({ x: __game.player.x, z: __game.player.z }));
-  await page.keyboard.down('KeyW'); await page.waitForTimeout(650); await page.keyboard.up('KeyW');
-  const moved = await page.evaluate(() => ({ x: __game.player.x, z: __game.player.z }));
-  assert.ok(Math.hypot(moved.x-initial.x,moved.z-initial.z) > .3);
-  record('Keyboard movement', 'W moves the player through the world');
-  await page.keyboard.press('KeyM');
+  await page.keyboard.down('w');
+  try {
+   await page.waitForFunction(p => Math.hypot(__game.player.x-p.x,__game.player.z-p.z) > .3, initial, {timeout:20000});
+  } catch (e) {
+   throw new Error('Movement diagnostics: '+JSON.stringify(await page.evaluate(()=>({state:__game.state,x:__game.player.x,z:__game.player.z,time:__game.player.time,locked:!!document.pointerLockElement,focus:document.hasFocus(),active:document.activeElement?.id})))+' initial='+JSON.stringify(initial)+' '+e.message);
+  } finally { await page.keyboard.up('w'); }
+  record('Keyboard movement', 'W moves the player through the world (frame-rate independent check)');
+  await page.keyboard.press('m');
   const frozen = await page.evaluate(() => ({ time:__game.player.time, open:__game.mapOpen }));
   assert.equal(frozen.open,true);
   await page.waitForTimeout(200);
   assert.equal(await page.evaluate(() => __game.player.time),frozen.time);
   await page.screenshot({ path:path.join(root,'test-results/02-tactical-map.png') });
-  await page.keyboard.press('KeyM');
+  await page.keyboard.press('m');
   record('Tactical map', 'Map renders and pauses simulation');
   const combat = await page.evaluate(() => {
    const g=__game; g.player.x=0;g.player.z=-25;g.player.yaw=0;g.player.pitch=0;g.update(.01);
@@ -62,7 +64,7 @@ const server = http.createServer((req, res) => { res.setHeader('Content-Type', '
   await page.evaluate(() => { const g=__game;g.weapons[0].mag=2;g.weapons[0].reserve=10;g.reload(); for(let i=0;i<40;i++)g.update(.05); });
   assert.deepEqual(await page.evaluate(() => [__game.weapons[0].mag,__game.weapons[0].reserve]),[12,0]);
   record('Reload accounting', 'Transfers available rounds without creating ammunition');
-  await page.keyboard.press('Digit2');
+  await page.keyboard.press('2');
   assert.equal(await page.evaluate(() => __game.player.weapon),1);
   record('Weapon switching', 'Shotgun selectable with 2');
   const medical=await page.evaluate(() => {const g=__game;g.player.hp=30;g.player.meds=2;g.heal();return [g.player.hp,g.player.meds]});
@@ -129,7 +131,7 @@ const server = http.createServer((req, res) => { res.setHeader('Content-Type', '
   }
   assert.ok(live,'GitHub Pages URL should return the published game');
   const livePage=await context.newPage();const liveErrors=[];livePage.on('pageerror',e=>liveErrors.push(e.message));
-  await livePage.goto(liveURL,{waitUntil:'networkidle'});await livePage.waitForFunction(()=>!document.getElementById('play').disabled,{timeout:60000});
+  await livePage.goto(liveURL,{waitUntil:'networkidle'});await livePage.waitForFunction(()=>!document.getElementById('play').disabled,null,{timeout:60000});
   assert.equal(await livePage.locator('#fatal').isVisible(),false);
   await livePage.screenshot({path:path.join(root,'test-results/07-live-github-pages.png')});
   await livePage.click('#play');await livePage.waitForTimeout(500);assert.equal(await livePage.locator('#hud').isVisible(),true);assert.deepEqual(liveErrors,[]);

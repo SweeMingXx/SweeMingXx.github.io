@@ -1,12 +1,13 @@
 name: DEAD FREQUENCY — gameplay and live deployment
 on:
   push:
+    branches: [main]
     paths:
       - 'dead-frequency/**'
       - '.github/workflows/dead-frequency-check.yml'
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
   checks: write
 jobs:
   browser:
@@ -44,3 +45,23 @@ jobs:
             const text = results.map(r=>`${r.passed?'PASS':'FAIL'} — ${r.name}\n${r.detail||''}`).join('\n\n');
             await github.rest.checks.create({owner:context.repo.owner,repo:context.repo.repo,head_sha:context.sha,name:'DEAD FREQUENCY · verification report',status:'completed',conclusion:passed?'success':'failure',output:{title:passed?'Gameplay and live deployment verified':'Validation needs attention',summary:text.slice(0,65000)}});
             await core.summary.addHeading('DEAD FREQUENCY verification').addCodeBlock(text).write();
+      - name: Keep browsable visual previews on a separate branch
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const dir='dead-frequency/test-results';
+            if(!fs.existsSync(dir)) return;
+            const owner=context.repo.owner,repo=context.repo.repo,branch='dead-frequency-previews';
+            let base;
+            try {base=(await github.rest.git.getRef({owner,repo,ref:'heads/'+branch})).data.object.sha;} catch {base=context.sha;await github.rest.git.createRef({owner,repo,ref:'refs/heads/'+branch,sha:base});}
+            const commit=(await github.rest.git.getCommit({owner,repo,commit_sha:base})).data;
+            const tree=[];
+            for(const name of fs.readdirSync(dir).filter(n=>n.endsWith('.png')||n.endsWith('.json'))){
+              const blob=(await github.rest.git.createBlob({owner,repo,content:fs.readFileSync(dir+'/'+name).toString('base64'),encoding:'base64'})).data;
+              tree.push({path:'dead-frequency/previews/'+name,mode:'100644',type:'blob',sha:blob.sha});
+            }
+            const newTree=(await github.rest.git.createTree({owner,repo,base_tree:commit.tree.sha,tree})).data;
+            const next=(await github.rest.git.createCommit({owner,repo,message:'Browser previews for '+context.sha+' [skip ci]',tree:newTree.sha,parents:[base]})).data;
+            await github.rest.git.updateRef({owner,repo,ref:'heads/'+branch,sha:next.sha});
