@@ -32,10 +32,10 @@ jobs:
           SERVER_PID=$!
           trap 'kill "$SERVER_PID"' EXIT
           for i in $(seq 1 15); do if curl --fail --silent http://127.0.0.1:4173/second-serving/ > /dev/null; then break; fi; sleep 1; done
-          NODE_PATH="$RUNNER_TEMP/second-serving-tools/node_modules" node second-serving/tests/check.cjs http://127.0.0.1:4173/second-serving/ local
+          NODE_PATH="$RUNNER_TEMP/second-serving-tools/node_modules" node --require ./second-serving/tests/reporter.cjs second-serving/tests/check.cjs http://127.0.0.1:4173/second-serving/ local
       - name: Verify published GitHub Pages and real on-device inference
         run: |
-          NODE_PATH="$RUNNER_TEMP/second-serving-tools/node_modules" node second-serving/tests/check.cjs https://sweemingxx.github.io/second-serving/ live
+          NODE_PATH="$RUNNER_TEMP/second-serving-tools/node_modules" node --require ./second-serving/tests/reporter.cjs second-serving/tests/check.cjs https://sweemingxx.github.io/second-serving/ live
       - name: Upload screenshots and verification report
         if: always()
         uses: actions/upload-artifact@v4
