@@ -1,0 +1,29 @@
+name: Layer Form browser checks
+on:
+  push:
+    paths:
+      - 'layer-form/**'
+      - '.github/workflows/layer-form-check.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check JavaScript syntax
+        run: node --check layer-form/app.js
+      - name: Test responsive layouts and real browser interactions
+        run: node layer-form/tests/verify.mjs
+      - name: Save browser screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: layer-form-browser-screenshots
+          path: /tmp/layer-form-screenshots/
+          if-no-files-found: ignore
