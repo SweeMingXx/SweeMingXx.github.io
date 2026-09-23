@@ -1,0 +1,45 @@
+name: Second Serving · browser and live checks
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'second-serving/**'
+      - '.github/workflows/second-serving-check.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: second-serving-check
+  cancel-in-progress: true
+jobs:
+  browser-and-live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax validation
+        run: node --check second-serving/app.js
+      - name: Prepare browser tooling
+        run: |
+          npm install --no-save --prefix "$RUNNER_TEMP/second-serving-tools" playwright@1.51.1
+          "$RUNNER_TEMP/second-serving-tools/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Test local desktop and mobile flows
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > "$RUNNER_TEMP/second-serving-server.log" 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID"' EXIT
+          for i in $(seq 1 15); do if curl --fail --silent http://127.0.0.1:4173/second-serving/ > /dev/null; then break; fi; sleep 1; done
+          NODE_PATH="$RUNNER_TEMP/second-serving-tools/node_modules" node second-serving/tests/check.cjs http://127.0.0.1:4173/second-serving/ local
+      - name: Verify published GitHub Pages and real on-device inference
+        run: |
+          NODE_PATH="$RUNNER_TEMP/second-serving-tools/node_modules" node second-serving/tests/check.cjs https://sweemingxx.github.io/second-serving/ live
+      - name: Upload screenshots and verification report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: second-serving-browser-proof
+          path: second-serving-test-results/
+          retention-days: 7
