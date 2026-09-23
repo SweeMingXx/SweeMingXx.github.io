@@ -7,7 +7,7 @@ permissions:
   contents: read
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - name: Validate engine and syntax
@@ -15,7 +15,8 @@ jobs:
           node --check afterlight/core.js
           node --check afterlight/game.js
           node --check afterlight/sw.js
-          node afterlight/test-core.cjs
+          node afterlight/test-core.cjs > /tmp/afterlight-engine.log 2>&1 || { cat /tmp/afterlight-engine.log; echo "::error::$(tr '\n' ' ' < /tmp/afterlight-engine.log)"; exit 1; }
+          cat /tmp/afterlight-engine.log
       - name: Mobile browser integration tests
         run: |
           python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/afterlight-server.log 2>&1 &
@@ -23,16 +24,25 @@ jobs:
           trap 'kill "$SERVER_PID"' EXIT
           for i in $(seq 1 20); do curl -fsS http://127.0.0.1:8765/afterlight/ >/dev/null && break; sleep 1; done
           google-chrome --headless --no-sandbox --disable-gpu --disable-dev-shm-usage --no-proxy-server --timeout=20000 --virtual-time-budget=12000 --dump-dom http://127.0.0.1:8765/afterlight/test-browser.html > /tmp/afterlight-browser.html 2>/tmp/afterlight-chrome.log
-          cat /tmp/afterlight-browser.html
-          grep -q 'BROWSER_TESTS_PASSED' /tmp/afterlight-browser.html
+          python3 - <<'PY'
+          import re,html,pathlib
+          text=pathlib.Path('/tmp/afterlight-browser.html').read_text()
+          result=re.search(r'<pre id="status">(.*?)</pre>',text,re.S)
+          status=html.unescape(result.group(1)) if result else 'Missing browser test result'
+          print(status)
+          if 'BROWSER_TESTS_PASSED' not in status:
+              print('::error::'+status.replace('\n',' '))
+              raise SystemExit(1)
+          print('::notice::'+status.replace('\n',' | '))
+          PY
       - name: Confirm live GitHub Pages publication
         run: |
           for i in $(seq 1 24); do
             if curl -fsSL --max-time 15 'https://sweemingxx.github.io/afterlight/' -o /tmp/afterlight-live.html && grep -q 'A GAME AGAINST YOURSELF' /tmp/afterlight-live.html; then
-              echo 'LIVE_SITE_VERIFIED https://sweemingxx.github.io/afterlight/'
+              echo '::notice::LIVE_SITE_VERIFIED https://sweemingxx.github.io/afterlight/'
               exit 0
             fi
             sleep 10
           done
-          echo 'Pages did not publish within the verification window'
+          echo '::error::Pages did not publish within the verification window'
           exit 1
