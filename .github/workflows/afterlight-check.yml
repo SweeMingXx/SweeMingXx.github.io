@@ -1,0 +1,38 @@
+name: AFTERLIGHT quality checks
+on:
+  push:
+    paths: ['afterlight/**', '.github/workflows/afterlight-check.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate engine and syntax
+        run: |
+          node --check afterlight/core.js
+          node --check afterlight/game.js
+          node --check afterlight/sw.js
+          node afterlight/test-core.cjs
+      - name: Mobile browser integration tests
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/afterlight-server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID"' EXIT
+          for i in $(seq 1 20); do curl -fsS http://127.0.0.1:8765/afterlight/ >/dev/null && break; sleep 1; done
+          google-chrome --headless --no-sandbox --disable-gpu --disable-dev-shm-usage --no-proxy-server --timeout=20000 --virtual-time-budget=12000 --dump-dom http://127.0.0.1:8765/afterlight/test-browser.html > /tmp/afterlight-browser.html 2>/tmp/afterlight-chrome.log
+          cat /tmp/afterlight-browser.html
+          grep -q 'BROWSER_TESTS_PASSED' /tmp/afterlight-browser.html
+      - name: Confirm live GitHub Pages publication
+        run: |
+          for i in $(seq 1 24); do
+            if curl -fsSL --max-time 15 'https://sweemingxx.github.io/afterlight/' -o /tmp/afterlight-live.html && grep -q 'A GAME AGAINST YOURSELF' /tmp/afterlight-live.html; then
+              echo 'LIVE_SITE_VERIFIED https://sweemingxx.github.io/afterlight/'
+              exit 0
+            fi
+            sleep 10
+          done
+          echo 'Pages did not publish within the verification window'
+          exit 1
