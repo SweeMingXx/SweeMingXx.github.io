@@ -1,0 +1,32 @@
+name: WEBWING browser and live checks
+on:
+  push:
+    branches: [main]
+    paths: ['webwing/**', '.github/workflows/webwing-check.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser test dependencies
+        working-directory: webwing/tests
+        run: npm install
+      - name: Install test browser
+        working-directory: webwing/tests
+        run: npx playwright install --with-deps chromium
+      - name: Run gameplay, mobile, persistence and live checks
+        working-directory: webwing/tests
+        run: node check.mjs
+      - name: Keep screenshots and test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: webwing-browser-report
+          path: webwing/tests/results/
