@@ -1,0 +1,48 @@
+name: Prism Atlas browser and live verification
+on:
+  push:
+    branches: [main]
+    paths: ['prism-atlas/**', '.github/workflows/prism-atlas-check.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: prism-atlas-validation
+  cancel-in-progress: true
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install declared browser-test dependencies
+        working-directory: prism-atlas/tests
+        run: npm install --no-audit --no-fund
+      - name: Install Chromium
+        working-directory: prism-atlas/tests
+        run: npx playwright install --with-deps chromium
+      - name: Validate JavaScript syntax
+        run: node --check prism-atlas/app.js
+      - name: Test studio, accessibility, exports, mobile and live GitHub Pages
+        working-directory: prism-atlas/tests
+        run: node check.mjs
+      - name: Preserve browser report, original exports and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: prism-atlas-browser-report
+          path: prism-atlas/tests/results/
+      - name: Publish test summary
+        if: always()
+        run: |
+          if [ -f prism-atlas/tests/results/report.json ]; then
+            echo '## Prism Atlas — verified' >> "$GITHUB_STEP_SUMMARY"
+            echo 'Live application: https://SweeMingXx.github.io/prism-atlas/' >> "$GITHUB_STEP_SUMMARY"
+            node -e "for(const c of require('./prism-atlas/tests/results/report.json').checks) console.log('- ✅ '+c)" >> "$GITHUB_STEP_SUMMARY"
+          elif [ -f prism-atlas/tests/results/failure.txt ]; then
+            echo '## Prism Atlas — needs attention' >> "$GITHUB_STEP_SUMMARY"
+            cat prism-atlas/tests/results/failure.txt >> "$GITHUB_STEP_SUMMARY"
+          fi
