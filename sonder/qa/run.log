@@ -1,0 +1,73 @@
+PASS Deterministic geometry, all forms and palettes, validated imports and safe SVG
+FAIL Desktop boots, canvas paints, layout fits page.waitForFunction: Timeout 30000ms exceeded.
+    at go (/home/runner/work/SweeMingXx.github.io/SweeMingXx.github.io/sonder/tests/verify.mjs:5:291)
+    at async file:///home/runner/work/SweeMingXx.github.io/SweeMingXx.github.io/sonder/tests/verify.mjs:6:66
+    at async test (/home/runner/work/SweeMingXx.github.io/SweeMingXx.github.io/sonder/tests/verify.mjs:2:249)
+    at async file:///home/runner/work/SweeMingXx.github.io/SweeMingXx.github.io/sonder/tests/verify.mjs:6:1
+FAIL WCAG A/AA baseline automated scan AssertionError [ERR_ASSERTION]: [{"id":"color-contrast","nodes":[{"target":[".control-heading:nth-child(1) > .step-number"],"summary":"Fix any of the following:\n  Element has insufficient color contrast of 4.23 (foreground color: #687456, background color: #eeede5, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1"},{"target":[".control-heading:nth-child(9) > .step-number"],"summary":"Fix any of the following:\n  Element has insufficient color contrast of 4.23 (foreground color: #687456, background color: #eeede5, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1"},{"target":[".local-note"],"summary":"Fix any of the following:\n  Element has insufficient color contrast of 4.36 (foreground color: #68715a, background color: #eeede5, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"},{"target":["footer > span"],"summary":"Fix any of the following:\n  Element has insufficient color contrast of 4.21 (foreground color: #6f7761, background color: #f5f3ec, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"},{"target":["#connection-status"],"summary":"Fix any of the following:\n  Element has insufficient color contrast of 4.37 (foreground color: #6b755b, background color: #f5f3ec, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"}]}]
+
+1 !== 0
+
+    at file:///home/runner/work/SweeMingXx.github.io/SweeMingXx.github.io/sonder/tests/verify.mjs:7:404
+    at async test (file:///home/runner/work/SweeMingXx.github.io/SweeMingXx.github.io/sonder/tests/verify.mjs:2:249)
+    at async file:///home/runner/work/SweeMingXx.github.io/SweeMingXx.github.io/sonder/tests/verify.mjs:7:1
+FAIL Creative controls, text seed, undo and redo AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert((await page.locator('#art-description').textContent()).includes('Petal-like'))
+
+    at file:///home/runner/work/SweeMingXx.github.io/SweeMingXx.github.io/sonder/tests/verify.mjs:8:166
+    at async test (file:///home/runner/work/SweeMingXx.github.io/SweeMingXx.github.io/sonder/tests/verify.mjs:2:249)
+    at async file:///home/runner/work/SweeMingXx.github.io/SweeMingXx.github.io/sonder/tests/verify.mjs:8:1
+FAIL Reduced motion, description, exercise and keyboard dismissal AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'Pause animation'
+- 'Resume animation'
+
+    at file:///home/runner/work/SweeMingXx.github.io/SweeMingXx.github.io/sonder/tests/verify.mjs:9:92
+    at async test (file:///home/runner/work/SweeMingXx.github.io/SweeMingXx.github.io/sonder/tests/verify.mjs:2:249)
+    at async file:///home/runner/work/SweeMingXx.github.io/SweeMingXx.github.io/sonder/tests/verify.mjs:9:1
+FAIL Audio starts only on request and tracks palette AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+'false' !== 'true'
+
+    at file:///home/runner/work/SweeMingXx.github.io/SweeMingXx.github.io/sonder/tests/verify.mjs:10:196
+    at async test (file:///home/runner/work/SweeMingXx.github.io/SweeMingXx.github.io/sonder/tests/verify.mjs:2:249)
+    at async file:///home/runner/work/SweeMingXx.github.io/SweeMingXx.github.io/sonder/tests/verify.mjs:10:1
+FAIL Collection save, persistent reload, delete, restore and reopen locator.fill: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator('#save-title')
+    - locator resolved to <input required="" maxlength="60" id="save-title" autocomplete="off"/>
+    - fill("Our test moment")
+  - attempting fill action
+    2 × waiting for element to be visible, enabled and editable
+      - element is not visible
+    - retrying fill action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and editable
+      - element is not visible
+    - retrying fill action
+      - waiting 100ms
+    60 × waiting for element to be visible, enabled and editable
+       - element is not visible
+     - retrying fill action
+       - waiting 500ms
+
+    at /home/runner/work/SweeMingXx.github.io/SweeMingXx.github.io/sonder/tests/verify.mjs:11:157
+    at async test (/home/runner/work/SweeMingXx.github.io/SweeMingXx.github.io/sonder/tests/verify.mjs:2:249)
+    at async file:///home/runner/work/SweeMingXx.github.io/SweeMingXx.github.io/sonder/tests/verify.mjs:11:1
+node:internal/process/promises:394
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+page.waitForEvent: Timeout 30000ms exceeded while waiting for event "download"
+=========================== logs ===========================
+waiting for event "download"
+============================================================
+    at /home/runner/work/SweeMingXx.github.io/SweeMingXx.github.io/sonder/tests/verify.mjs:12:206
+    at async test (/home/runner/work/SweeMingXx.github.io/SweeMingXx.github.io/sonder/tests/verify.mjs:2:249)
+    at async file:///home/runner/work/SweeMingXx.github.io/SweeMingXx.github.io/sonder/tests/verify.mjs:12:13 {
+  name: 'TimeoutError'
+}
+
+Node.js v24.21.0
