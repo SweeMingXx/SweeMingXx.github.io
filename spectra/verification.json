@@ -1,7 +1,7 @@
 {
   "application": "SPECTRA",
-  "revision": "6eb1bdc15e19dc0d7e6665f4430a94a2a4109412",
-  "checkedAt": "2026-09-24T01:10:02.385Z",
+  "revision": "502e034490ad7d03187502a8ada494c73b1f1f67",
+  "checkedAt": "2026-09-24T01:12:12.268Z",
   "tests": [
     {
       "name": "Studio initialization and original canvas rendering",
@@ -41,13 +41,41 @@
     },
     {
       "name": "Share links reproduce composition settings",
+      "passed": true
+    },
+    {
+      "name": "Reusable JSON project export",
+      "passed": true
+    },
+    {
+      "name": "Labeled SVG visual score export",
+      "passed": true
+    },
+    {
+      "name": "2000 × 1600 PNG artwork export",
+      "passed": true
+    },
+    {
+      "name": "16-second stereo WAV with audible sample data",
+      "passed": true
+    },
+    {
+      "name": "Project import and malformed-project recovery",
+      "passed": true
+    },
+    {
+      "name": "Reset and deletion confirmation and cancellation",
+      "passed": true
+    },
+    {
+      "name": "Native modal focus and Escape dismissal",
       "passed": false,
-      "error": "Timeout: !!window.Spectra"
+      "error": "Expected values to be strictly equal:\n\ntrue !== false\n"
     }
   ],
   "live": {
     "verified": false
   },
   "passed": false,
-  "error": "Timeout: !!window.Spectra"
+  "error": "Expected values to be strictly equal:\n\ntrue !== false\n"
 }
