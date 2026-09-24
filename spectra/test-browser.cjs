@@ -16,7 +16,7 @@ try{
  async function until(source,ms=12000){const t=Date.now();while(Date.now()-t<ms){try{if(await js(source))return;}catch{}await wait(100);}throw Error('Timeout: '+source);}
  const click=id=>js(`document.getElementById(${JSON.stringify(id)}).click()`);
  async function check(name,fn){try{await fn();result.tests.push({name,passed:true});console.log('PASS '+name);}catch(e){result.tests.push({name,passed:false,error:e.message});throw e;}}
- async function navigate(url){await cdp('Page.navigate',{url});await wait(300);await until('!!window.Spectra');}
+ async function navigate(url){await cdp('Page.navigate',{url});await wait(300);if(url!=='about:blank')await until('!!window.Spectra');}
  await cdp('Page.enable');await cdp('Runtime.enable');await cdp('Browser.setDownloadBehavior',{behavior:'allow',downloadPath:'/tmp/spectra-downloads'});await cdp('Emulation.setDeviceMetricsOverride',{width:1440,height:1050,deviceScaleFactor:1,mobile:false});
  await navigate('http://127.0.0.1:8765/spectra/');
  await check('Studio initialization and original canvas rendering',async()=>{assert.equal(await js('Spectra.getState().title'),'Amber tides');assert.equal(await js('document.querySelectorAll("#palette input").length'),5);assert.equal(await js('document.querySelectorAll("[data-preset]").length'),4);const count=await js(`(()=>{const c=document.getElementById('art-canvas'),d=c.getContext('2d').getImageData(0,0,c.width,c.height).data,s=new Set();for(let i=0;i<d.length;i+=64)s.add(d[i]+','+d[i+1]+','+d[i+2]);return s.size;})()`);assert.ok(count>500,'Rich artwork rendered: '+count+' colors');});
