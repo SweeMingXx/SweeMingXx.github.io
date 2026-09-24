@@ -25,10 +25,16 @@ jobs:
         working-directory: prism-atlas/tests
         run: npx playwright install --with-deps chromium
       - name: Validate JavaScript syntax
-        run: node --check prism-atlas/app.js
+        run: |
+          node --check prism-atlas/app.js
+          node --check prism-atlas/ui-support.js
       - name: Test studio, accessibility, exports, mobile and live GitHub Pages
         working-directory: prism-atlas/tests
         run: node check.mjs
+      - name: Capture live visual review
+        if: always()
+        working-directory: prism-atlas/tests
+        run: node visual.mjs
       - name: Preserve browser report, original exports and screenshots
         if: always()
         uses: actions/upload-artifact@v4
