@@ -31,11 +31,20 @@ Open the downloaded file directly in a browser. The exhibition itself makes no n
 
 The exhibition creator credit is added to the exported recipe without modifying the current studio session. Exporting is non-destructive. All user-entered content is HTML escaped; JSON embedded in script data blocks also escapes `<`, `>`, and `&`.
 
-## Engineering
+## Engineering and deployment
 
 `advanced.js` consumes a narrow `window.PrismStudio` API. Read operations return cloned snapshots; commits use the existing validator, history, and persistence. `scripts/upgrade-core.mjs` is an idempotent, exact-anchor migration that adds the bridge and entrypoint tags to the original application; it refuses ambiguous source. No runtime source rewriting or eval is used.
 
-The release workflow commits only the migrated app, HTML entrypoint, and matching baseline test version, then deploys tracked static files to the existing GitHub Pages site. Other projects remain intact. Tests, dependency directories, repository metadata, and workflows are excluded from the Pages artifact. The browser job runs the original 20 checks plus new composer, WAV, safe exhibition, offline, and recovery tests.
+The narrowly scoped source-upgrade workflow persists only the migrated app, HTML entrypoint, and matching baseline test version. A normal release commit then triggers the repository's existing GitHub Pages branch deployment. Other projects and Pages configuration remain untouched. Browser verification exercises the original studio and the new composer, WAV, safe exhibition, offline, and recovery flows. Reports and screenshots are available as GitHub Actions artifacts.
+
+## A stronger hackathon demo
+
+1. Open the data composer. Change one observation and show the immediate visual response.
+2. Audition that observation. Explain normalization and the common data behind art and sound.
+3. Apply, undo, and redo to demonstrate safe exploration.
+4. Add a short creator statement and download the exhibition with audio.
+5. Disconnect from the network and open the downloaded HTML file. Show the image, soundtrack, written story, source table, and remixable recipe.
+6. Conclude: a creative process that can move from a learner's private browser to a classroom or community exhibition, without requiring an account, server, or paid API.
 
 ## Still not claimed
 
