@@ -31,15 +31,14 @@ jobs:
           set +e
           node verify.mjs > ../qa/run.log 2>&1
           result=$?
-          tail -100 ../qa/run.log
+          node --input-type=module -e "import fs from 'node:fs'; console.log('::warning title=Sonder diagnostics::'+fs.readFileSync('../qa/run.log','utf8').slice(-25000).replaceAll('%','%25').replaceAll('\n','%0A').replaceAll('\r','%0D'))"
           exit "$result"
       - name: Preserve scoped report and screenshots
         if: always()
         run: |
           if [ -d sonder/qa ]; then
             git switch -c "sonder-qa-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
-            git add sonder/qa/
+            git add -f sonder/qa/
             git -c user.name='Sonder verification' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'test(sonder): preserve browser report and responsive previews'
             git push origin HEAD
-            echo "Verification branch: sonder-qa-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" >> "$GITHUB_STEP_SUMMARY"
           fi
