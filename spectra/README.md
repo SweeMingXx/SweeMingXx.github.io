@@ -43,7 +43,7 @@ This is a fully functional creative prototype, not a clinically validated tool o
 
 Serve this directory with any static HTTP server. There is no build step. The root Pages repository's existing publishing mechanism serves `/spectra/`; unrelated apps are not modified.
 
-Automated browser checks are in `tests/spectra.test.mjs` and `.github/workflows/spectra-check.yml`. They verify studio initialization, artwork rendering, audio playback, presets, settings, keyboard access, local image import, collection persistence, shared links, exports, mobile overflow and live-site readiness. Verification results are persisted in `spectra/verification.json` by the workflow.
+Automated browser checks are in `spectra/test-browser.cjs` and `.github/workflows/spectra-check.yml`. They verify studio initialization, artwork rendering, audio playback, presets, settings, keyboard access, local image import, collection persistence, shared links, exports, mobile overflow and live-site readiness. Verification results are persisted in `spectra/verification.json` by the workflow.
 
 ## Privacy and rights
 
