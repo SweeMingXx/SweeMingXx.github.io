@@ -12,12 +12,14 @@ concurrency:
 jobs:
   browser:
     runs-on: ubuntu-latest
-    timeout-minutes: 18
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Prepare extension bridge locally, if migration is still running
+        run: node prism-atlas/scripts/upgrade-core.mjs
       - name: Install declared browser-test dependencies
         working-directory: prism-atlas/tests
         run: npm install --no-audit --no-fund
@@ -28,14 +30,19 @@ jobs:
         run: |
           node --check prism-atlas/app.js
           node --check prism-atlas/ui-support.js
-      - name: Test studio, accessibility, exports, mobile and live GitHub Pages
+          node --check prism-atlas/advanced.js
+      - name: Verify baseline studio, accessibility, exports and live GitHub Pages
         working-directory: prism-atlas/tests
         run: node check.mjs
+      - name: Verify composer, WAV, offline exhibition and live enhancements
+        if: always()
+        working-directory: prism-atlas/tests
+        run: node advanced.mjs
       - name: Capture live visual review
         if: always()
         working-directory: prism-atlas/tests
         run: node visual.mjs
-      - name: Preserve browser report, original exports and screenshots
+      - name: Preserve browser reports, export files and screenshots
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -44,11 +51,15 @@ jobs:
       - name: Publish test summary
         if: always()
         run: |
-          if [ -f prism-atlas/tests/results/report.json ]; then
-            echo '## Prism Atlas — verified' >> "$GITHUB_STEP_SUMMARY"
-            echo 'Live application: https://SweeMingXx.github.io/prism-atlas/' >> "$GITHUB_STEP_SUMMARY"
-            node -e "for(const c of require('./prism-atlas/tests/results/report.json').checks) console.log('- ✅ '+c)" >> "$GITHUB_STEP_SUMMARY"
-          elif [ -f prism-atlas/tests/results/failure.txt ]; then
-            echo '## Prism Atlas — needs attention' >> "$GITHUB_STEP_SUMMARY"
-            cat prism-atlas/tests/results/failure.txt >> "$GITHUB_STEP_SUMMARY"
-          fi
+          echo '## Prism Atlas 1.1 — release verification' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Live: https://sweemingxx.github.io/prism-atlas/' >> "$GITHUB_STEP_SUMMARY"
+          for report in report advanced-report; do
+            if [ -f "prism-atlas/tests/results/$report.json" ]; then
+              node -e "for(const c of require('./prism-atlas/tests/results/$report.json').checks) console.log('- ✅ '+c)" >> "$GITHUB_STEP_SUMMARY"
+            fi
+          done
+          for failure in failure advanced-failure; do
+            if [ -f "prism-atlas/tests/results/$failure.txt" ]; then
+              cat "prism-atlas/tests/results/$failure.txt" >> "$GITHUB_STEP_SUMMARY"
+            fi
+          done

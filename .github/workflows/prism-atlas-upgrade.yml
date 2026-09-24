@@ -1,0 +1,40 @@
+name: Prism Atlas scoped source upgrade
+on:
+  push:
+    branches: [main]
+    paths: ['prism-atlas/scripts/upgrade-core.mjs', '.github/workflows/prism-atlas-upgrade.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: prism-atlas-source-upgrade
+  cancel-in-progress: false
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply and persist the narrowly scoped, idempotent migration
+        run: |
+          node prism-atlas/scripts/upgrade-core.mjs
+          node --check prism-atlas/app.js
+          node --check prism-atlas/advanced.js
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add prism-atlas/app.js prism-atlas/index.html prism-atlas/tests/check.mjs
+          if ! git diff --cached --quiet; then
+            git commit -m 'build(prism-atlas): persist the 1.1 extension bridge and entrypoint'
+            for attempt in 1 2 3; do
+              git pull --rebase origin main
+              if git push origin HEAD:main; then break; fi
+              if [ "$attempt" = '3' ]; then exit 1; fi
+            done
+          fi
+          echo "::notice title=Prism source prepared::$(git rev-parse HEAD) — source persisted. A normal release commit will trigger the existing GitHub Pages deployment."
