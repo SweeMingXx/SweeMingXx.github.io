@@ -134,5 +134,18 @@ $('#dialog-close').onclick=closeDialog;$('#dialog').addEventListener('cancel',e=
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#art-stage').classList.contains('focus-view'))toggleFullscreen();if($('#dialog').open||e.target.closest('input,textarea,select,button,a,[contenteditable=true]'))return;if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();undo(e.shiftKey?1:-1);}else if(!e.ctrlKey&&!e.metaKey&&!e.altKey&&e.key.toLowerCase()==='r')$('#remix').click();else if(e.code==='Space'){e.preventDefault();toggleAudio();}});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){stopAudio();if(window.speechSynthesis)speechSynthesis.cancel();}});document.addEventListener('fullscreenchange',()=>{const label=document.fullscreenElement?'Exit full-screen artwork':'View artwork full screen';$('#fullscreen').setAttribute('aria-label',label);$('#fullscreen').title=label;});matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change',renderMotion);
 window.addEventListener('hashchange',()=>{if(location.hash.startsWith('#recipe=')){try{if(location.hash.length>35008)throw Error();commit(validateProject(JSON.parse(decodeRecipe(location.hash.slice(8)))),'Shared recipe opened.');}catch(e){toast('This shared recipe is invalid. Your current artwork is unchanged.');}}});
+// Narrow extension API: snapshots are copies; writes pass through validation and history.
+window.PrismStudio=Object.freeze({
+ getState:()=>clone(state),
+ commit:(next,message)=>commit(validateProject(next),message),
+ renderSVG:(s,prefix,metadata)=>renderSVG(validateProject(s),prefix,metadata),
+ describe:s=>describe(validateProject(s)),
+ openDialog,closeDialog,toast,stopAudio,download,fileName,
+ async makeReceipt(input){
+  const recipe=validateProject(input),canonical=JSON.stringify(recipe);
+  const hash=crypto.subtle?Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(canonical)))).map(x=>x.toString(16).padStart(2,'0')).join(''):null;
+  return {application:'Prism Atlas',engineVersion:'1.0.0',studioVersion:'1.1.0',exportedAt:new Date().toISOString(),recipe,description:describe(recipe),recipeSHA256:hash,note:'This checksum identifies this exact creative recipe. It does not prove copyright, originality, ownership, or data authenticity.'};
+ }
+});
 if(initMessages.length)setTimeout(()=>toast(initMessages.join(' ')),700);if(!storageOK)setTimeout(()=>toast('Local storage is unavailable. Export a recipe to keep your creation.'),900);
 })();
