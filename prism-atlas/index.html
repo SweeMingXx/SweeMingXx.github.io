@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f6f5ef">
+<meta name="description" content="Turn a little data into something extraordinary. An inclusive, private creative studio for generative art, sound, and stories.">
+<meta name="prism-version" content="1.0.0">
+<title>Prism Atlas — A little data. Infinite expression.</title>
+<link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css">
+<script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#studio">Skip to the creative studio</a>
+<svg class="icon-defs" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5Z"/></symbol>
+<symbol id="i-sound" viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4ZM15 8a6 6 0 0 1 0 8M18 5a10 10 0 0 1 0 14"/></symbol>
+<symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="m8 4 12 8-12 8Z"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></symbol>
+<symbol id="i-data" viewBox="0 0 24 24"><path d="M5 20V10M12 20V4M19 20v-7M2 20h20"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+<symbol id="i-undo" viewBox="0 0 24 24"><path d="M4 10h10a6 6 0 0 1 0 12M4 10l6-6M4 10l6 6"/></symbol>
+<symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m9 10 6-3M9 14l6 3"/></symbol>
+<symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6h7l2 3h9v11H3Z"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+<symbol id="i-leaf" viewBox="0 0 24 24"><path d="M19 4C6 1 1 12 8 17S22 12 19 4ZM5 21 16 9"/></symbol>
+</defs></svg>
+<header class="site-header wrap">
+<a href="#" class="brand" aria-label="Prism Atlas home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>prism<span class="brand-light">atlas</span><small>CREATIVE POSSIBILITIES, REIMAGINED.</small></span></a>
+<nav aria-label="Main navigation"><a href="#studio" class="nav-link active">Studio</a><button class="nav-link" id="collection-open">Collection <span id="collection-count">0</span></button><button class="nav-link" id="about-open">The idea <span aria-hidden="true">↗</span></button></nav>
+<span class="privacy-pill"><span></span> Private by design</span>
+</header>
+<main>
+<section class="intro wrap" aria-labelledby="page-title"><div><p class="eyebrow"><span class="tiny-spark">✳</span> ART IS A WAY OF UNDERSTANDING</p><h1 id="page-title">A little data.<br><em>Infinite expression.</em></h1></div><div class="intro-right"><p>Turn the rhythms of your world into art you can <strong>see, hear, and feel.</strong> No coding. No blank-canvas anxiety. Just curiosity.</p><button class="text-button" id="tour-open">Meet your new creative medium <svg><use href="#i-arrow"/></svg></button><span class="intro-note">Made for every kind of mind.</span></div></section>
+<section class="studio wrap" id="studio" aria-labelledby="studio-title">
+<div class="section-bar"><div class="section-label"><span class="step-tag">01</span><h2 id="studio-title">The creative studio</h2></div><div class="studio-status"><span class="status-dot"></span><span id="save-status">Your browser. Your canvas.</span></div></div>
+<div class="studio-grid">
+<div class="art-column">
+<div class="art-stage" id="art-stage">
+<div class="art-corner"><span class="live-indicator"></span><span id="art-type">GENERATIVE STUDY / 001</span></div>
+<div id="artwork" role="img" aria-label="Generative artwork loading"></div>
+<div class="stage-top-right"><button class="stage-button" id="fullscreen" aria-label="View artwork full screen" title="View full screen">⛶</button><button class="stage-button" id="motion" aria-label="Pause artwork motion" aria-pressed="true" title="Pause artwork motion"><svg><use href="#i-pause"/></svg></button></div>
+<div class="art-caption"><span id="art-palette">ESTUARY / STUDY NO. 001</span><span>PRISM ATLAS</span></div>
+<div class="sound-display" id="sound-display" hidden><span class="equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span id="sound-note">Listening to your data</span></div>
+</div>
+<div class="art-toolbar"><div class="art-info"><h3 id="art-title">Tidal memory</h3><p><span id="point-count">12 data points</span><span class="dot-sep">·</span><span id="source-caption">An imagined ocean, made visible</span></p></div><div class="art-actions"><button class="icon-button" id="undo" aria-label="Undo last change" title="Undo (Ctrl/⌘ Z)" disabled><svg><use href="#i-undo"/></svg></button><button class="icon-button" id="redo" aria-label="Redo last change" title="Redo (Ctrl/⌘ Shift Z)" disabled><svg class="flip"><use href="#i-undo"/></svg></button><span class="toolbar-divider"></span><button class="secondary small" id="save"><svg><use href="#i-folder"/></svg> Save</button></div></div>
+<div class="experience-bar"><button id="listen" class="experience-button" aria-pressed="false"><span class="experience-icon"><svg><use href="#i-sound"/></svg></span><span><strong id="listen-label">Listen to this piece</strong><small>Data becomes a melody</small></span><span class="small-arrow" aria-hidden="true">↗</span></button><button id="describe" class="experience-button"><span class="experience-icon"><span class="text-icon" aria-hidden="true">Aa</span></span><span><strong>Experience it in words</strong><small>A different way of seeing</small></span><span class="small-arrow" aria-hidden="true">↗</span></button></div>
+</div>
+<aside class="recipe" aria-labelledby="recipe-title"><div class="recipe-heading"><div><p class="eyebrow">MAKE IT YOURS</p><h3 id="recipe-title">Your creative recipe</h3></div><svg class="recipe-spark" aria-hidden="true"><use href="#i-spark"/></svg></div>
+<div class="control-section"><div class="label-line"><label for="source">Start with a story</label><button class="subtle-link" id="data-open">Explore data <span aria-hidden="true">↗</span></button></div><div class="select-wrap"><svg aria-hidden="true"><use href="#i-data"/></svg><select id="source"><option value="ocean">Ocean rhythms</option><option value="warmth">A year of warmth</option><option value="mood">Everyday feelings</option><option value="custom" disabled>Your own data</option></select></div><p class="field-hint" id="source-hint">Illustrative monthly tide heights · not live data</p><button class="import-link" id="import-open"><span aria-hidden="true">＋</span> Or bring your own data</button></div>
+<div class="control-section"><label class="field-label" for="form">Give it a form</label><div class="form-choices" role="group" aria-label="Artwork form"><button data-form="ribbons" aria-pressed="true"><span class="form-glyph" aria-hidden="true">≋</span>Ribbons</button><button data-form="bloom" aria-pressed="false"><span class="form-glyph" aria-hidden="true">✳</span>Bloom</button><button data-form="contours" aria-pressed="false"><span class="form-glyph" aria-hidden="true">◎</span>Contours</button></div></div>
+<div class="control-section"><div class="label-line"><span class="field-label" id="palette-label">Set the atmosphere</span><span id="palette-name">Estuary</span></div><div class="palettes" role="group" aria-labelledby="palette-label"><button class="palette estuary" data-palette="estuary" aria-label="Estuary: mint, turquoise and warm ivory" aria-pressed="true"><span></span><span></span><span></span><svg><use href="#i-check"/></svg></button><button class="palette ember" data-palette="ember" aria-label="Ember: coral, amber and blush" aria-pressed="false"><span></span><span></span><span></span><svg><use href="#i-check"/></svg></button><button class="palette iris" data-palette="iris" aria-label="Iris: lavender, blue and rose" aria-pressed="false"><span></span><span></span><span></span><svg><use href="#i-check"/></svg></button><button class="palette solar" data-palette="solar" aria-label="Solar: saffron, chartreuse and cream" aria-pressed="false"><span></span><span></span><span></span><svg><use href="#i-check"/></svg></button></div></div>
+<div class="slider-group"><div class="label-line"><label for="flow">Flow</label><output id="flow-value" for="flow">58%</output></div><input id="flow" type="range" min="10" max="100" value="58" aria-describedby="flow-help"><p class="sr-only" id="flow-help">Adjust the curvature and movement of the artwork.</p><div class="slider-ends"><span>Gentle</span><span>Expressive</span></div></div>
+<div class="slider-group"><div class="label-line"><label for="density">Detail</label><output id="density-value" for="density">68%</output></div><input id="density" type="range" min="20" max="100" value="68" aria-describedby="density-help"><p class="sr-only" id="density-help">Adjust the number of lines, without changing your data.</p><div class="slider-ends"><span>Spacious</span><span>Intricate</span></div></div>
+<button class="remix-button" id="remix"><svg><use href="#i-spark"/></svg> Discover a new variation <span aria-hidden="true">↻</span></button><div class="recipe-footer"><button class="primary" id="export-open"><svg><use href="#i-download"/></svg> Export artwork <svg><use href="#i-arrow"/></svg></button><button class="icon-button share-button" id="share-open" aria-label="Share this creative recipe" title="Share this creative recipe"><svg><use href="#i-share"/></svg></button></div><p class="recipe-note">Yours to create. Yours to keep.</p>
+</aside>
+</div>
+<div class="mapping-note"><span class="mapping-icon" aria-hidden="true">↳</span><p><strong>Not random. A reflection.</strong> Each value shapes the lines. Higher values open the form and lift the melody. <button class="subtle-link" id="mapping-open">See how it works <span aria-hidden="true">↗</span></button></p><span class="mapping-tag">DATA → ART → UNDERSTANDING</span></div>
+</section>
+<section class="inspiration wrap" aria-labelledby="inspiration-title"><div class="section-bar"><div class="section-label"><span class="step-tag">02</span><h2 id="inspiration-title">A spark to start with</h2></div><p class="section-aside">Different stories. Entirely your interpretation.</p></div><div class="inspiration-grid" id="inspiration-grid"></div></section>
+<section class="manifesto wrap"><div class="manifesto-symbol" aria-hidden="true">✳</div><div><p class="eyebrow">CREATIVITY HAS NO SINGLE LANGUAGE.</p><h2>Some of us see a pattern.<br>Some of us <em>hear a possibility.</em></h2></div><div class="manifesto-copy"><p>Prism Atlas turns the same information into visual, musical, and written experiences. Not as an afterthought. As equal ways to create.</p><button class="text-button" id="access-open">Designed to include you <svg><use href="#i-arrow"/></svg></button></div></section>
+</main>
+<footer class="wrap"><span class="footer-brand">prism<span>atlas</span><small>A little data. Infinite expression.</small></span><span class="footer-note">An independent project for InnovArt 2027.<br>Built with curiosity. Runs entirely in your browser.</span><button class="subtle-link" id="help-open">A little help <span aria-hidden="true">↗</span></button></footer>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+<dialog id="dialog" aria-labelledby="dialog-title"><div class="dialog-head"><span class="eyebrow" id="dialog-eyebrow">PRISM ATLAS</span><button class="icon-button" id="dialog-close" aria-label="Close dialog"><svg><use href="#i-close"/></svg></button></div><h2 id="dialog-title"></h2><div id="dialog-body"></div></dialog>
+<noscript><div class="noscript">Prism Atlas needs JavaScript to create art in your browser. Please enable it, then reload. No account or server is needed.</div></noscript>
+</body>
+</html>
