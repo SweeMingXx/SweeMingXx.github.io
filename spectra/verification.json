@@ -1,7 +1,7 @@
 {
   "application": "SPECTRA",
-  "revision": "502e034490ad7d03187502a8ada494c73b1f1f67",
-  "checkedAt": "2026-09-24T01:12:12.268Z",
+  "revision": "aac3bf9f7f0c082ebd85efaf402c694e61e94541",
+  "checkedAt": "2026-09-24T01:14:43.605Z",
   "tests": [
     {
       "name": "Studio initialization and original canvas rendering",
@@ -64,18 +64,39 @@
       "passed": true
     },
     {
+      "name": "Saved project backups describe their own artwork",
+      "passed": true
+    },
+    {
       "name": "Reset and deletion confirmation and cancellation",
       "passed": true
     },
     {
       "name": "Native modal focus and Escape dismissal",
-      "passed": false,
-      "error": "Expected values to be strictly equal:\n\ntrue !== false\n"
+      "passed": true
+    },
+    {
+      "name": "System reduced-motion preference",
+      "passed": true
+    },
+    {
+      "name": "No uncaught JavaScript errors",
+      "passed": true
+    },
+    {
+      "name": "Live Pages assets match the tested source exactly",
+      "passed": true
     }
   ],
   "live": {
-    "verified": false
+    "verified": true,
+    "url": "https://sweemingxx.github.io/spectra/",
+    "verifiedAt": "2026-09-24T01:15:00.412Z",
+    "assets": [
+      "index.html",
+      "style.css",
+      "app.js"
+    ]
   },
-  "passed": false,
-  "error": "Expected values to be strictly equal:\n\ntrue !== false\n"
+  "passed": true
 }
