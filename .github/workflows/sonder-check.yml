@@ -26,11 +26,17 @@ jobs:
         run: npx playwright install --with-deps chromium webkit
       - name: Verify experience and live deployment
         working-directory: sonder/tests
-        run: node verify.mjs
+        run: |
+          mkdir -p ../qa
+          set +e
+          node verify.mjs > ../qa/run.log 2>&1
+          result=$?
+          tail -100 ../qa/run.log
+          exit "$result"
       - name: Preserve scoped report and screenshots
         if: always()
         run: |
-          if [ -f sonder/qa/report.json ]; then
+          if [ -d sonder/qa ]; then
             git switch -c "sonder-qa-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
             git add sonder/qa/
             git -c user.name='Sonder verification' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'test(sonder): preserve browser report and responsive previews'
