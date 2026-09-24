@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f5f3ee"><meta name="description" content="Art has more than one language. Create living generative art, turn color into sound, and explore your creativity beyond sight. A private, accessible, free browser studio.">
+<meta property="og:title" content="SPECTRA — A new way to feel art"><meta property="og:description" content="An open studio for the senses. See it. Hear it. Make it yours."><meta property="og:type" content="website">
+<title>SPECTRA — A new way to feel art</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23de5935'/%3E%3Cpath d='M32 10v44M10 32h44M16 16l32 32M16 48l32-32' stroke='%23fff7e6' stroke-width='5'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script defer src="app.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#studio">Skip to the studio</a>
+<svg class="icon-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+<symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2v20M2 12h20M5 5l14 14M5 19 19 5"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 19 19 5M5 5h14v14"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7Z"/></symbol>
+<symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+<symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V3M7 8l5-5 5 5M4 15v6h16v-6"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v13m-5-5 5 5 5-5M4 16v5h16v-5"/></symbol>
+<symbol id="i-reset" viewBox="0 0 24 24"><path d="M3 10a9 9 0 1 1 2 8M3 3v7h7"/></symbol>
+<symbol id="i-volume" viewBox="0 0 24 24"><path d="M4 9h4l5-5v16l-5-5H4ZM17 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></symbol>
+<symbol id="i-expand" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+<symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4Z"/></symbol>
+<symbol id="i-headphones" viewBox="0 0 24 24"><path d="M3 14v-3a9 9 0 0 1 18 0v3M3 12h4v9H3Zm14 0h4v9h-4Z"/></symbol>
+<symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 4v16M12 4v16M20 4v16M1 9h6m2 6h6m2-7h6"/></symbol>
+<symbol id="i-shuffle" viewBox="0 0 24 24"><path d="M3 6h3c5 0 7 12 12 12h3m-4-4 4 4-4 4M3 18h3c2 0 3-2 4-4m4-5c1-2 2-3 4-3h3m-4-4 4 4-4 4"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-link" viewBox="0 0 24 24"><path d="m9 15 6-6m-5-3 2-2a5 5 0 0 1 7 7l-2 2m-3 5-2 2a5 5 0 0 1-7-7l2-2"/></symbol>
+</defs></svg>
+<header class="header">
+<a class="brand" href="#" aria-label="SPECTRA home"><span class="brand-symbol"><svg><use href="#i-spark"/></svg></span>SPECTRA<span class="brand-period">.</span></a>
+<nav aria-label="Main navigation"><button class="nav-link active" id="nav-studio" aria-current="page">Studio</button><button class="nav-link" id="nav-collection">My collection <span id="collection-count">0</span></button><button class="nav-link" id="nav-about">The idea <svg><use href="#i-arrow"/></svg></button></nav>
+<button class="how-link" id="how-button">How it works <span class="circle-help">?</span></button>
+</header>
+<main>
+<div id="studio-view">
+<section class="intro" aria-labelledby="hero-title">
+<div><p class="eyebrow"><span class="tiny-spark">✳</span> AN OPEN STUDIO FOR THE SENSES</p><h1 id="hero-title">A new way<br>to <em>feel</em> art<span class="orange-dot">.</span></h1></div>
+<div class="intro-right"><div class="mini-spectrum" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><p>What if you could listen to a color?<br>Turn your imagination into living art<br class="desktop-break"> and a soundscape only you could make.</p><a href="#studio" class="text-link">See it. Hear it. Make it yours. <svg><use href="#i-arrow"/></svg></a></div>
+<div class="hero-aside" aria-hidden="true">ART, BEYOND THE VISIBLE.</div>
+</section>
+<section id="studio" class="studio-section" aria-labelledby="studio-label" tabindex="-1">
+<div class="section-topline"><h2 id="studio-label"><span class="section-number">01 /</span> YOUR CREATIVE SPACE</h2><span class="privacy-note"><span class="status-dot"></span> No accounts. No uploads. Just you.</span></div>
+<div class="studio-shell">
+<div class="art-column">
+<div class="canvas-stage" id="canvas-stage">
+<canvas id="art-canvas" tabindex="0" role="img" aria-label="Interactive generative artwork. Use left and right arrows to explore five colors, and Enter to play the selected color." aria-describedby="canvas-help art-description"></canvas>
+<div class="canvas-top"><span class="canvas-tag"><span class="status-dot"></span> <span id="canvas-mode">LIVING ARTWORK</span></span><div class="stage-tools"><button class="glass-button" id="motion-button" aria-label="Pause visual motion" title="Pause visual motion"><svg><use href="#i-pause"/></svg></button><button class="glass-button" id="fullscreen-button" aria-label="Enter fullscreen" title="Fullscreen artwork"><svg><use href="#i-expand"/></svg></button></div></div>
+<div class="canvas-center-hint" id="canvas-center-hint"><svg><use href="#i-volume"/></svg><span id="explore-note">C4 · warm amber</span></div>
+<div class="canvas-bottom"><div><span class="canvas-overline">AN ORIGINAL, BY YOU</span><h3 id="art-title">Amber tides</h3><p id="art-subtitle">A little warmth. A little wonder.</p></div><div class="edition-mark" aria-hidden="true">S<span>001 — ∞</span></div></div>
+<div class="drop-overlay" id="drop-overlay"><svg><use href="#i-upload"/></svg>Drop an image to find its palette<span>Your image stays on this device.</span></div>
+</div>
+<div class="playback-bar"><button id="play-button" class="play-button"><span class="play-icon"><svg><use href="#i-play"/></svg></span><span id="play-label">Play soundscape</span><kbd>space</kbd></button><div class="sound-meter" id="sound-meter" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span id="play-status" class="play-status">Ready when you are</span><button class="icon-button share-button" id="share-button" title="Share your composition" aria-label="Share your composition"><svg><use href="#i-link"/></svg></button></div>
+</div>
+<aside class="control-panel" aria-label="Artwork controls">
+<div class="panel-tabs" role="tablist" aria-label="Studio settings"><button id="create-tab" class="panel-tab active" role="tab" aria-selected="true" aria-controls="create-panel">Make it yours</button><button id="experience-tab" class="panel-tab" role="tab" aria-selected="false" aria-controls="experience-panel" tabindex="-1">Your experience</button></div>
+<div id="create-panel" role="tabpanel" aria-labelledby="create-tab">
+<div class="control-group palette-group"><div class="label-row"><label>Your palette</label><button id="shuffle-button" class="small-action" title="Try another palette"><svg><use href="#i-shuffle"/></svg> Remix</button></div><div class="palette" id="palette"></div><button class="import-button" id="import-button"><svg><use href="#i-upload"/></svg> Find colors in your own image <span>↗</span></button><input id="image-input" type="file" accept="image/png,image/jpeg,image/webp" hidden><p class="field-hint">Or drop an image onto the artwork. PNG, JPG, WebP · 10 MB max.</p></div>
+<div class="control-group"><div class="label-row"><label>Give it a shape</label><span class="subtle">01 — 03</span></div><div class="segmented" role="group" aria-label="Art form"><button data-form="flow" class="selected" aria-pressed="true"><span class="form-icon">≋</span>Flow</button><button data-form="bloom" aria-pressed="false"><span class="form-icon">❋</span>Bloom</button><button data-form="orbit" aria-pressed="false"><span class="form-icon">◎</span>Orbit</button></div><div class="range-label"><label for="motion-range">Movement</label><output id="motion-value" for="motion-range">Gentle</output></div><input id="motion-range" type="range" min="0" max="100" value="35" aria-valuetext="Gentle"><div class="range-endpoints"><span>Still</span><span>Expressive</span></div></div>
+<div class="control-group sound-group"><div class="label-row"><label for="instrument-select">Find its voice</label><svg class="muted-icon"><use href="#i-headphones"/></svg></div><select id="instrument-select"><option value="warm">Warm keys</option><option value="glass">Glass chimes</option><option value="soft">Soft waves</option></select><div class="sound-controls"><div><div class="range-label"><label for="tempo-range">Tempo</label><output id="tempo-value" for="tempo-range">72 BPM</output></div><input id="tempo-range" type="range" min="48" max="120" value="72"></div><div><div class="range-label"><label for="volume-range">Volume</label><output id="volume-value" for="volume-range">45%</output></div><input id="volume-range" type="range" min="0" max="100" value="45"></div></div></div>
+</div>
+<div id="experience-panel" role="tabpanel" aria-labelledby="experience-tab" hidden>
+<div class="control-group"><p class="experience-intro">Different senses. Same creative freedom.</p><div class="switch-row"><div><label for="low-motion">Still canvas</label><p>Pause animation, keep the music.</p></div><input id="low-motion" type="checkbox" role="switch"></div><div class="switch-row"><div><label for="high-contrast">Higher contrast</label><p>Stronger text and control outlines.</p></div><input id="high-contrast" type="checkbox" role="switch"></div></div>
+<div class="control-group description-group"><div class="label-row"><h3>Art in words</h3><button class="small-action" id="read-button"><svg><use href="#i-volume"/></svg> Read aloud</button></div><p id="art-description"></p><p class="field-hint">A description of your settings, not an interpretation of an imported image.</p></div>
+<div class="control-group mapping-group"><div class="label-row"><h3>Your color score</h3><span class="subtle">KEYS 1–5</span></div><div id="note-mapping"></div><p class="field-hint">Hue chooses a note in a pentatonic scale; brightness sets its octave. This is an artistic mapping, not a universal rule.</p></div>
+</div>
+<div class="panel-actions"><button class="save-button" id="save-button"><svg><use href="#i-bookmark"/></svg> Save to collection</button><button class="export-button" id="export-button" aria-label="Download your creation" title="Download artwork, audio or project"><svg><use href="#i-download"/></svg></button></div><div class="panel-bottom"><span id="save-status">Made here. Kept on your device.</span><button id="reset-button" class="reset-button" title="Restore the starting artwork"><svg><use href="#i-reset"/></svg> Reset</button></div>
+</aside>
+</div>
+<div class="studio-footnote"><span id="canvas-help"><span class="tiny-spark">✳</span> Tap the artwork to hear a color. Or explore with keys <kbd>1</kbd>–<kbd>5</kbd>.</span><span><svg><use href="#i-headphones"/></svg> A little better with headphones.</span></div>
+</section>
+<section class="inspiration" aria-labelledby="inspiration-title"><div class="inspiration-heading"><div><p class="eyebrow">A STARTING POINT, NOT A LIMIT</p><h2 id="inspiration-title">Borrow a little <em>inspiration.</em></h2></div><span>Four worlds. Endless possibilities.</span></div><div class="preset-grid" id="preset-grid"></div></section>
+<section class="manifesto"><div class="manifesto-mark" aria-hidden="true"><svg><use href="#i-spark"/></svg></div><div><p class="eyebrow">CREATIVITY DOESN’T HAVE ONE WAY IN</p><h2>Art has more than one language.<br><em>Let’s explore them all.</em></h2></div><button id="manifesto-button" class="round-arrow" aria-label="Read the idea behind SPECTRA"><svg><use href="#i-arrow"/></svg></button></section>
+</div>
+<section id="collection-view" hidden aria-labelledby="collection-title"><div class="collection-header"><div><p class="eyebrow">LITTLE WORLDS, WORTH KEEPING</p><h1 id="collection-title">Your <em>collection.</em></h1><p>Saved in this browser. Export a project file to keep a portable backup.</p></div><button id="collection-create" class="primary-button">Make something new <svg><use href="#i-arrow"/></svg></button></div><div class="collection-toolbar"><span id="collection-summary">0 saved creations</span><button id="project-import-button" class="small-action"><svg><use href="#i-upload"/></svg> Import project</button><input type="file" accept="application/json,.json" id="project-input" hidden></div><div id="collection-grid" class="collection-grid"></div><div id="empty-collection" class="empty-collection"><svg><use href="#i-bookmark"/></svg><h2>A home for your happy accidents.</h2><p>Create a piece you love, then choose “Save to collection.”<br>Your artwork and its sound settings will be waiting here.</p><button id="empty-create" class="primary-button">Find your first feeling <svg><use href="#i-arrow"/></svg></button></div></section>
+</main>
+<footer><a class="brand footer-brand" href="#"><span class="brand-symbol"><svg><use href="#i-spark"/></svg></span>SPECTRA.</a><span>An experiment in art, sound & human possibility.</span><div><span class="innovart-badge">MADE FOR INNOVART 2027</span><button id="footer-access">Accessibility & privacy <svg><use href="#i-arrow"/></svg></button></div></footer>
+<dialog id="modal" aria-labelledby="modal-title"><div class="modal-head"><span class="modal-eyebrow" id="modal-eyebrow">SPECTRA STUDIO</span><button class="icon-button" id="modal-close" aria-label="Close dialog"><svg><use href="#i-close"/></svg></button></div><div id="modal-content"></div></dialog>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<span id="a11y-status" class="sr-only" role="status" aria-live="polite"></span>
+</body>
+</html>
