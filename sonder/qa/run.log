@@ -1,0 +1,18 @@
+DESCRIPTION A ribbon of fine, looping contours folds around an open center, like silk caught in a slow current. Its lines move through sea-glass green, pale gold, lavender, and soft blue against a deep charcoal-green background. Energy is 42 out of 100: a gently expressive, flowing composition. Intricacy is 58 out of 100, shaping 183 contours. Its sound uses a still-inspired five-note palette at 71 beats per minute. These are creative associations, not a reading of your emotions.
+BOOT ERRORS []
+PASS Deterministic geometry, all forms and palettes, validated imports and safe SVG
+PASS Desktop boots, canvas paints, layout fits
+PASS WCAG A/AA baseline automated scan
+PASS Creative controls, text seed, undo and redo
+PASS Reduced motion, description, exercise and keyboard dismissal
+PASS Audio starts only on request and tracks palette
+PASS Collection save, persistent reload, delete, restore and reopen
+PASS All exports: described SVG, 2400px PNG, non-silent 12-second WAV, JSON
+PASS Project round-trip and invalid import rejection
+PASS Remix link excludes title and writing and opens same settings
+PASS Draft persistence and offline reload
+PASS Mobile 390px and 320px layouts and touch controls
+PASS Blocked browser storage degrades visibly without blocking creativity
+PASS WebKit browser boots and creative controls work
+PASS Live HTTPS deployment serves exact source and runs interactively
+PASS No uncaught browser errors

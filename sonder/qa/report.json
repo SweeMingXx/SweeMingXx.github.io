@@ -1,0 +1,74 @@
+{
+  "sha": "bdd31551f2260d1521362979f90acff935685b72",
+  "results": [
+    {
+      "name": "Deterministic geometry, all forms and palettes, validated imports and safe SVG",
+      "pass": true
+    },
+    {
+      "name": "Desktop boots, canvas paints, layout fits",
+      "pass": true
+    },
+    {
+      "name": "WCAG A/AA baseline automated scan",
+      "pass": true
+    },
+    {
+      "name": "Creative controls, text seed, undo and redo",
+      "pass": true
+    },
+    {
+      "name": "Reduced motion, description, exercise and keyboard dismissal",
+      "pass": true
+    },
+    {
+      "name": "Audio starts only on request and tracks palette",
+      "pass": true
+    },
+    {
+      "name": "Collection save, persistent reload, delete, restore and reopen",
+      "pass": true
+    },
+    {
+      "name": "All exports: described SVG, 2400px PNG, non-silent 12-second WAV, JSON",
+      "pass": true
+    },
+    {
+      "name": "Project round-trip and invalid import rejection",
+      "pass": true
+    },
+    {
+      "name": "Remix link excludes title and writing and opens same settings",
+      "pass": true
+    },
+    {
+      "name": "Draft persistence and offline reload",
+      "pass": true
+    },
+    {
+      "name": "Mobile 390px and 320px layouts and touch controls",
+      "pass": true
+    },
+    {
+      "name": "Blocked browser storage degrades visibly without blocking creativity",
+      "pass": true
+    },
+    {
+      "name": "WebKit browser boots and creative controls work",
+      "pass": true
+    },
+    {
+      "name": "Live HTTPS deployment serves exact source and runs interactively",
+      "pass": true
+    },
+    {
+      "name": "No uncaught browser errors",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "accessibility": [],
+  "liveURL": "https://sweemingxx.github.io/sonder/",
+  "passed": 16,
+  "failed": 0
+}
