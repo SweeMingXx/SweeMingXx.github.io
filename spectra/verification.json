@@ -1,0 +1,11 @@
+{
+  "application": "SPECTRA",
+  "revision": "b609b89103a26ce381149167592219c4a817fafc",
+  "checkedAt": "2026-09-24T01:08:09.232Z",
+  "tests": [],
+  "live": {
+    "verified": false
+  },
+  "passed": false,
+  "error": "The Chrome test browser did not start."
+}
