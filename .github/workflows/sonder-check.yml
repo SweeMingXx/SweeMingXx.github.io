@@ -1,0 +1,39 @@
+name: Sonder browser verification
+on:
+  push:
+    branches: [main]
+    paths: ['sonder/**', '.github/workflows/sonder-check.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: sonder-verification
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Install declared verification dependencies
+        run: npm install --prefix sonder/tests --no-audit --no-fund
+      - name: Install browsers
+        working-directory: sonder/tests
+        run: npx playwright install --with-deps chromium webkit
+      - name: Verify experience and live deployment
+        working-directory: sonder/tests
+        run: node verify.mjs
+      - name: Preserve scoped report and screenshots
+        if: always()
+        run: |
+          if [ -f sonder/qa/report.json ]; then
+            git switch -c "sonder-qa-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+            git add sonder/qa/
+            git -c user.name='Sonder verification' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'test(sonder): preserve browser report and responsive previews'
+            git push origin HEAD
+            echo "Verification branch: sonder-qa-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" >> "$GITHUB_STEP_SUMMARY"
+          fi
