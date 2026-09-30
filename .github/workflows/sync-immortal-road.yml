@@ -1,0 +1,32 @@
+name: Sync The Immortal Road to Pages
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/sync-immortal-road.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/checkout@v4
+        with:
+          repository: SweeMingXx/the-immortal-road
+          ref: main
+          path: _immortal_source
+          persist-credentials: false
+      - name: Copy and publish game
+        run: |
+          mkdir -p the-immortal-road
+          cp _immortal_source/index.html the-immortal-road/index.html
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add the-immortal-road/index.html
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish The Immortal Road game"
+            git push
+          fi
