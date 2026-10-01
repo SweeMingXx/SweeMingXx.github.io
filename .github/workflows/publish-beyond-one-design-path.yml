@@ -1,0 +1,48 @@
+name: Publish Beyond One Design Path
+on:
+  push:
+    paths:
+      - .github/workflows/publish-beyond-one-design-path.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Decode article, clean citation markers and publish
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import base64
+          import gzip
+          import re
+
+          old = Path('beyond-the-canvas/index.html')
+          wrapper = old.read_text(encoding='utf-8')
+          match = re.search(r"const encoded='([A-Za-z0-9+/=]+)'", wrapper)
+          if not match:
+              raise SystemExit('Original embedded article not found; no files changed')
+          article = gzip.decompress(base64.b64decode(match.group(1))).decode('utf-8')
+          article, citations = re.subn(r'\[cite\s*:[^\]]*\]', '', article)
+          assert citations > 0, 'Expected citations were not found'
+          assert 'Beyond the Canvas' in article
+          article = article.replace('Beyond the Canvas', 'Beyond One Design Path')
+          assert not re.search(r'\[cite\s*:[^\]]*\]', article)
+          assert 'Beyond the Canvas' not in article
+          new = Path('beyond-one-design-path/index.html')
+          new.parent.mkdir(parents=True, exist_ok=True)
+          new.write_text(article, encoding='utf-8')
+          old.write_text('''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Beyond One Design Path — moved</title><meta http-equiv="refresh" content="0;url=../beyond-one-design-path/"><link rel="canonical" href="https://sweemingxx.github.io/beyond-one-design-path/"></head><body><p>This article has moved to <a href="../beyond-one-design-path/">Beyond One Design Path</a>.</p><script>location.replace('../beyond-one-design-path/'+location.hash)</script></body></html>''', encoding='utf-8')
+          print(f'Removed {citations} citation markers; published {len(article)} characters')
+          PY
+      - name: Commit generated HTML
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add beyond-the-canvas/index.html beyond-one-design-path/index.html
+          git commit -m "Publish Beyond One Design Path without citation markers"
+          git push
