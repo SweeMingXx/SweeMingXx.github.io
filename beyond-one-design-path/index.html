@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beyond One Design Path: The Modern Designer’s Role in Singapore’s AI Era</title>
+  
+  <!-- Typography: Plus Jakarta Sans (UI) & Newsreader (Editorial Serif) & JetBrains Mono (Code/Tags) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400;1,6..72,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       DESIGN TOKENS & COLOR SYSTEM (Soft, Luminous, Magazine Aesthetic)
+       ========================================================================== */
+    :root {
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-serif: 'Newsreader', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      /* Base Palette */
+      --bg-canvas: #fcfbfa;
+      --text-hero: #090d16;
+      --text-body: #334155;
+      --text-muted: #64748b;
+      --text-subtle: #94a3b8;
+
+      /* Brand Accent Tones */
+      --coral-500: #ff4d4d;
+      --coral-100: #ffe8e8;
+      --coral-border: #ffccd0;
+
+      --violet-600: #7c3aed;
+      --violet-100: #ede9fe;
+      --violet-border: #ddd6fe;
+
+      --teal-600: #0d9488;
+      --teal-100: #ccfbf1;
+      --teal-border: #99f6e4;
+
+      --amber-600: #d97706;
+      --amber-100: #fef3c7;
+      --amber-border: #fde68a;
+
+      --blue-600: #2563eb;
+      --blue-100: #dbeafe;
+      --blue-border: #bfdbfe;
+
+      --rose-500: #f43f5e;
+      --rose-100: #ffe4e6;
+      --rose-border: #fecdd3;
+
+      /* Surfaces & Glassmorphism */
+      --glass-surface: rgba(255, 255, 255, 0.78);
+      --glass-card: rgba(255, 255, 255, 0.88);
+      --glass-border: rgba(255, 255, 255, 0.95);
+      --card-stroke: rgba(226, 232, 240, 0.75);
+      --card-shadow: 0 10px 30px -6px rgba(15, 23, 42, 0.04), 0 4px 12px -2px rgba(15, 23, 42, 0.02);
+      --card-shadow-hover: 0 20px 40px -10px rgba(15, 23, 42, 0.08), 0 8px 16px -4px rgba(15, 23, 42, 0.03);
+
+      /* Layout */
+      --header-height: 72px;
+      --content-max-w: 1220px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      background-image: 
+        radial-gradient(circle at 10% 0%, #ffdfe0 0%, transparent 45%),
+        radial-gradient(circle at 90% 12%, #ede4ff 0%, transparent 42%),
+        radial-gradient(circle at 5% 45%, #dff7f2 0%, transparent 40%),
+        radial-gradient(circle at 95% 55%, #fff1d6 0%, transparent 45%),
+        radial-gradient(circle at 15% 85%, #e1effe 0%, transparent 45%);
+      background-attachment: fixed;
+      background-size: cover;
+      color: var(--text-body);
+      font-family: var(--font-sans);
+      line-height: 1.8;
+      font-size: 1.0625rem;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Reading Progress Bar */
+    #progress-tracker {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--coral-500), var(--rose-500), var(--violet-600), var(--teal-600));
+      width: 0%;
+      z-index: 999;
+      transition: width 0.15s ease-out;
+    }
+
+    /* ==========================================================================
+       HEADER & NAVIGATION
+       ========================================================================== */
+    header.site-header {
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(252, 251, 250, 0.82);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.7);
+      height: var(--header-height);
+    }
+
+    .header-inner {
+      max-width: var(--content-max-w);
+      margin: 0 auto;
+      height: 100%;
+      padding: 0 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+    }
+
+    .brand-symbol {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--coral-500), var(--violet-600));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.15rem;
+      box-shadow: 0 4px 12px rgba(255, 77, 77, 0.25);
+    }
+
+    .brand-names {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-weight: 800;
+      font-size: 0.98rem;
+      color: var(--text-hero);
+      letter-spacing: -0.01em;
+    }
+
+    .brand-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .pill-btn.secondary {
+      background: #ffffff;
+      color: var(--text-body);
+      border: 1px solid var(--card-stroke);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    }
+
+    .pill-btn.secondary:hover {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+      transform: translateY(-1px);
+    }
+
+    .pill-btn.primary {
+      background: var(--text-hero);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(9, 13, 22, 0.12);
+    }
+
+    .pill-btn.primary:hover {
+      background: #1e293b;
+      transform: translateY(-1px);
+    }
+
+    /* ==========================================================================
+       HERO EDITORIAL SECTION
+       ========================================================================== */
+    .hero-wrapper {
+      max-width: var(--content-max-w);
+      margin: 3.5rem auto 2.5rem;
+      padding: 0 1.5rem;
+    }
+
+    .hero-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tag-badge {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+    }
+
+    .tag-badge.coral { background: var(--coral-100); color: #c81e1e; border-color: var(--coral-border); }
+    .tag-badge.violet { background: var(--violet-100); color: #6d28d9; border-color: var(--violet-border); }
+    .tag-badge.teal { background: var(--teal-100); color: #0f766e; border-color: var(--teal-border); }
+    .tag-badge.amber { background: var(--amber-100); color: #b45309; border-color: var(--amber-border); }
+
+    h1.hero-headline {
+      font-family: var(--font-serif);
+      font-size: clamp(2.6rem, 5.2vw, 4.25rem);
+      font-weight: 600;
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      color: var(--text-hero);
+      margin-bottom: 1.4rem;
+    }
+
+    p.hero-standfirst {
+      font-size: 1.35rem;
+      line-height: 1.55;
+      color: var(--text-muted);
+      max-width: 980px;
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }
+
+    .meta-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 0;
+      border-top: 1px solid rgba(203, 213, 225, 0.7);
+      border-bottom: 1px solid rgba(203, 213, 225, 0.7);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      gap: 1rem;
+    }
+
+    .author-cluster {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .avatar-stack {
+      display: flex;
+    }
+
+    .avatar-bubble {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      margin-left: -8px;
+      background: #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .avatar-bubble:first-child { margin-left: 0; background: #ffe4e6; color: #e11d48; }
+    .avatar-bubble:nth-child(2) { background: #ede9fe; color: #7c3aed; }
+    .avatar-bubble:nth-child(3) { background: #ccfbf1; color: #0f766e; }
+
+    /* ==========================================================================
+       TWO-COLUMN CONTENT LAYOUT (Sticky Sidebar + Main Narrative)
+       ========================================================================== */
+    .layout-container {
+      max-width: var(--content-max-w);
+      margin: 0 auto;
+      padding: 0 1.5rem 6rem;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 3.5rem;
+      position: relative;
+    }
+
+    /* Sticky Sidebar Navigation */
+    aside.nav-sidebar {
+      position: sticky;
+      top: calc(var(--header-height) + 2rem);
+      height: fit-content;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .toc-card {
+      background: var(--glass-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 1.5rem;
+      box-shadow: var(--card-shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .toc-title {
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-subtle);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .toc-list a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      padding: 0.4rem 0.65rem;
+      border-radius: 8px;
+      display: block;
+      transition: all 0.2s ease;
+      line-height: 1.4;
+    }
+
+    .toc-list a:hover {
+      background: rgba(241, 245, 249, 0.8);
+      color: var(--coral-500);
+      transform: translateX(3px);
+    }
+
+    .sidebar-widget {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 241, 242, 0.85));
+      border: 1px solid var(--coral-border);
+      border-radius: 20px;
+      padding: 1.35rem;
+      box-shadow: var(--card-shadow);
+    }
+
+    .widget-badge {
+      background: var(--coral-500);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 0.6rem;
+    }
+
+    .sidebar-widget h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-hero);
+      margin-bottom: 0.4rem;
+    }
+
+    .sidebar-widget p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 0.85rem;
+    }
+
+    .widget-link {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--coral-500);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .widget-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Main Article Content */
+    main.article-body {
+      min-width: 0;
+    }
+
+    .content-section {
+      margin-bottom: 4rem;
+      scroll-margin-top: calc(var(--header-height) + 1.5rem);
+    }
+
+    h2.section-header {
+      font-family: var(--font-serif);
+      font-size: 2.25rem;
+      font-weight: 600;
+      color: var(--text-hero);
+      letter-spacing: -0.015em;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-lead {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: var(--text-body);
+      margin-bottom: 1.4rem;
+    }
+
+    p {
+      margin-bottom: 1.4rem;
+      color: var(--text-body);
+    }
+
+    strong {
+      color: var(--text-hero);
+      font-weight: 700;
+    }
+
+    /* Stat Cards Banner */
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.15rem;
+      margin: 2rem 0 2.5rem;
+    }
+
+    .stat-pill-card {
+      background: var(--glass-card);
+      border: 1px solid var(--card-stroke);
+      border-radius: 20px;
+      padding: 1.6rem 1.4rem;
+      box-shadow: var(--card-shadow);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .stat-pill-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .stat-pill-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+    }
+
+    .stat-pill-card.c-coral::before { background: var(--coral-500); }
+    .stat-pill-card.c-violet::before { background: var(--violet-600); }
+    .stat-pill-card.c-teal::before { background: var(--teal-600); }
+    .stat-pill-card.c-amber::before { background: var(--amber-600); }
+
+    .stat-num {
+      font-size: 2.6rem;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.03em;
+    }
+
+    .stat-pill-card.c-coral .stat-num { color: var(--coral-500); }
+    .stat-pill-card.c-violet .stat-num { color: var(--violet-600); }
+    .stat-pill-card.c-teal .stat-num { color: var(--teal-600); }
+    .stat-pill-card.c-amber .stat-num { color: var(--amber-600); }
+
+    .stat-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Speaker Cards */
+    .roster-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin: 2rem 0;
+    }
+
+    .roster-card {
+      background: var(--glass-card);
+      border: 1px solid var(--card-stroke);
+      border-radius: 20px;
+      padding: 1.5rem;
+      box-shadow: var(--card-shadow);
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .roster-card:hover {
+      transform: translateY(-2px);
+      border-color: #cbd5e1;
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .roster-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.35rem;
+    }
+
+    .roster-name {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-hero);
+    }
+
+    .roster-pill {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+    }
+
+    .roster-pill.keynote { background: #ffe4e6; color: #be123c; }
+    .roster-pill.mod { background: #f3e8ff; color: #7e22ce; }
+    .roster-pill.panel { background: #e0f2fe; color: #0369a1; }
+    .roster-pill.lead { background: #dcfce7; color: #15803d; }
+    .roster-pill.aud { background: #fef3c7; color: #b45309; }
+
+    .roster-role {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--violet-600);
+      line-height: 1.35;
+    }
+
+    .roster-bio {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Pullquote Styling */
+    .magazine-quote {
+      margin: 3rem 0;
+      padding: 2.25rem 2.5rem;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 237, 237, 0.75) 100%);
+      border-left: 5px solid var(--coral-500);
+      border-radius: 0 24px 24px 0;
+      box-shadow: var(--card-shadow);
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.55rem;
+      line-height: 1.5;
+      color: var(--text-hero);
+      position: relative;
+    }
+
+    .magazine-quote cite {
+      display: block;
+      margin-top: 1rem;
+      font-family: var(--font-sans);
+      font-style: normal;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--coral-500);
+    }
+
+    /* Feature Cards */
+    .feature-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin: 2rem 0;
+    }
+
+    .feature-glass-box {
+      background: var(--glass-card);
+      border: 1px solid var(--card-stroke);
+      border-radius: 20px;
+      padding: 1.85rem;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .feature-glass-box:hover {
+      transform: translateY(-2px);
+      border-color: #cbd5e1;
+    }
+
+    .feature-header-group {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .feature-emoji-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .feature-emoji-icon.coral { background: #ffe4e6; }
+    .feature-emoji-icon.violet { background: #ede9fe; }
+    .feature-emoji-icon.teal { background: #ccfbf1; }
+    .feature-emoji-icon.amber { background: #fef3c7; }
+
+    .feature-heading-text {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-hero);
+    }
+
+    /* Tension Matrices */
+    .tensions-cluster {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.25rem;
+      margin: 2rem 0;
+    }
+
+    .tension-card-item {
+      background: var(--glass-card);
+      border: 1px solid var(--card-stroke);
+      border-radius: 20px;
+      padding: 1.6rem;
+      box-shadow: var(--card-shadow);
+      border-top: 4px solid var(--violet-600);
+    }
+
+    .tension-card-item:nth-child(2) { border-top-color: var(--coral-500); }
+    .tension-card-item:nth-child(3) { border-top-color: var(--amber-600); }
+    .tension-card-item:nth-child(4) { border-top-color: var(--teal-600); }
+
+    .tension-card-item h4 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text-hero);
+      margin-bottom: 0.5rem;
+    }
+
+    .tension-card-item p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 0;
+    }
+
+    /* Blueprint Table */
+    .blueprint-wrapper {
+      margin: 2.5rem 0;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--card-stroke);
+      box-shadow: var(--card-shadow);
+    }
+
+    table.blueprint-grid {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.95rem;
+      background: rgba(255, 255, 255, 0.92);
+    }
+
+    table.blueprint-grid th {
+      background: #f8fafc;
+      padding: 1.25rem 1.5rem;
+      font-weight: 800;
+      color: var(--text-hero);
+      border-bottom: 2px solid #e2e8f0;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    table.blueprint-grid td {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid #f1f5f9;
+      color: var(--text-body);
+      vertical-align: top;
+      line-height: 1.65;
+    }
+
+    table.blueprint-grid tr:last-child td {
+      border-bottom: none;
+    }
+
+    table.blueprint-grid td strong {
+      color: var(--text-hero);
+      font-weight: 700;
+    }
+
+    /* Q&A Accordion Style */
+    .qa-accordion-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+      margin: 2rem 0;
+    }
+
+    .qa-bubble {
+      background: var(--glass-card);
+      border: 1px solid var(--card-stroke);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      transition: all 0.2s ease;
+    }
+
+    .qa-trigger {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 1.5rem 1.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-family: var(--font-sans);
+    }
+
+    .qa-trigger-left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding-right: 1rem;
+    }
+
+    .qa-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--violet-600);
+    }
+
+    .qa-question-text {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-hero);
+      line-height: 1.4;
+    }
+
+    .qa-toggle-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: transform 0.25s ease, background-color 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .qa-bubble.open .qa-toggle-icon {
+      transform: rotate(45deg);
+      background: #ffe4e6;
+      color: var(--coral-500);
+    }
+
+    .qa-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0, 1, 0, 1), padding 0.3s ease;
+      padding: 0 1.75rem;
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .qa-bubble.open .qa-body {
+      max-height: 1000px;
+      padding: 0 1.75rem 1.75rem;
+      transition: max-height 0.5s ease-in-out, padding 0.3s ease;
+    }
+
+    .qa-body-content {
+      border-top: 1px solid #f1f5f9;
+      padding-top: 1.25rem;
+      font-size: 0.98rem;
+      color: var(--text-body);
+      line-height: 1.7;
+    }
+
+    /* Interactive Checklist Component */
+    .checklist-container {
+      background: var(--glass-card);
+      border: 1px solid var(--card-stroke);
+      border-radius: 24px;
+      padding: 2.25rem;
+      box-shadow: var(--card-shadow);
+      margin: 2.5rem 0;
+    }
+
+    .checklist-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .checklist-stats {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--teal-600);
+      background: var(--teal-100);
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+    }
+
+    .checklist-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .check-row-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(226, 232, 240, 0.6);
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s ease;
+    }
+
+    .check-row-item:hover {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      transform: translateX(3px);
+    }
+
+    .check-box-indicator {
+      width: 24px;
+      height: 24px;
+      border-radius: 8px;
+      border: 2px solid #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+      flex-shrink: 0;
+      background: #ffffff;
+      transition: all 0.2s ease;
+    }
+
+    .check-row-item.completed .check-box-indicator {
+      background: var(--teal-600);
+      border-color: var(--teal-600);
+    }
+
+    .check-row-item.completed .check-box-indicator::after {
+      content: '✓';
+      color: #ffffff;
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+
+    .check-label-text {
+      font-size: 0.96rem;
+      color: var(--text-hero);
+      line-height: 1.5;
+      transition: color 0.2s ease;
+    }
+
+    .check-row-item.completed .check-label-text {
+      color: var(--text-subtle);
+      text-decoration: line-through;
+    }
+
+    /* Citation Tag */
+    cite-ref {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--violet-600);
+      background: var(--violet-100);
+      border: 1px solid var(--violet-border);
+      padding: 0.05rem 0.35rem;
+      border-radius: 4px;
+      margin-left: 0.25rem;
+      vertical-align: 1px;
+    }
+
+    /* Site Footer */
+    footer.site-footer {
+      border-top: 1px solid rgba(226, 232, 240, 0.8);
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(16px);
+      padding: 3.5rem 1.5rem;
+      text-align: center;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    footer a {
+      color: var(--coral-500);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .layout-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      aside.nav-sidebar {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      h1.hero-headline {
+        font-size: 2.25rem;
+      }
+      .hero-standfirst {
+        font-size: 1.15rem;
+      }
+      .metrics-row {
+        grid-template-columns: 1fr;
+      }
+      .tensions-cluster {
+        grid-template-columns: 1fr;
+      }
+    }
+
+ a:focus-visible, button:focus-visible, [role="checkbox"]:focus-visible {outline:3px solid #6d28d9;outline-offset:3px}
+ .qa-trigger,.check-row-item {min-height:54px}
+ .blueprint-wrapper {overflow-x:auto}
+ table.blueprint-grid {min-width:620px}
+ .content-section {overflow-wrap:anywhere}
+ @media(max-width:640px){:root{--header-height:auto}header.site-header{height:auto}.header-inner{padding:.65rem 1rem;gap:.5rem;flex-wrap:wrap}.header-actions{flex-wrap:wrap;gap:.4rem}.pill-btn{min-height:44px;align-items:center}.hero-wrapper{margin-top:2rem}.content-section{scroll-margin-top:125px}.checklist-container{padding:1.25rem}.checklist-header{flex-wrap:wrap;gap:.75rem}h2.section-header{font-size:1.85rem}.qa-trigger{padding:1.1rem}}
+ @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+
+  <!-- Top Realtime Reading Progress Indicator -->
+  <div id="progress-tracker"></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="https://luma.com/6gxf6u5k?tk=nZwOAT" target="_blank" rel="noopener noreferrer" class="brand-mark">
+        <div class="brand-symbol">✦</div>
+        <div class="brand-names">
+          <span class="brand-title">SP UXC × DesignSingapore</span>
+          <span class="brand-sub">Industry Synthesis & Field Report</span>
+        </div>
+      </a>
+      <div class="header-actions">
+        <a href="https://docs.google.com/document/d/10anlrPpK4Uk0Fv1JDPicgz7K38BD7mB81rgtnmiS2Yc/edit" target="_blank" rel="noopener noreferrer" class="pill-btn secondary">
+          <span>📄 Google Doc Archive</span>
+        </a>
+        <a href="https://luma.com/6gxf6u5k?tk=nZwOAT" target="_blank" rel="noopener noreferrer" class="pill-btn primary">
+          <span>🔗 Event Link</span> ↗
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Editorial Hero -->
+  <div class="hero-wrapper">
+    <div class="hero-badge-row">
+      <span class="tag-badge coral">National Blueprint</span>
+      <span class="tag-badge violet">Design 2035 Master Plan</span>
+      <span class="tag-badge teal">Generative AI Evolution</span>
+      <span class="tag-badge amber">Applied Design Studio (ADS)</span>
+    </div>
+
+    <h1 class="hero-headline">Beyond One Design Path: The Modern Designer’s Role in Singapore’s AI Era</h1>
+    <p class="hero-standfirst">
+      A comprehensive synthesis of the fireside chat co-hosted by Singapore Polytechnic User Experience Centre (SP UXC) and DesignSingapore Council. Navigating the 76% in-house workforce reality, role convergence, and why hunger beats seniority.
+    </p>
+
+    <div class="meta-bar">
+      <div class="author-cluster">
+        <div class="avatar-stack">
+          <div class="avatar-bubble">KT</div>
+          <div class="avatar-bubble">LN</div>
+          <div class="avatar-bubble">FK</div>
+        </div>
+        <div>
+          Authored by <strong>SP User Experience Centre</strong> & <strong>DesignSingapore Council</strong>
+        </div>
+      </div>
+      <div>
+        ⏱️ 10 min read • 🗓️ Published October 2026 • Live Field Dispatch
+      </div>
+    </div>
+  </div>
+
+  <!-- Dual Column Layout -->
+  <div class="layout-container">
+    
+    <!-- Left Sticky Sidebar -->
+    <aside class="nav-sidebar">
+      <div class="toc-card">
+        <div class="toc-title">
+          <span>Table of Contents</span>
+          <span>📑</span>
+        </div>
+        <ul class="toc-list">
+          <li><a href="#executive-summary">📌 Executive Summary</a></li>
+          <li><a href="#speaker-roster">🎙️ Event & Speaker Roster</a></li>
+          <li><a href="#master-plan">🧭 Design 2035 Master Plan</a></li>
+          <li><a href="#role-of-ai">🤖 Designer's Role in AI</a></li>
+          <li><a href="#industry-tensions">⚡ Critical Industry Tensions</a></li>
+          <li><a href="#field-playbook">🛠️ Practical Field Playbook</a></li>
+          <li><a href="#ads-blueprint">🎓 Applied Design Studio (ADS)</a></li>
+          <li><a href="#qa-teardown">💬 Audience Q&A Deep Dive</a></li>
+          <li><a href="#designer-checklist">✅ Actionable Checklist</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-widget">
+        <span class="widget-badge">Next Cohort</span>
+        <h4>SP Applied Design Studio</h4>
+        <p>Work on a live challenge brief with a major MNC exploring next-gen health & wellness.</p>
+        <a href="#ads-blueprint" class="widget-link">Explore Program Details →</a>
+      </div>
+    </aside>
+
+    <!-- Right Main Column -->
+    <main class="article-body">
+
+      <!-- Executive Summary -->
+      <section id="executive-summary" class="content-section">
+        <h2 class="section-header">📌 Executive Summary</h2>
+        <p class="section-lead">
+          The discipline of product design is undergoing its most profound structural realignment in decades. Held at Singapore Polytechnic's User Experience Centre (SP UXC) alongside the DesignSingapore Council (Dsg), this landmark gathering linked national macro-policy to ground-level product execution.
+        </p>
+        <p>
+          The session unveiled how Singapore intends to embed design thinking across its entire population by 2035, while practitioners demonstrated how modern AI tooling is rapidly collapsing the conventional silos between Product Managers, UI Designers, and Software Developers.
+        </p>
+
+        <!-- Metric Highlight Grid -->
+        <div class="metrics-row">
+          <div class="stat-pill-card c-coral">
+            <div class="stat-num">6,000+</div>
+            <div class="stat-label">Citizens, leaders & designers consulted nationwide</div>
+          </div>
+          <div class="stat-pill-card c-violet">
+            <div class="stat-num">76%</div>
+            <div class="stat-label">Of Singapore's designers work in-house across non-design sectors</div>
+          </div>
+          <div class="stat-pill-card c-teal">
+            <div class="stat-num">61,000</div>
+            <div class="stat-label">Total design-related full-time employees across the economy</div>
+          </div>
+          <div class="stat-pill-card c-amber">
+            <div class="stat-num">32 Hrs</div>
+            <div class="stat-label">Intensive 4-week Applied Design Studio real-world MNC immersion</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Speaker Roster -->
+      <section id="speaker-roster" class="content-section">
+        <h2 class="section-header">🎙️ Event & Speaker Roster</h2>
+        <p>A transdisciplinary cohort bringing together national strategy, enterprise delivery, and agile AI prototyping:</p>
+
+        <div class="roster-grid">
+          <div class="roster-card">
+            <div class="roster-top">
+              <span class="roster-name">Kelly Tan</span>
+              <span class="roster-pill keynote">Keynote</span>
+            </div>
+            <div class="roster-role">DesignSingapore Council (Industry Division)</div>
+            <div class="roster-bio">Spearheading the Design 2035 Master Plan and accelerating design capability adoption across corporate enterprises in Singapore.</div>
+          </div>
+
+          <div class="roster-card">
+            <div class="roster-top">
+              <span class="roster-name">Lianne</span>
+              <span class="roster-pill mod">Moderator</span>
+            </div>
+            <div class="roster-role">UX Designer, SP User Experience Centre</div>
+            <div class="roster-bio">Pivoted from semiconductor marketing and communications via General Assembly; leading UX initiatives at SP UXC.</div>
+          </div>
+
+          <div class="roster-card">
+            <div class="roster-top">
+              <span class="roster-name">Fiki</span>
+              <span class="roster-pill panel">Panelist</span>
+            </div>
+            <div class="roster-role">AI-Native App Builder & Designer</div>
+            <div class="roster-bio">Former historian and anthropologist. Creator of top-ranked learning apps <em>Jin</em> and <em>Chengyu Calendar</em>.</div>
+          </div>
+
+          <div class="roster-card">
+            <div class="roster-top">
+              <span class="roster-name">Owen</span>
+              <span class="roster-pill panel">Panelist</span>
+            </div>
+            <div class="roster-role">UI/UX Product Designer, Money</div>
+            <div class="roster-bio">7-year architecture background; ex-Shopee, hackathon builder of the elder-care scanning solution <em>LetterKey</em>.</div>
+          </div>
+
+          <div class="roster-card">
+            <div class="roster-top">
+              <span class="roster-name">Kai Sheng</span>
+              <span class="roster-pill lead">Lead</span>
+            </div>
+            <div class="roster-role">Singapore Polytechnic UXC</div>
+            <div class="roster-bio">Program lead and architect of the Applied Design Studio (ADS) professional curriculum.</div>
+          </div>
+
+          <div class="roster-card">
+            <div class="roster-top">
+              <span class="roster-name">Aznan, Chichi, Ray</span>
+              <span class="roster-pill aud">Audience</span>
+            </div>
+            <div class="roster-role">Designers & SP UXC Team</div>
+            <div class="roster-bio">Pivotal audience interrogators on friction, shipping velocity, and the "third bucket" of modern design competence.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Macro Horizon -->
+      <section id="master-plan" class="content-section">
+        <h2 class="section-header">🧭 The Macro Horizon: Design 2035 Master Plan</h2>
+        <p>
+          Kelly Tan detailed Singapore's national master plan, articulating that design is not mere stylistic embellishment, but a national engine for economic competitiveness and civic well-being.
+        </p>
+
+        <div class="magazine-quote">
+          “By 2035, every Singaporean will use design at work or in life, shaping Singapore to be a livable, lovable, and business-driven nation by design.”
+          <cite>— Kelly Tan, DesignSingapore Council</cite>
+        </div>
+
+        <h3>The In-House Reality: Why Business Acumen Is Non-Negotiable</h3>
+        <p>
+          Nationwide data demonstrates that of the 61,000 full-time design personnel, <strong>35,000 operate inside non-design sectors</strong> (banking, healthcare, government, logistics) compared to only 11,000 in dedicated design agencies. In other words, <strong>76% of Singapore's designers work in-house</strong>.
+        </p>
+        <p>
+          In-house designers cannot afford to stay inside a visual echo chamber. Designers must possess <strong>transdisciplinary fluency</strong> and <strong>business acumen</strong>: articulating value not in terms of color theory, but in bottom-line operational ROI: <em>"This intervention reduced workflow latency by X% and saved $Y in user drop-off"</em>.
+        </p>
+
+        <h3>The "Triple-A" Strategic Framework</h3>
+        <div class="feature-stack">
+          <div class="feature-glass-box">
+            <div class="feature-header-group">
+              <div class="feature-emoji-icon coral">⚡</div>
+              <div class="feature-heading-text">1. Adopt: Aligning Supply & Demand</div>
+            </div>
+            <p>Matching demand across 5 identified high-growth sectors. Administering the <strong>Good Design Research Development Grant</strong> to help design firms build proprietary products while actively guiding enterprises—from micro-SMEs to MNCs—on integrating design leadership.</p>
+          </div>
+
+          <div class="feature-glass-box">
+            <div class="feature-header-group">
+              <div class="feature-emoji-icon violet">🌍</div>
+              <div class="feature-heading-text">2. Amplify: Elevating Singapore Design Abroad</div>
+            </div>
+            <p>Showcasing Singaporean innovators on premier global stages like <em>Prototype Island</em> at Milan Design Week and the ArtScience Museum. Launching marquee industry anchors including the upcoming <strong>Singapore Design Biennale</strong>.</p>
+          </div>
+
+          <div class="feature-glass-box">
+            <div class="feature-header-group">
+              <div class="feature-emoji-icon teal">🌱</div>
+              <div class="feature-heading-text">3. Activate: Deepening Civic Participation</div>
+            </div>
+            <p>Partnering with government bodies such as the Ministry of Social and Family Development (MSF) on <strong>National Youth Challenges</strong>, embedding design-led problem-solving mindsets directly into the next generation.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Role of AI -->
+      <section id="role-of-ai" class="content-section">
+        <h2 class="section-header">🤖 The Designer's Role in the Age of AI</h2>
+        <p>
+          With foundation models like Claude, ChatGPT, and DeepSeek paired with agentic developer environments like Cursor, how do human designers preserve an outsized edge?
+        </p>
+
+        <div class="feature-stack">
+          <div class="feature-glass-box">
+            <div class="feature-header-group">
+              <div class="feature-emoji-icon coral">🔥</div>
+              <div class="feature-heading-text">Hunger to Learn Trumps 20 Years of Tenure</div>
+            </div>
+            <p>Generative AI workflows have only matured over the last 18 to 24 months. A design director with 25 years of legacy experience is encountering agentic tools at the exact same moment as a novice. An insatiable hunger to tinker, fail, and build personal tools levels the field faster than static years on a resume.</p>
+          </div>
+
+          <div class="feature-glass-box">
+            <div class="feature-header-group">
+              <div class="feature-emoji-icon violet">🧠</div>
+              <div class="feature-heading-text">Design Judgment & Sense-Making</div>
+            </div>
+            <p>AI generates infinite options; humans provide discernment. Design judgment is the deliberate ability to rationalize subjective aesthetics into objective markers that align with business constraints and build stakeholder trust. Current LLMs cannot independently triangulate unstructured corporate politics, legacy code constraints, and raw human emotion.</p>
+          </div>
+
+          <div class="feature-glass-box">
+            <div class="feature-header-group">
+              <div class="feature-emoji-icon teal">🔄</div>
+              <div class="feature-heading-text">The Convergence: Rise of the "Feature Owner"</div>
+            </div>
+            <p>The rigid wall separating Product Managers (PRDs), UI Designers (Figma), and Software Developers (Code) is dissolving. Future designers will operate as complete feature owners: framing problems, conducting user discovery, architecting UI, and deploying frontend builds directly.</p>
+          </div>
+
+          <div class="feature-glass-box">
+            <div class="feature-header-group">
+              <div class="feature-emoji-icon amber">💬</div>
+              <div class="feature-heading-text">Dancing with the Tool, Not Vending Machines</div>
+            </div>
+            <p>Treating LLMs like transactional vending machines yields generic results. High-performing builders "dance" with the model: using evocative natural language (e.g., <em>"make this transition feel like a waterfall"</em>), feeding screenshots, and iterating dynamically without needing traditional syntax mastery.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Industry Tensions -->
+      <section id="industry-tensions" class="content-section">
+        <h2 class="section-header">⚡ Critical Industry Tensions & Strategic Debates</h2>
+        <p>Modern design practitioners navigate four recurring tensions highlighted during the panel discussion:</p>
+
+        <div class="tensions-cluster">
+          <div class="tension-card-item">
+            <h4>User Advocacy vs. Business Realities</h4>
+            <p>Balancing pure human-centered empathy with strict corporate KPIs, development budgets, and leadership metrics needed to greenlight features.</p>
+          </div>
+          <div class="tension-card-item">
+            <h4>Rapid Shipping vs. Craft Perfection</h4>
+            <p>Deciding when to freeze building to deploy an imperfect v1 MVP onto TestFlight versus endlessly polishing micro-interactions in isolation.</p>
+          </div>
+          <div class="tension-card-item">
+            <h4>Convenience Culture vs. Lovable Friction</h4>
+            <p>Weighing seamless hyper-optimization against intentional, delightful friction that builds memorable emotional resonance and deeper learning.</p>
+          </div>
+          <div class="tension-card-item">
+            <h4>Craft Specialization vs. Role Convergence</h4>
+            <p>Choosing between remaining a specialized craftsperson versus adapting into a hybrid generalist spanning user research, product strategy, and frontend code.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Practical Field Playbook -->
+      <section id="field-playbook" class="content-section">
+        <h2 class="section-header">🛠️ Practical Field Playbook: Lessons from Non-Traditional Builders</h2>
+
+        <h3>1. Never "Pretend-Play the User"</h3>
+        <p>
+          Owen shared that his most costly early-career mistake was assuming his personal intuition matched user reality. Designers must anchor interface architectures in observable behavioral markers and contextual inquiry.
+        </p>
+
+        <h3>2. Empathize with Internal Teammates as Personas</h3>
+        <p>
+          Fiki applied his anthropology background by treating engineers, PMs, and executives as user personas. Understand their specific sprint constraints, technical debt, and KPIs. Stakeholder management is UX research turned inward.
+        </p>
+
+        <h3>3. Physical-to-Digital Onboarding Metaphors</h3>
+        <p>
+          Arriving at an unfamiliar physical space without guidance creates immediate hesitation. Digital applications require the same hospitable onboarding warmth—guiding the user smoothly to remove uncertainty before revealing complex features.
+        </p>
+
+        <h3>4. Validate Distribution Before Writing Code</h3>
+        <p>
+          Fiki reversed traditional software development cycles:
+        </p>
+        <ol style="margin-left: 1.5rem; margin-bottom: 1.4rem; color: var(--text-body);">
+          <li><strong>Find the Habitat:</strong> Observe where target users congregate (e.g., tracking viral music trends on TikTok and Instagram).</li>
+          <li><strong>Prototype Single Screens:</strong> Create one core screen or standalone iOS widget.</li>
+          <li><strong>Measure Public Demand:</strong> Post screen recordings to evaluate waitlist sign-ups before coding backends or databases.</li>
+        </ol>
+        <p>
+          Willingness to pay or recurring retention remains the only ultimate business validation.
+        </p>
+
+        <h3>5. TestFlight Analytics Over Staged Testing</h3>
+        <p>
+          Deploy functional MVPs directly to TestFlight. In Fiki's music app, telemetry revealed users ignoring embedded YouTube players and repeatedly tapping individual lyric lines to jump audio—unveiling true emergent behaviors that guided the roadmap.
+        </p>
+
+        <h3>6. Suppress Ego & Prune Ruthlessly</h3>
+        <p>
+          AI makes feature generation cheap, creating dangerous software bloat. Build v1 products with local device storage, zero backends, no login walls, and 1–3 core features. If data shows users do not care, kill the feature immediately without pride.
+        </p>
+
+        <h3>7. Joyful Friction Over Sterile Convenience</h3>
+        <p>
+          In an era where software races toward soulless efficiency, intentional friction creates emotional connection. Fiki's calendar app features a deliberate, satisfying animation of a physical page tearing away. In education, struggle is inherent to learning; design's duty is making that friction delightful.
+        </p>
+      </section>
+
+      <!-- ADS Program Blueprint -->
+      <section id="ads-blueprint" class="content-section">
+        <h2 class="section-header">🎓 SP Applied Design Studio (ADS) Program Blueprint</h2>
+        <p>
+          Kai Sheng presented the Applied Design Studio (ADS), engineered by Singapore Polytechnic UXC to bridge the gap between academic theory and high-stakes enterprise reality:
+        </p>
+
+        <div class="blueprint-wrapper">
+          <table class="blueprint-grid">
+            <thead>
+              <tr>
+                <th>Program Dimension</th>
+                <th>Specification & Highlights</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Host & Framework</strong></td>
+                <td>Singapore Polytechnic UXC. Built on SP's proprietary <strong>Humanity-Centered Design (HCD)</strong> framework—expanding beyond human-centered design to encompass systemic, societal, and planetary factors.</td>
+              </tr>
+              <tr>
+                <td><strong>Format & Duration</strong></td>
+                <td><strong>32 Hours</strong> spread over <strong>4 Weeks</strong>. Combines live facilitated collaborative checkpoints with independent field research sprints.</td>
+              </tr>
+              <tr>
+                <td><strong>Live Project Brief</strong></td>
+                <td>Live enterprise challenge with a <strong>Major Multinational Corporation (MNC)</strong>. Focus: Reimagining a <strong>Consumer Health and Wellness Product</strong> for the next generation.</td>
+              </tr>
+              <tr>
+                <td><strong>Core Exploration</strong></td>
+                <td>Transforming traditional use cases: making the wellness hardware/service more portable, discreet, aesthetically fashionable, and suited for modern lifestyles.</td>
+              </tr>
+              <tr>
+                <td><strong>Eligibility</strong></td>
+                <td>Singapore Citizens (SC) or Permanent Residents (PR) with a design-related qualification (Degree/Diploma, GA graduate) or equivalent professional portfolio experience.</td>
+              </tr>
+              <tr>
+                <td><strong>Target Audience</strong></td>
+                <td>Early-career designers (1–3 years experience) seeking horizontal skills growth, executive business acumen, and transdisciplinary mastery.</td>
+              </tr>
+              <tr>
+                <td><strong>Deliverables & Value</strong></td>
+                <td>Verified MNC portfolio case study, official SP UXC Certification, and real-world executive client pitch experience.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Q&A Section -->
+      <section id="qa-teardown" class="content-section">
+        <h2 class="section-header">💬 Audience Q&A Deep Dive</h2>
+        <p>Teardown of the four key questions raised by the audience during the interactive Q&A session:</p>
+
+        <div class="qa-accordion-list">
+          
+          <div class="qa-bubble open">
+            <button type="button" class="qa-trigger" onclick="toggleQA(this)" aria-expanded="true" aria-controls="qa-panel-1">
+              <div class="qa-trigger-left">
+                <span class="qa-eyebrow">Question 01 • Distribution Strategy</span>
+                <span class="qa-question-text">Validating Distribution Before Building the Application</span>
+              </div>
+              <div class="qa-toggle-icon">+</div>
+            </button>
+            <div class="qa-body" id="qa-panel-1">
+              <div class="qa-body-content">
+                <p><strong>Audience Question:</strong> How can indie creators validate whether an app will gain genuine traction before committing extensive engineering hours?</p>
+                <p><strong>Fiki's Answer:</strong> Always begin with distribution discovery. Observe where users already vocalize unmet needs (e.g., TikTok videos of students transcribing song lyrics to learn Chinese). Build a single mockup screen or iOS widget, publish video recordings online, and measure interest through organic waitlist sign-ups before touching backend code.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="qa-bubble">
+            <button type="button" class="qa-trigger" onclick="toggleQA(this)" aria-expanded="false" aria-controls="qa-panel-2">
+              <div class="qa-trigger-left">
+                <span class="qa-eyebrow">Question 02 • Core Competencies</span>
+                <span class="qa-question-text">The Elusive "Third Bucket" of Designer Competence</span>
+              </div>
+              <div class="qa-toggle-icon">+</div>
+            </button>
+            <div class="qa-body" id="qa-panel-2">
+              <div class="qa-body-content">
+                <p><strong>Aznan's Question (SP UXC):</strong> If design research is bucket one and cross-disciplinary stakeholder management is bucket two, what is the crucial third component designers need today?</p>
+                <p><strong>Fiki's Answer:</strong> <em>Suppression of Ego</em>. Never get married to your design solution. If analytics reveal users do not care about a feature, kill it swiftly without personal attachment.</p>
+                <p><strong>Owen's Answer:</strong> <em>Role Agility & Convergence</em>. Stop clinging rigidly to the title of "designer". Expand into product strategy, project leadership, and software engineering to survive as AI blurs operational boundaries.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="qa-bubble">
+            <button type="button" class="qa-trigger" onclick="toggleQA(this)" aria-expanded="false" aria-controls="qa-panel-3">
+              <div class="qa-trigger-left">
+                <span class="qa-eyebrow">Question 03 • Product Velocity</span>
+                <span class="qa-question-text">Determining the "Hard Stop" to Freeze Building and Ship</span>
+              </div>
+              <div class="qa-toggle-icon">+</div>
+            </button>
+            <div class="qa-body" id="qa-panel-3">
+              <div class="qa-body-content">
+                <p><strong>Chichi's Question:</strong> How do builders break past perfectionism and identify the hard boundary where you must stop building and ship?</p>
+                <p><strong>Owen's Answer:</strong> Hitting your AI token limits serves as a humorous but highly practical boundary!</p>
+                <p><strong>Fiki's Answer:</strong> Set strict architectural constraints on version 1.0: zero backend databases, local-only storage, no login barriers, and no more than 1–3 core features. Ship early directly to TestFlight and let real telemetry data dictate subsequent feature development.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="qa-bubble">
+            <button type="button" class="qa-trigger" onclick="toggleQA(this)" aria-expanded="false" aria-controls="qa-panel-4">
+              <div class="qa-trigger-left">
+                <span class="qa-eyebrow">Question 04 • Emotional Design</span>
+                <span class="qa-question-text">Convenience Culture vs. "Joyful Friction"</span>
+              </div>
+              <div class="qa-toggle-icon">+</div>
+            </button>
+            <div class="qa-body" id="qa-panel-4">
+              <div class="qa-body-content">
+                <p><strong>Ray's Question:</strong> In an industry obsessed with frictionless convenience, can intentional friction make a product more lovable and engaging?</p>
+                <p><strong>Fiki's Answer:</strong> Absolutely. In education, personal development, and craft, friction is the essential crucible of learning. Designers must invent "joyful friction"—such as tactile page-peel animations or learning Mandarin via hip-hop rhythms—to make essential struggle deeply rewarding and charming.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Actionable Checklist -->
+      <section id="designer-checklist" class="content-section">
+        <h2 class="section-header">✅ Actionable Modern Designer Checklist</h2>
+        <p>Interactive field checklist for designers adapting to the 2035 Master Plan and AI paradigm:</p>
+
+        <div class="checklist-container">
+          <div class="checklist-header">
+            <strong>Execution Playbook</strong>
+            <span class="checklist-stats" id="check-counter" role="status" aria-live="polite">0 / 6 Completed</span>
+          </div>
+
+          <div class="checklist-grid">
+            <div class="check-row-item" role="checkbox" aria-checked="false" tabindex="0" onclick="toggleTask(this)" onkeydown="if(event.key === &quot; &quot; || event.key === &quot;Enter&quot;) { event.preventDefault(); toggleTask(this); }">
+              <div class="check-box-indicator"></div>
+              <div class="check-label-text">
+                <strong>Demonstrate Measurable ROI:</strong> Quantify design decisions into executive business metrics (hours saved, drop-off reduction, conversion lift).
+              </div>
+            </div>
+
+            <div class="check-row-item" role="checkbox" aria-checked="false" tabindex="0" onclick="toggleTask(this)" onkeydown="if(event.key === &quot; &quot; || event.key === &quot;Enter&quot;) { event.preventDefault(); toggleTask(this); }">
+              <div class="check-box-indicator"></div>
+              <div class="check-label-text">
+                <strong>Validate Distribution First:</strong> Test single-screen concept recordings on social channels to prove organic pull before writing backend logic.
+              </div>
+            </div>
+
+            <div class="check-row-item" role="checkbox" aria-checked="false" tabindex="0" onclick="toggleTask(this)" onkeydown="if(event.key === &quot; &quot; || event.key === &quot;Enter&quot;) { event.preventDefault(); toggleTask(this); }">
+              <div class="check-box-indicator"></div>
+              <div class="check-label-text">
+                <strong>Internal Persona Mapping:</strong> Empathy-map engineering, PM, and business leaders to align user desirability with technical feasibility.
+              </div>
+            </div>
+
+            <div class="check-row-item" role="checkbox" aria-checked="false" tabindex="0" onclick="toggleTask(this)" onkeydown="if(event.key === &quot; &quot; || event.key === &quot;Enter&quot;) { event.preventDefault(); toggleTask(this); }">
+              <div class="check-box-indicator"></div>
+              <div class="check-label-text">
+                <strong>Conversational AI Co-Piloting:</strong> Leverage natural-language prompting and image loops with Claude/Cursor as iterative creative partners.
+              </div>
+            </div>
+
+            <div class="check-row-item" role="checkbox" aria-checked="false" tabindex="0" onclick="toggleTask(this)" onkeydown="if(event.key === &quot; &quot; || event.key === &quot;Enter&quot;) { event.preventDefault(); toggleTask(this); }">
+              <div class="check-box-indicator"></div>
+              <div class="check-label-text">
+                <strong>Ruthless MVP Pruning:</strong> Strip away 50% of secondary features to launch lean, local-first v1 applications directly to TestFlight.
+              </div>
+            </div>
+
+            <div class="check-row-item" role="checkbox" aria-checked="false" tabindex="0" onclick="toggleTask(this)" onkeydown="if(event.key === &quot; &quot; || event.key === &quot;Enter&quot;) { event.preventDefault(); toggleTask(this); }">
+              <div class="check-box-indicator"></div>
+              <div class="check-label-text">
+                <strong>Incorporate Joyful Friction:</strong> Craft tactile, human-centered micro-interactions that turn mechanical tasks into lovable experiences.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>
+      Co-organized by <strong>Singapore Polytechnic User Experience Centre (SP UXC)</strong> & <strong>DesignSingapore Council (Dsg)</strong>.<br>
+      Official Event Listing: <a href="https://luma.com/6gxf6u5k?tk=nZwOAT" target="_blank" rel="noopener noreferrer">Lu.ma Page</a> • 
+      Document Archive: <a href="https://docs.google.com/document/d/10anlrPpK4Uk0Fv1JDPicgz7K38BD7mB81rgtnmiS2Yc/edit" target="_blank" rel="noopener noreferrer">Live Google Doc</a>
+    </p>
+  </footer>
+
+  <!-- Vanilla JavaScript -->
+  <script>
+    // 1. Reading Progress Tracker
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = height > 0 ? Math.min(100, Math.max(0, winScroll / height * 100)) : 100;
+      document.getElementById('progress-tracker').style.width = scrolled + '%';
+    });
+
+    // 2. Q&A Accordion Toggle
+    function toggleQA(button) {
+      const bubble = button.closest('.qa-bubble');
+      bubble.classList.toggle('open');
+      button.setAttribute('aria-expanded', String(bubble.classList.contains('open')));
+    }
+
+    // 3. Interactive Checklist State & Counter
+    function toggleTask(row) {
+      row.classList.toggle('completed');
+      row.setAttribute('aria-checked', String(row.classList.contains('completed')));
+      updateCheckCounter();
+    }
+
+    function updateCheckCounter() {
+      const total = document.querySelectorAll('.check-row-item').length;
+      const completed = document.querySelectorAll('.check-row-item.completed').length;
+      const counter = document.getElementById('check-counter');
+      counter.innerText = `${completed} / ${total} Completed`;
+      if (completed === total) {
+        counter.style.background = '#dcfce7';
+        counter.style.color = '#15803d';
+      } else {
+        counter.style.background = 'var(--teal-100)';
+        counter.style.color = 'var(--teal-600)';
+      }
+    }
+  </script>
+</body>
+</html>
