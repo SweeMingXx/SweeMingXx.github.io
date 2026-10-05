@@ -321,6 +321,8 @@
       position: sticky;
       top: calc(var(--header-height) + 2rem);
       height: fit-content;
+      max-height: calc(100vh - var(--header-height) - 3rem);
+      max-height: calc(100dvh - var(--header-height) - 3rem);
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
@@ -333,6 +335,8 @@
       padding: 1.5rem;
       box-shadow: var(--card-shadow);
       backdrop-filter: blur(12px);
+      min-height: 0;
+      overflow-y: auto;
     }
 
     .toc-title {
@@ -378,6 +382,7 @@
       border-radius: 20px;
       padding: 1.35rem;
       box-shadow: var(--card-shadow);
+      flex-shrink: 0;
     }
 
     .widget-badge {
@@ -969,7 +974,22 @@
         gap: 2rem;
       }
       aside.nav-sidebar {
+        position: static;
+        max-height: none;
+      }
+      .toc-card {
         display: none;
+      }
+    }
+
+    /* On short landscape screens, let the page scroll instead of clipping the card. */
+    @media (max-height: 480px) and (min-width: 993px) {
+      aside.nav-sidebar {
+        position: static;
+        max-height: none;
+      }
+      .toc-card {
+        overflow-y: visible;
       }
     }
 
@@ -1045,7 +1065,7 @@
           <div class="avatar-bubble">FK</div>
         </div>
         <div>
-          Authored by <strong>SP User Experience Centre</strong> & <strong>DesignSingapore Council</strong>
+          Hosted by <strong>SP User Experience Centre</strong> & <strong>DesignSingapore Council</strong>
         </div>
       </div>
       <div>
