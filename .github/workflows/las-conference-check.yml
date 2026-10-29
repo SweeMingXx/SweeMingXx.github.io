@@ -43,7 +43,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add las-conference-2026/reports/technology-panel.md las-conference-2026/styles.css las-conference-2026/app.js las-conference-2026/tests/verify.mjs
+          git add las-conference-2026/reports/technology-panel.md las-conference-2026/styles.css las-conference-2026/app.js las-conference-2026/tests/verify.mjs las-conference-2026/data.js las-conference-2026/index.html
           if [ -f las-conference-2026/package-lock.json ]; then git add las-conference-2026/package-lock.json; fi
           if [ -d las-conference-2026/verification ]; then git add las-conference-2026/verification; fi
           if ! git diff --cached --quiet; then
