@@ -16,20 +16,23 @@ An independent conference reading edition, built from the 14 PDF reports supplie
 
 ## Experience
 
-Original SVG folio artwork, subtle scroll parallax, section reveals and reading progress. Natural browser scrolling is never hijacked. Motion can be disabled and the system reduced-motion preference is respected.
+The homepage uses a typographic editorial poster, a crimson gradient feature with original CSS page sculpture, a clear reading path, and responsive navigation. It links directly to the overview, both-day programme and complete report collection. Decorative motion can be disabled and system reduced-motion settings are respected. Natural browser scrolling is never hijacked.
 
 The full-screen reading room supports native modal focus containment, Escape, direct report links, section navigation, adjustable text, device-local saved reports, full-text downloads and print styling. Search indexes every report, including tables and quotations. There are no analytics, tracking scripts, remote fonts, external visual assets or runtime dependencies.
 
 ## Structure
 
-- `index.html`: semantic page and reader shell
-- `styles.css`: responsive layout, typography, motion, reader and print rules
-- `app.js`: safe text rendering, navigation, search, bookmarks and motion
+- `index.html`: semantic landing page and reader shell
+- `styles.css`: responsive site layout, reader and print rules
+- `theme.css`: red colour system for the full experience
+- `landing.css`: typography-led homepage, responsive poster and navigation
+- `app.js`: safe text rendering, search, bookmarks and motion controls
 - `data.js`: source manifest and linked programme
 - `reports/*.md`: complete, reformatted report texts
-- `tests/verify.mjs`: Playwright browser checks and axe accessibility checks
-- `verification/results.json`: latest persisted test and live-check evidence
-- `verification/*.png`: browser screenshots
+- `tests/verify.mjs`: Playwright browser and axe accessibility checks
+- `tests/verify-home.mjs`: live visual layout checks at 375px, 560px, 768px, 1024px and 1440px
+- `tests/live.mjs`: exact deployed-asset and live content verification
+- `verification/`: historical evidence; current workflow screenshots are available as the `las-conference-verification` Actions artifact
 
 ## Run locally
 
@@ -47,8 +50,10 @@ Open http://localhost:8080/ . No build step is required.
 npm ci
 npx playwright install --with-deps chromium
 npm test
+node tests/verify-home.mjs
+node tests/live.mjs
 ```
 
-The verification workflow uses Ubuntu 24.04 and checks all report readers, source-entry counts, linked programme entries, search and recovery, saved reports, section navigation, print behaviour, keyboard controls, reduced motion, responsive layouts at 375px/768px/1024px/1440px, network failure/retry, browser exceptions and the live HTTPS deployment. Axe checks cover WCAG A/AA rules; automated results do not replace a full human accessibility audit.
+The GitHub Actions workflow uses Ubuntu 24.04 and checks all report readers, source-entry counts, linked programme entries, search and recovery, saved reports, section navigation, print behaviour, keyboard controls, reduced motion, responsive layouts, network failure/retry, browser exceptions, and live HTTPS deployment. Axe checks cover WCAG A/AA rules; automated results do not replace a full human accessibility audit.
 
 The site lives in its own folder. Other GitHub Pages projects in this repository are untouched.
