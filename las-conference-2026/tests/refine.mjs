@@ -1,10 +1,7 @@
 import {readFile,writeFile} from 'node:fs/promises';
-// Idempotent source-audit correction and WCAG large-text contrast refinement.
-const report='reports/technology-panel.md';
-const original=await readFile(report,'utf8');
-const corrected=original.replace('qualify inspiration and serendipitous discovery within the AI box.','qualify inspiration and serendipity within the AI box.');
-if(corrected!==original) await writeFile(report,corrected);
-const file='styles.css';
-const css=await readFile(file,'utf8');
-const accessible=css.replace('color:#9caa8c;letter-spacing:-10px','color:#6a7d5d;letter-spacing:-10px');
-if(accessible!==css) await writeFile(file,accessible);
+// Idempotent migration for source-audit corrections and verified UI refinements.
+async function refine(file,transform){const original=await readFile(file,'utf8');const revised=transform(original);if(revised!==original)await writeFile(file,revised);}
+await refine('reports/technology-panel.md',s=>s.replace('qualify inspiration and serendipitous discovery within the AI box.','qualify inspiration and serendipity within the AI box.'));
+await refine('styles.css',s=>s.replace('color:#9caa8c;letter-spacing:-10px','color:#6a7d5d;letter-spacing:-10px').replace('.prose{font-size:','.prose{max-width:72ch;font-size:'));
+await refine('app.js',s=>s.replace("$('#reader-scroll').scrollTop = 0;", "$('#reader-scroll').scrollTo({top:0,behavior:'instant'});").replace("if (opener && opener.isConnected) opener.focus({preventScroll:true});", "if (opener && opener.isConnected) opener.focus({preventScroll:true});\n  else $('#search').focus({preventScroll:true});"));
+await refine('tests/verify.mjs',s=>s.replace("await page.emulateMedia({reducedMotion:'reduce'}); assert.equal", "await page.emulateMedia({reducedMotion:'reduce'}); await page.waitForFunction(()=>document.querySelector('#motion-toggle').textContent==='Motion: off'); assert.equal").replace('await page.evaluate(()=>scrollTo(0,0))', "await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}))").replace("evaluate(e=>e.scrollTop=0)", "evaluate(e=>e.scrollTo({top:0,behavior:'instant'}))"));
