@@ -7,10 +7,10 @@ on:
       - '.github/workflows/las-conference-check.yml'
   workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
 concurrency:
   group: las-conference-verification
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
   verify:
     runs-on: ubuntu-24.04
@@ -39,19 +39,6 @@ jobs:
       - name: Verify exact deployed files and final official programme
         working-directory: las-conference-2026
         run: node tests/live.mjs
-      - name: Persist verification evidence only
-        if: always()
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          if [ -d las-conference-2026/verification ]; then
-            git add las-conference-2026/verification
-            if ! git diff --cached --quiet; then
-              git commit -m 'Record final LAS browser and deployed-asset verification [skip ci]'
-              git pull --rebase origin main
-              git push origin main
-            fi
-          fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:
