@@ -98,19 +98,18 @@ document.querySelectorAll('[data-filter]').forEach(b => b.addEventListener('clic
 }));
 $('#reset-search').addEventListener('click', () => { $('#search').value = ''; document.querySelector('[data-filter="all"]').click(); $('#search').focus(); });
 
+// All source content is escaped before formatting. Headings do not require a blank line.
 function markdown(text) {
   const headings = [];
   let section = 0;
-  const blocks = text.trim().split(/\n\s*\n/);
+  const blocks = text.trim().replace(/^(#{1,3} [^\n]+)\n(?!\n)/gm, '$1\n\n').split(/\n\s*\n/);
   const html = blocks.map(block => {
-    if (/^#{1,3} /.test(block)) {
-      const match = block.match(/^(#{1,3}) (.*)$/);
-      if (match) {
-        const level = match[1].length, title = match[2];
-        const id = `report-section-${++section}`;
-        if (level === 2) headings.push({id, title});
-        return `<${level === 3 ? 'h4' : 'h3'} id="${id}"${level === 1 ? ' class="document-title"' : ''}>${esc(title)}</${level === 3 ? 'h4' : 'h3'}>`;
-      }
+    const match = block.match(/^(#{1,3}) (.*)$/);
+    if (match) {
+      const level = match[1].length, title = match[2];
+      const id = `report-section-${++section}`;
+      if (level === 2) headings.push({id, title});
+      return `<${level === 3 ? 'h4' : 'h3'} id="${id}"${level === 1 ? ' class="document-title"' : ''}>${esc(title)}</${level === 3 ? 'h4' : 'h3'}>`;
     }
     if (block.startsWith('|')) {
       const rows = block.split('\n').filter(l => !/^\|[\s:|-]+\|$/.test(l)).map(l => l.trim().replace(/^\||\|$/g,'').split('|').map(v => v.trim()));
@@ -128,6 +127,16 @@ function markdown(text) {
   return {html, headings};
 }
 
+// Native disclosure keeps the full contents accessible on small screens, too.
+const tocDisclosure = document.createElement('details');
+tocDisclosure.className = 'reader-contents';
+tocDisclosure.open = innerWidth > 800;
+const tocSummary = document.createElement('summary');
+tocSummary.textContent = 'Jump to a section';
+tocSummary.style.cssText = 'font-size:12px;padding:12px 0;min-height:44px;';
+const toc = $('#reader-toc');
+toc.before(tocDisclosure); tocDisclosure.append(tocSummary,toc);
+toc.style.display = 'grid';
 const dialog = $('#reader');
 function announce(message) { clearTimeout(statusTimer); $('#reader-status').textContent = message; statusTimer = setTimeout(() => { $('#reader-status').textContent = ''; }, 3500); }
 function updateSave() {
@@ -145,6 +154,7 @@ async function openReport(id) {
   const token = ++requestId;
   currentReport = report;
   if (!dialog.open) { document.body.classList.add('reading'); dialog.showModal(); }
+  tocDisclosure.open = innerWidth > 800;
   document.title = `${report.title} — LAS Conference 2026`;
   $('#reader-title').textContent = report.title;
   $('#reader-meta').textContent = `${dayLabel(report)} · ${report.time}${report.day ? ' SGT' : ''} · ${report.kind}`;
@@ -164,7 +174,10 @@ async function openReport(id) {
     const result = markdown(text);
     $('#report-content').innerHTML = result.html;
     $('#reader-toc').innerHTML = result.headings.map(h => `<button data-scroll="${h.id}">${esc(h.title)}</button>`).join('');
-    $('#reader-toc').querySelectorAll('button').forEach(b => b.addEventListener('click', () => document.getElementById(b.dataset.scroll).scrollIntoView({behavior: motionOff ? 'instant' : 'smooth',block:'start'})));
+    $('#reader-toc').querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+      if (innerWidth <= 800) tocDisclosure.open = false;
+      document.getElementById(b.dataset.scroll).scrollIntoView({behavior: motionOff ? 'instant' : 'smooth',block:'start'});
+    }));
     const position = reports.indexOf(report);
     $('#reader-next').innerHTML = `${position > 0 ? `<a href="${reportHref(reports[position-1].id)}">← Previous report<br>${esc(reports[position-1].title)}</a>` : '<span></span>'}${position < reports.length-1 ? `<a href="${reportHref(reports[position+1].id)}">Next report →<br>${esc(reports[position+1].title)}</a>` : '<a href="#archive" data-return>Return to the report library →</a>'}`;
   } catch {
@@ -187,8 +200,10 @@ function returnToConference() {
   requestAnimationFrame(() => { if (returnScroll !== null) window.scrollTo({top:returnScroll,behavior:'instant'}); else $('#archive').scrollIntoView(); });
 }
 function route() {
-  if (location.hash.startsWith('#read/')) openReport(decodeURIComponent(location.hash.slice(6)));
-  else if (dialog.open) closeDialog();
+  if (location.hash.startsWith('#read/')) {
+    let id; try { id = decodeURIComponent(location.hash.slice(6)); } catch { id = ''; }
+    openReport(id);
+  } else if (dialog.open) closeDialog();
 }
 document.addEventListener('click', event => {
   const link = event.target.closest('a');
