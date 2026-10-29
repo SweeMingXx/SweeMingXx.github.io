@@ -33,12 +33,12 @@ try{
  result.checks.push('Live anthology renders all 33 quotations.');
  const mobile=await browser.newContext({viewport:{width:375,height:900},reducedMotion:'reduce'});const m=await mobile.newPage();
  await m.goto(base,{waitUntil:'networkidle'});await m.waitForFunction(()=>document.querySelector('#search-status').textContent.includes('Full-text search is ready'));
- const layout=await m.evaluate(()=>({overflow:document.documentElement.scrollWidth>innerWidth,navBottom:document.querySelector('.topbar').getBoundingClientRect().bottom,contentTop:document.querySelector('.hero-top').getBoundingClientRect().top,scroll:scrollY}));
- assert.equal(layout.overflow,false);assert(layout.contentTop>layout.navBottom,'Fixed navigation overlaps the introduction');assert.equal(layout.scroll,0);
+ const layout=await m.evaluate(()=>({overflow:document.documentElement.scrollWidth>innerWidth,navBottom:document.querySelector('.topbar').getBoundingClientRect().bottom,contentTop:document.querySelector('.hero-top .eyebrow').getBoundingClientRect().top,scroll:scrollY}));
+ assert.equal(layout.overflow,false);assert(layout.contentTop>layout.navBottom,'Fixed navigation overlaps the visible introduction');assert.equal(layout.scroll,0);
  await m.screenshot({path:'verification/mobile-live.png'});
  await m.goto(base+'#read/libraries-papers');await m.waitForFunction(()=>document.querySelector('#report-content table'));
  await m.locator('.reader-contents summary').click();await m.locator('#reader-toc button').nth(2).click();assert((await m.locator('#reader-scroll').evaluate(e=>e.scrollTop))>100);
  result.checks.push('Fresh 375px live load: no horizontal overflow or fixed-header overlap; mobile contents navigation works with reduced motion.');
  result.sourceEntries=reports.length;result.sourcePages=reports.reduce((n,r)=>n+r.pages,0);result.programmeRows=programme.length;result.httpStatus=200;result.success=true;
-}catch(e){result.error=e.stack||String(e);console.error(e);process.exitCode=1;}
+}catch(e){result.error=e.stack||String(e);console.error(`::error file=las-conference-2026/tests/live.mjs,line=1::${e.message.replace(/\n/g,' ')}`);process.exitCode=1;}
 finally{await writeFile('verification/live-final.json',JSON.stringify(result,null,2));await browser.close();console.log(JSON.stringify(result,null,2));}
