@@ -1,44 +1,377 @@
 export const reports = [
-{id:'overview',title:'The two-day executive report',subtitle:'The ideas, institutional case studies and strategic direction that connect the conference.',day:0,kind:'Synthesis',time:'27–28 October',pages:5,speakers:'Warren Fernandez · Setsuko Yokoyama · Conference synthesis',file:'overview',source:'LAS_Conference_2026_-_Comprehensive_Two-Day_Executive_Report-5e0f5290.pdf',note:'The executive report says 71st anniversary and twelve concurrent research papers. The opening report says 70th anniversary, and the official programme lists more individual paper titles. These source statements are retained, not silently reconciled.'},
-{id:'quotes',title:'Voice of the fraternity',subtitle:'The complete anthology of quotations, grouped by session and speaker.',day:0,kind:'Anthology',time:'27–28 October',pages:4,speakers:'All speakers · Both days',file:'quotes',source:'LAS_Conference_2026_-_Complete_Anthology_of_Quotes-22f62a3c.pdf',note:'Quotations and attributions follow the supplied anthology. They are conference-report quotations, not independently checked against recordings. Variations between the anthology and session reports are preserved.'},
-{id:'opening',title:'Human agency. Deep literacy. Wisdom.',subtitle:'Welcome remarks and opening keynote: reclaiming the human role in an age of information abundance.',day:1,kind:'Opening keynote',time:'09:20 – 10:15',pages:4,speakers:'Shameem Nilofar · Warren Fernandez',file:'opening',source:'LAS_Conference_2026___Day_1_27_October_2026___09_20___10_15_SGT-45e08478.pdf',note:'This report states LAS’s 70th anniversary; the closing and executive reports state 71 years (1955–2026). Its PISA figures (543 in 2022; 535 in 2025) are reproduced as source claims, not independently verified statistics.'},
-{id:'libraries-panel',title:'Libraries as public luxuries',subtitle:'Reading as respite, slow-down microclimates and shared spaces that protect human dignity.',day:1,kind:'Panel',time:'10:45 – 11:45',pages:4,speakers:'Loh Chin Ee · Ng Kah Gay · Sarah Ichioka · Joan Wee',file:'libraries-panel',source:'LAS_Conference_2026___Day_1_27_October_2026___11_45___12_00_SGT_Poster_Session_Report-79a4d0f8.pdf',note:'Filename/content mismatch: although the filename says 11:45–12:00 Poster Session, the document itself is the Future of Libraries panel, 10:45–11:45. Navigation follows the internal heading and official programme.'},
-{id:'morning-posters',title:'Small showcases. Applied innovation.',subtitle:'SMU feedback intelligence, SIT’s biophilic library and Ngee Ann Polytechnic’s sustainability blueprint.',day:1,kind:'Posters',time:'11:45 – 12:00',pages:4,speakers:'William Koh · Nay Tan · Dinson Seng',file:'morning-posters',source:'LAS_Conference_2026_-_Poster_Presentations_Report__11_45-12_00___1_-e3a7da32.pdf'},
-{id:'libraries-papers',title:'From resource provider to strategic partner',subtitle:'Trusted research data, AI-enabled engineering learning and curriculum co-design.',day:1,kind:'Papers · Theatre',time:'13:30 – 14:30',pages:4,speakers:'Dong Danping · Janna Xu Cong · Bo Lan · Wan Ho Wah · Kwa Lay Ping · Wong Cheng Long',file:'libraries-papers',source:'LAS_Conference_2026_-_Future_of_Libraries_Paper_Sessions_Report__27_October_2026___13_30___14_30_SGT___Theatre_1_-a02f516c.pdf'},
-{id:'yokoyama',title:'Communities, not commodities',subtitle:'AI, libraries and language diversity: cultural sovereignty, invisible labour and community-owned knowledge.',day:1,kind:'Keynote lecture',time:'15:30 – 17:00',pages:4,speakers:'Asst. Prof. Setsuko Yokoyama · SUTD',file:'yokoyama',source:'LAS_Conference_2026_-_Keynote_Lecture_Report_-_Setsuko_Yokoyama_27_October_2026___15_30___17_00_SGT-9dde3845.pdf'},
-{id:'final-posters',title:'A library shaped by its community',subtitle:'RGS student co-governance, NLB’s Curiosity platform and NYP’s dual-user portal redesign.',day:1,kind:'Closing posters',time:'17:00 – 17:30',pages:4,speakers:'Hanis Idayu · Lim Ting Soon · Faiza Ibrahimsa',file:'final-posters',source:'LAS_Conference_2026_-_Day_1_Final_Poster_Presentations_Report__1_-2273d082.pdf'},
-{id:'technology-panel',title:'Beyond the AI black box',subtitle:'Changing work, regional AI commons and the urgent challenge of preserving executable heritage.',day:2,kind:'Panel',time:'09:15 – 10:15',pages:4,speakers:'Lim Bee Kwan · Ngui Jian Gang · Natalia Grincheva · Liana Tang',file:'technology-panel',source:'LAS_Conference_2026_-_Future_of_Technology_Panel_Report_28_October_2026___09_15___10_15_SGT-a9752719.pdf',note:'The report uses SEAL-eval and the honorific “Mr.” for Lim Bee Kwan; the official programme uses SEA-HELM and does not use that honorific. Source wording is retained. Claims about neuroscience and employment are attributed conference statements, not independent findings.'},
-{id:'technology-papers',title:'Built around people, not platforms',subtitle:'SMU’s user-first chatbot, NLB’s connected entities and Ngee Ann Polytechnic’s LibBee AI.',day:2,kind:'Papers · Atrium',time:'10:45 – 12:00',pages:4,speakers:'Samantha Seah · Li Zhenyan · Phyllis Wee · Kannadasan Venkatachalam',file:'technology-papers',source:'LAS_Conference_2026_-_Day_2_Tech_Paper_Sessions_Atrium_Report_28_October_2026___10_45___12_00_SGT___Atrium-425e12d8.pdf',note:'The report’s claim that dual-layer RAG “eliminates algorithmic hallucination” is retained as a source assertion, not a guarantee of AI reliability.'},
-{id:'librarianship-papers',title:'The changing work of librarianship',subtitle:'Institutional AI literacy, rare collections as learning laboratories and evidence from job advertisements.',day:2,kind:'Papers · Theatre',time:'13:30 – 14:45',pages:4,speakers:'Vincent Wong · Chia Yew Boon · Makeswary Periasamy · Janna Xu Cong · Caroline Pang',file:'librarianship-papers',source:'LAS_Conference_2026_-_Future_of_Librarianship_Paper_Sessions_Report__1_-68a8ca5f.pdf',note:'Source distinctions: 358 library advertisements, 51 with AI vocabulary; the 82% figure is attributed in the body to a 2025 PwC Singapore labour report, not calculated from 358. The report alternates between “255 ads”, “over 255” and “over 75%”; these statements are preserved and should not be treated as reconciled statistics.'},
-{id:'librarianship-panel',title:'Human judgement, enduring purpose',subtitle:'Agentic workflows, competency-based pathways and treating AI as an intern—not a boss.',day:2,kind:'Capstone panel',time:'15:30 – 16:30',pages:4,speakers:'Aaron Tay · Koh Chern Chern · Gee Miaw Miin · Alex Foo',file:'librarianship-panel',source:'LAS_Conference_2026_-_Future_of_Librarianship_Panel_Report_28_October_2026___15_30___16_30_SGT-891c1228.pdf'},
-{id:'librarianship-panel-copy',title:'Capstone panel · companion upload',subtitle:'The second uploaded copy is retained in the index. Its extracted report text is identical to the capstone panel.',day:2,kind:'Companion copy',time:'15:30 – 16:30',pages:4,speakers:'Aaron Tay · Koh Chern Chern · Gee Miaw Miin · Alex Foo',file:'librarianship-panel',source:'LAS_Conference_2026_-_Future_of_Librarianship_Panel_Report28_October_2026___13_30___14_45_SGT___Theatre-85633107.pdf',note:'The filename suggests 13:30–14:45 at the Theatre, but all four pages match the other panel report and state 15:30–16:30. Both uploads remain separately indexed; the matching text is shared to avoid presenting a duplicate as a different session.'},
-{id:'closing',title:'Human in the lead',subtitle:'The final charge, poster award winners and the road to CONSAL 2028.',day:2,kind:'Closing & awards',time:'16:30 – 17:00',pages:4,speakers:'Ian Yap · Library Association of Singapore',file:'closing',source:'LAS_Conference_2026_-_Closing_Remarks_and_Awards_Report_28_October_2026___16_30___17_00_SGT-bb195464.pdf'}
+  {
+    "id": "overview",
+    "title": "The two-day executive report",
+    "subtitle": "The ideas, institutional case studies and strategic direction that connect the conference.",
+    "day": 0,
+    "kind": "Synthesis",
+    "time": "27–28 October",
+    "pages": 5,
+    "speakers": "Warren Fernandez · Setsuko Yokoyama · Conference synthesis",
+    "file": "overview",
+    "source": "LAS_Conference_2026_-_Comprehensive_Two-Day_Executive_Report-5e0f5290.pdf",
+    "note": "The executive report says 71st anniversary and twelve concurrent research papers. The opening report says 70th anniversary, and the official programme lists more individual paper titles. These source statements are retained, not silently reconciled."
+  },
+  {
+    "id": "quotes",
+    "title": "Voice of the fraternity",
+    "subtitle": "The complete anthology of quotations, grouped by session and speaker.",
+    "day": 0,
+    "kind": "Anthology",
+    "time": "27–28 October",
+    "pages": 4,
+    "speakers": "All speakers · Both days",
+    "file": "quotes",
+    "source": "LAS_Conference_2026_-_Complete_Anthology_of_Quotes-22f62a3c.pdf",
+    "note": "Quotations and attributions follow the supplied anthology. They are conference-report quotations, not independently checked against recordings. Variations between the anthology and session reports are preserved."
+  },
+  {
+    "id": "opening",
+    "title": "Human agency. Deep literacy. Wisdom.",
+    "subtitle": "Welcome remarks and opening keynote: reclaiming the human role in an age of information abundance.",
+    "day": 1,
+    "kind": "Opening keynote",
+    "time": "09:20 – 10:15",
+    "pages": 4,
+    "speakers": "Shameem Nilofar · Warren Fernandez",
+    "file": "opening",
+    "source": "LAS_Conference_2026___Day_1_27_October_2026___09_20___10_15_SGT-45e08478.pdf",
+    "note": "This report states LAS’s 70th anniversary; the closing and executive reports state 71 years (1955–2026). Its PISA figures (543 in 2022; 535 in 2025) are reproduced as source claims, not independently verified statistics."
+  },
+  {
+    "id": "libraries-panel",
+    "title": "Libraries as public luxuries",
+    "subtitle": "Reading as respite, slow-down microclimates and shared spaces that protect human dignity.",
+    "day": 1,
+    "kind": "Panel",
+    "time": "10:45 – 11:45",
+    "pages": 4,
+    "speakers": "Loh Chin Ee · Ng Kah Gay · Sarah Ichioka · Joan Wee",
+    "file": "libraries-panel",
+    "source": "LAS_Conference_2026___Day_1_27_October_2026___11_45___12_00_SGT_Poster_Session_Report-79a4d0f8.pdf",
+    "note": "Filename/content mismatch: although the filename says 11:45–12:00 Poster Session, the document itself is the Future of Libraries panel, 10:45–11:45. Navigation follows the internal heading and official programme."
+  },
+  {
+    "id": "morning-posters",
+    "title": "Small showcases. Applied innovation.",
+    "subtitle": "SMU feedback intelligence, SIT’s biophilic library and Ngee Ann Polytechnic’s sustainability blueprint.",
+    "day": 1,
+    "kind": "Posters",
+    "time": "11:45 – 12:00",
+    "pages": 4,
+    "speakers": "William Koh · Nay Tan · Dinson Seng",
+    "file": "morning-posters",
+    "source": "LAS_Conference_2026_-_Poster_Presentations_Report__11_45-12_00___1_-e3a7da32.pdf"
+  },
+  {
+    "id": "libraries-papers",
+    "title": "From resource provider to strategic partner",
+    "subtitle": "Trusted research data, AI-enabled engineering learning and curriculum co-design.",
+    "day": 1,
+    "kind": "Papers · Theatre",
+    "time": "13:30 – 14:30",
+    "pages": 4,
+    "speakers": "Dong Danping · Janna Xu Cong · Bo Lan · Wan Ho Wah · Kwa Lay Ping · Wong Cheng Long",
+    "file": "libraries-papers",
+    "source": "LAS_Conference_2026_-_Future_of_Libraries_Paper_Sessions_Report__27_October_2026___13_30___14_30_SGT___Theatre_1_-a02f516c.pdf"
+  },
+  {
+    "id": "yokoyama",
+    "title": "Communities, not commodities",
+    "subtitle": "AI, libraries and language diversity: cultural sovereignty, invisible labour and community-owned knowledge.",
+    "day": 1,
+    "kind": "Keynote lecture",
+    "time": "15:30 – 17:00",
+    "pages": 4,
+    "speakers": "Asst. Prof. Setsuko Yokoyama · SUTD",
+    "file": "yokoyama",
+    "source": "LAS_Conference_2026_-_Keynote_Lecture_Report_-_Setsuko_Yokoyama_27_October_2026___15_30___17_00_SGT-9dde3845.pdf"
+  },
+  {
+    "id": "final-posters",
+    "title": "A library shaped by its community",
+    "subtitle": "RGS student co-governance, NLB’s Curiosity platform and NYP’s dual-user portal redesign.",
+    "day": 1,
+    "kind": "Closing posters",
+    "time": "17:00 – 17:30",
+    "pages": 4,
+    "speakers": "Hanis Idayu · Lim Ting Soon · Faiza Ibrahimsa",
+    "file": "final-posters",
+    "source": "LAS_Conference_2026_-_Day_1_Final_Poster_Presentations_Report__1_-2273d082.pdf"
+  },
+  {
+    "id": "technology-panel",
+    "title": "Beyond the AI black box",
+    "subtitle": "Changing work, regional AI commons and the urgent challenge of preserving executable heritage.",
+    "day": 2,
+    "kind": "Panel",
+    "time": "09:15 – 10:15",
+    "pages": 4,
+    "speakers": "Lim Bee Kwan · Ngui Jian Gang · Natalia Grincheva · Liana Tang",
+    "file": "technology-panel",
+    "source": "LAS_Conference_2026_-_Future_of_Technology_Panel_Report_28_October_2026___09_15___10_15_SGT-a9752719.pdf",
+    "note": "The report uses SEAL-eval and the honorific “Mr.” for Lim Bee Kwan; the official programme uses SEA-HELM and does not use that honorific. Source wording is retained. Claims about neuroscience and employment are attributed conference statements, not independent findings."
+  },
+  {
+    "id": "technology-papers",
+    "title": "Built around people, not platforms",
+    "subtitle": "SMU’s user-first chatbot, NLB’s connected entities and Ngee Ann Polytechnic’s LibBee AI.",
+    "day": 2,
+    "kind": "Papers · Atrium",
+    "time": "10:45 – 12:00",
+    "pages": 4,
+    "speakers": "Samantha Seah · Li Zhenyan · Phyllis Wee · Kannadasan Venkatachalam",
+    "file": "technology-papers",
+    "source": "LAS_Conference_2026_-_Day_2_Tech_Paper_Sessions_Atrium_Report_28_October_2026___10_45___12_00_SGT___Atrium-425e12d8.pdf",
+    "note": "The report’s claim that dual-layer RAG “eliminates algorithmic hallucination” is retained as a source assertion, not a guarantee of AI reliability."
+  },
+  {
+    "id": "librarianship-papers",
+    "title": "The changing work of librarianship",
+    "subtitle": "Institutional AI literacy, rare collections as learning laboratories and evidence from job advertisements.",
+    "day": 2,
+    "kind": "Papers · Theatre",
+    "time": "13:30 – 14:45",
+    "pages": 4,
+    "speakers": "Vincent Wong · Chia Yew Boon · Makeswary Periasamy · Janna Xu Cong · Caroline Pang",
+    "file": "librarianship-papers",
+    "source": "LAS_Conference_2026_-_Future_of_Librarianship_Paper_Sessions_Report__1_-68a8ca5f.pdf",
+    "note": "Source distinctions: 358 library advertisements, 51 with AI vocabulary; the 82% figure is attributed in the body to a 2025 PwC Singapore labour report, not calculated from 358. The report alternates between “255 ads”, “over 255” and “over 75%”; these statements are preserved and should not be treated as reconciled statistics."
+  },
+  {
+    "id": "librarianship-panel",
+    "title": "Human judgement, enduring purpose",
+    "subtitle": "Agentic workflows, competency-based pathways and treating AI as an intern—not a boss.",
+    "day": 2,
+    "kind": "Capstone panel",
+    "time": "15:30 – 16:30",
+    "pages": 4,
+    "speakers": "Aaron Tay · Koh Chern Chern · Gee Miaw Miin · Alex Foo",
+    "file": "librarianship-panel",
+    "source": "LAS_Conference_2026_-_Future_of_Librarianship_Panel_Report_28_October_2026___15_30___16_30_SGT-891c1228.pdf"
+  },
+  {
+    "id": "librarianship-panel-copy",
+    "title": "Capstone panel · companion upload",
+    "subtitle": "The second uploaded copy is retained in the index. Its extracted report text is identical to the capstone panel.",
+    "day": 2,
+    "kind": "Companion copy",
+    "time": "15:30 – 16:30",
+    "pages": 4,
+    "speakers": "Aaron Tay · Koh Chern Chern · Gee Miaw Miin · Alex Foo",
+    "file": "librarianship-panel",
+    "source": "LAS_Conference_2026_-_Future_of_Librarianship_Panel_Report28_October_2026___13_30___14_45_SGT___Theatre-85633107.pdf",
+    "note": "The filename suggests 13:30–14:45 at the Theatre, but all four pages match the other panel report and state 15:30–16:30. Both uploads remain separately indexed; the matching text is shared to avoid presenting a duplicate as a different session."
+  },
+  {
+    "id": "closing",
+    "title": "Human in the lead",
+    "subtitle": "The final charge, poster award winners and the road to CONSAL 2028.",
+    "day": 2,
+    "kind": "Closing & awards",
+    "time": "16:30 – 17:00",
+    "pages": 4,
+    "speakers": "Ian Yap · Library Association of Singapore",
+    "file": "closing",
+    "source": "LAS_Conference_2026_-_Closing_Remarks_and_Awards_Report_28_October_2026___16_30___17_00_SGT-bb195464.pdf"
+  }
 ];
 
 export const programme = [
-{day:1,time:'08:30 – 09:15',title:'Registration',type:'break'},
-{day:1,time:'09:15 – 09:20',title:'Introduction by Emcee',type:'break'},
-{day:1,time:'09:20 – 09:40',title:'Welcome remarks',detail:'Shameem Nilofar — President, Library Association of Singapore.',links:['opening']},
-{day:1,time:'09:40 – 10:15',title:'Opening keynote',detail:'Warren Fernandez — Senior Fellow and Head of National Security Studies Programme; Editor of RSIS Publications, S. Rajaratnam School of International; Senior Advisor at NTU’s Wee Kim Wee School of Communication and Information, Nanyang Technological University, Singapore; Deputy Chair, National Library Board.',links:['opening']},
-{day:1,time:'10:15 – 10:45',title:'Tea Break',type:'break'},
-{day:1,time:'10:45 – 11:45',title:'Future of Libraries Panel Discussion',detail:'Theme 1 · Panellists: Associate Professor Loh Chin Ee (National Institute of Education); Ng Kah Gay (Ethos Books and Pagesetters); Sarah Ichioka (Desire Lines). Moderated by Joan Wee (Singapore Institute of Technology).',links:['libraries-panel']},
-{day:1,time:'11:45 – 12:00',title:'Poster presentation',detail:'Report covers William Koh (SMU), Nay Tan (SIT) and Dinson Seng (Ngee Ann Polytechnic).',links:['morning-posters']},
-{day:1,time:'12:00 – 13:30',title:'Lunch',type:'break'},
-{day:1,time:'13:30 – 14:30',title:'Future of Libraries — concurrent paper sessions & table discussion',detail:'Theatre: Libraries as Enablers of Trusted Research Data Infrastructure — Janna Xu Cong and Dong Danping, Singapore Management University.\nFrom Library Resource to AI-Powered Learning: Embedding Library-Enabled Database into Curriculum — Bo Lan and Wan Ho Wah, Singapore Polytechnic.\nBeyond Resource Provision: The Academic Library as a Strategic Partner in Future-Ready Curriculum Redesign — Dr Kwa Lay Ping and Wong Cheng Long, Singapore Polytechnic.\nAtrium: Creating Entry Points for Entrepreneurship in Singapore: How Launch Provides a Safe Space to Take Off — Lisabelle Tan, National Library Board.\nTranslating Interdisciplinary Research into Art: Artists in the Academic Library — Kamiliah Bahdar, Singapore Management University.\nFunction Room 2: Have Your Say: Shaping Skills and Priorities for Singapore Libraries through the IFLA Trend Report & Skills Agenda. Interactive table discussions on the IFLA Trend Report 2024 and future-ready workforce priorities.\nCoverage: the supplied standalone report covers the Theatre papers. Atrium papers and the table discussion are programme listings only.',links:['libraries-papers']},
-{day:1,time:'14:30 – 15:00',title:'Poster presentation',detail:'Included in the official programme. No separate report for this time slot was supplied.'},
-{day:1,time:'15:00 – 15:30',title:'Tea Break',type:'break'},
-{day:1,time:'15:30 – 17:00',title:'Communities, Not Commodities: AI, Libraries, and Language Diversity',detail:'Lecture · Assistant Professor Setsuko Yokoyama — Singapore University of Technology and Design.',links:['yokoyama']},
-{day:1,time:'17:00 – 17:30',title:'Poster presentations',detail:'Report covers Raffles Girls’ School (Secondary), NLB’s Curiosity and Nanyang Polytechnic’s portal redesign.',links:['final-posters']},
-{day:1,time:'17:30',title:'End of Day One',type:'break'},
-{day:2,time:'Time not stated',title:'Registration',type:'break'},
-{day:2,time:'09:15 – 10:15',title:'Future of Technology Panel Discussion',detail:'Theme 2 · Lim Bee Kwan (Assurity Trusted Solutions and Singapore Computer Society); Dr Ngui Jian Gang (AI Singapore); Dr Natalia Grincheva (LASALLE, University of the Arts Singapore). Moderated by Liana Tang (National Library Board). Time from the supplied panel report.',links:['technology-panel']},
-{day:2,time:'Time not stated',title:'Tea Break',type:'break'},
-{day:2,time:'10:45 – 12:00',title:'Future of Technology — Paper Sessions I & II',detail:'Can Librarians Build Their Own Digital Solutions? Rethinking Technology Innovation in the Age of GenAI — Chua Junjie and Theresa Lee Hui Qi, Nanyang Technological University.\nAI-Powered Records Management Chatbot: Strengthening Institutional Records Governance through AI-Enabled Policy Guidance — Grace Khoo, Ngee Ann Polytechnic.\nFrom Shelves to Smart Retrieval: Rethinking Library Services through Robotics and Automation — Dr. Chan Chung Yee Hubert, HKC International Holdings Limited.\nInformation Discovery and Access – Leveraging Technology to Transform Library Services — Andy Heng, Defence Science and Technology Agency.\nLibrary-Without-Reshelving – Forging a New Path in Library Automation — Andy Lim Guo Cong, Singapore Polytechnic.\nAtrium report: User-first Approach to Designing a Library AI Chatbot — Samantha Seah and Li Zhenyan, Singapore Management University.\nFrom Strings to Things: Rethinking Authority Control for Connected Entities / Building NLB’s Entity Data Service — Phyllis Wee, National Library Board.\nBuilding LibBee AI: What We Learned Building an AI Library Assistant Instead of Buying One — Kannadasan Venkatachalam (Venki), Ngee Ann Polytechnic.\nCoverage: the supplied report covers the three Atrium papers. Other papers are programme listings only. Time from the Atrium report.',links:['technology-papers']},
-{day:2,time:'Time not stated',title:'Lunch',type:'break'},
-{day:2,time:'13:30 – 14:45',title:'Future of Librarianship — Paper Sessions I & II',detail:'Theatre report: Beyond Traditional AI Literacy: Reimagining the Role of Librarians in an AI-Enabled University — Chia Yew Boon and Vincent Wong, Nanyang Technological University.\nFrom Gatekeepers to Guides: Reimagining Rare and Special Collections Librarianship — Makeswary Periasamy, National Library Board.\nAfter LLM: What Singapore’s Library Job Advertisements Reveal About a Changing Profession — Janna Xu Cong, Singapore Management University.\nOther concurrent papers: The Art of Librarianship: What Artists Really Want from Us — Luke Chua, National Library Board.\nFrom Users to Partners: Redefining Student Participation in School Librarianship — Masturah binte Abdul Aziz, Raffles Girls’ School (Secondary).\nThe Evolving Role of Librarians in Bridging Societal Gaps — Yvonne Ng, National Library Board.\nCoverage: the supplied report covers the three Theatre papers. Other papers are programme listings only. Time from the Theatre report.',links:['librarianship-papers']},
-{day:2,time:'Time not stated',title:'Report on Facilitated Table Discussion on IFLA Trend Report',detail:'Phoebe Lim — Nanyang Technological University. Programme listing only; no standalone report supplied.'},
-{day:2,time:'Time not stated',title:'Tea Break',type:'break'},
-{day:2,time:'15:30 – 16:30',title:'Future of Librarianship Panel Discussion',detail:'Theme 3 · Aaron Tay (Singapore Management University); Koh Chern Chern (Singapore Polytechnic); Gee Miaw Miin (National Library Board). Moderated by Alex Foo (Ministry of Digital Development and Information). Time from both uploaded panel documents’ internal headings.',links:['librarianship-panel','librarianship-panel-copy']},
-{day:2,time:'16:30 – 17:00',title:'Closing remarks, poster awards & group photographs',detail:'Ian Yap — Conference Chair and Vice President, Library Association of Singapore. Time from the supplied closing report. The official programme lists closing remarks followed by poster awards and group photographs; the closing report describes awards before the address. Both source sequences are retained.',links:['closing']},
-{day:2,time:'Time not stated',title:'End of Conference',type:'break'}
+  {
+    "day": 1,
+    "time": "08:30 – 09:15",
+    "title": "Registration",
+    "type": "break"
+  },
+  {
+    "day": 1,
+    "time": "09:15 – 09:20",
+    "title": "Introduction by Emcee",
+    "type": "break"
+  },
+  {
+    "day": 1,
+    "time": "09:20 – 09:40",
+    "title": "Welcome remarks",
+    "detail": "Shameem Nilofar — President, Library Association of Singapore.",
+    "links": [
+      "opening"
+    ]
+  },
+  {
+    "day": 1,
+    "time": "09:40 – 10:15",
+    "title": "Opening keynote",
+    "detail": "Warren Fernandez — Senior Fellow and Head of National Security Studies Programme; Editor of RSIS Publications, S. Rajaratnam School of International; Senior Advisor at NTU’s Wee Kim Wee School of Communication and Information, Nanyang Technological University, Singapore; Deputy Chair, National Library Board.",
+    "links": [
+      "opening"
+    ]
+  },
+  {
+    "day": 1,
+    "time": "10:15 – 10:45",
+    "title": "Tea Break",
+    "type": "break"
+  },
+  {
+    "day": 1,
+    "time": "10:45 – 11:45",
+    "title": "Future of Libraries Panel Discussion",
+    "detail": "Theme 1 · Panellists: Associate Professor Loh Chin Ee (National Institute of Education); Ng Kah Gay (Ethos Books and Pagesetters); Sarah Ichioka (Desire Lines). Moderated by Joan Wee (Singapore Institute of Technology).",
+    "links": [
+      "libraries-panel"
+    ]
+  },
+  {
+    "day": 1,
+    "time": "11:45 – 12:00",
+    "title": "Poster presentation",
+    "detail": "Report covers William Koh (SMU), Nay Tan (SIT) and Dinson Seng (Ngee Ann Polytechnic).",
+    "links": [
+      "morning-posters"
+    ]
+  },
+  {
+    "day": 1,
+    "time": "12:00 – 13:30",
+    "title": "Lunch",
+    "type": "break"
+  },
+  {
+    "day": 1,
+    "time": "13:30 – 14:30",
+    "title": "Future of Libraries — concurrent paper sessions & table discussion",
+    "detail": "Theatre: Libraries as Enablers of Trusted Research Data Infrastructure — Janna Xu Cong and Dong Danping, Singapore Management University.\nFrom Library Resource to AI-Powered Learning: Embedding Library-Enabled Database into Curriculum — Bo Lan and Wan Ho Wah, Singapore Polytechnic.\nBeyond Resource Provision: The Academic Library as a Strategic Partner in Future-Ready Curriculum Redesign — Dr Kwa Lay Ping and Wong Cheng Long, Singapore Polytechnic.\nAtrium: Creating Entry Points for Entrepreneurship in Singapore: How Launch Provides a Safe Space to Take Off — Lisabelle Tan, National Library Board.\nTranslating Interdisciplinary Research into Art: Artists in the Academic Library — Kamiliah Bahdar, Singapore Management University.\nFunction Room 2: Have Your Say: Shaping Skills and Priorities for Singapore Libraries through the IFLA Trend Report & Skills Agenda. Interactive table discussions on the IFLA Trend Report 2024 and future-ready workforce priorities.\nCoverage: the supplied standalone report covers the Theatre papers. Atrium papers and the table discussion are programme listings only.",
+    "links": [
+      "libraries-papers"
+    ]
+  },
+  {
+    "day": 1,
+    "time": "14:30 – 15:00",
+    "title": "Poster presentation",
+    "detail": "Included in the official programme. No separate report for this time slot was supplied."
+  },
+  {
+    "day": 1,
+    "time": "15:00 – 15:30",
+    "title": "Tea Break",
+    "type": "break"
+  },
+  {
+    "day": 1,
+    "time": "15:30 – 17:00",
+    "title": "Communities, Not Commodities: AI, Libraries, and Language Diversity",
+    "detail": "Lecture · Assistant Professor Setsuko Yokoyama — Singapore University of Technology and Design.",
+    "links": [
+      "yokoyama"
+    ]
+  },
+  {
+    "day": 1,
+    "time": "17:00 – 17:30",
+    "title": "Poster presentations",
+    "detail": "Report covers Raffles Girls’ School (Secondary), NLB’s Curiosity and Nanyang Polytechnic’s portal redesign.",
+    "links": [
+      "final-posters"
+    ]
+  },
+  {
+    "day": 1,
+    "time": "17:30",
+    "title": "End of Day One",
+    "type": "break"
+  },
+  {
+    "day": 2,
+    "time": "08:30 – 09:15",
+    "title": "Registration",
+    "type": "break"
+  },
+  {
+    "day": 2,
+    "time": "09:15 – 10:15",
+    "title": "Future of Technology Panel Discussion",
+    "detail": "Theme 2 · Lim Bee Kwan (Assurity Trusted Solutions and Singapore Computer Society); Dr Ngui Jian Gang (AI Singapore); Dr Natalia Grincheva (LASALLE, University of the Arts Singapore). Moderated by Liana Tang (National Library Board). Time from the supplied panel report.",
+    "links": [
+      "technology-panel"
+    ]
+  },
+  {
+    "day": 2,
+    "time": "10:15 – 10:45",
+    "title": "Tea Break",
+    "type": "break"
+  },
+  {
+    "day": 2,
+    "time": "10:45 – 12:00",
+    "title": "Future of Technology — Paper Sessions I & II",
+    "detail": "Theatre: Can Librarians Build Their Own Digital Solutions? Rethinking Technology Innovation in the Age of GenAI — Chua Junjie and Theresa Lee Hui Qi, Nanyang Technological University.\nAI-Powered Records Management Chatbot: Strengthening Institutional Records Governance through AI-Enabled Policy Guidance — Grace Khoo, Ngee Ann Polytechnic.\nFrom Shelves to Smart Retrieval: Rethinking Library Services through Robotics and Automation — Dr. Chan Chung Yee Hubert, HKC International Holdings Limited.\nInformation Discovery and Access – Leveraging Technology to Transform Library Services — Andy Heng, Defence Science and Technology Agency.\nAtrium: Library-Without-Reshelving – Forging a New Path in Library Automation — Andy Lim Guo Cong, Singapore Polytechnic.\nUser-first Approach to Designing a Library AI Chatbot — Samantha Seah and Li Zhenyan, Singapore Management University.\nFrom Strings to Things: Rethinking Authority Control for Connected Entities / Building NLB’s Entity Data Service — Phyllis Wee, National Library Board.\nBuilding LibBee AI: What We Learned Building an AI Library Assistant Instead of Buying One — Kannadasan Venkatachalam (Venki), Ngee Ann Polytechnic.\nCoverage: the supplied report covers the three Atrium papers. Other papers are programme listings only. Scheduled time and room assignments confirmed against the official programme.",
+    "links": [
+      "technology-papers"
+    ]
+  },
+  {
+    "day": 2,
+    "time": "12:00 – 13:30",
+    "title": "Lunch",
+    "type": "break"
+  },
+  {
+    "day": 2,
+    "time": "13:30 – 14:45",
+    "title": "Future of Librarianship — Paper Sessions I & II",
+    "detail": "Theatre report: Beyond Traditional AI Literacy: Reimagining the Role of Librarians in an AI-Enabled University — Chia Yew Boon and Vincent Wong, Nanyang Technological University.\nFrom Gatekeepers to Guides: Reimagining Rare and Special Collections Librarianship — Makeswary Periasamy, National Library Board.\nAfter LLM: What Singapore’s Library Job Advertisements Reveal About a Changing Profession — Janna Xu Cong, Singapore Management University.\nAtrium: The Art of Librarianship: What Artists Really Want from Us — Luke Chua, National Library Board.\nFrom Users to Partners: Redefining Student Participation in School Librarianship — Masturah binte Abdul Aziz, Raffles Girls’ School (Secondary).\nThe Evolving Role of Librarians in Bridging Societal Gaps — Yvonne Ng, National Library Board.\nCoverage: the supplied report covers the three Theatre papers. Other papers are programme listings only. Scheduled time and room assignments confirmed against the official programme.",
+    "links": [
+      "librarianship-papers"
+    ]
+  },
+  {
+    "day": 2,
+    "time": "14:45 – 15:00",
+    "title": "Report on Facilitated Table Discussion on IFLA Trend Report",
+    "detail": "Phoebe Lim — Nanyang Technological University. Programme listing only; no standalone report supplied."
+  },
+  {
+    "day": 2,
+    "time": "15:00 – 15:30",
+    "title": "Tea Break",
+    "type": "break"
+  },
+  {
+    "day": 2,
+    "time": "15:30 – 16:30",
+    "title": "Future of Librarianship Panel Discussion",
+    "detail": "Theme 3 · Aaron Tay (Singapore Management University); Koh Chern Chern (Singapore Polytechnic); Gee Miaw Miin (National Library Board). Moderated by Alex Foo (Ministry of Digital Development and Information). Time from both uploaded panel documents’ internal headings.",
+    "links": [
+      "librarianship-panel",
+      "librarianship-panel-copy"
+    ]
+  },
+  {
+    "day": 2,
+    "time": "16:30 – 16:35",
+    "title": "Closing remarks",
+    "detail": "Ian Yap — Conference Chair and Vice President, Library Association of Singapore. The official programme schedules the address before the awards; the supplied combined closing report describes awards before the address. That source distinction is preserved.",
+    "links": [
+      "closing"
+    ]
+  },
+  {
+    "day": 2,
+    "time": "16:35 – 17:00",
+    "title": "Presentation of poster awards and group photographs",
+    "detail": "The closing report names Jessie Tan (NIE) as 1st Prize winner, Lim Ting Soon (NLB) as 2nd Prize winner and Muhammad Kurniawan (NLB) as 3rd Prize winner. The official poster competition announces First Place: $1,000; Second Place: $500; Third Place: $250. The full closing report covers both final programme slots.",
+    "links": [
+      "closing"
+    ]
+  },
+  {
+    "day": 2,
+    "time": "17:00",
+    "title": "End of Conference",
+    "type": "break"
+  }
 ];

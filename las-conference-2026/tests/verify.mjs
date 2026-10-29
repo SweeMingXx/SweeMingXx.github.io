@@ -25,7 +25,7 @@ try {
  assert.equal(reports.length,14); assert.equal(new Set(reports.map(r=>r.file)).size,13); assert.equal(reports.reduce((n,r)=>n+r.pages,0),57);
  assert.equal(reports.filter(r=>r.day===1).length,6); assert.equal(reports.filter(r=>r.day===2).length,6);
  for (const r of reports) { const text=await readFile(resolve(root,'reports',r.file+'.md'),'utf8'); assert(text.length>8000,r.id+' too short'); assert(text.startsWith('# ')); }
- assert.equal(programme.filter(p=>p.day===1).length,14); assert.equal(programme.filter(p=>p.day===2).length,11);
+ assert.equal(programme.filter(p=>p.day===1).length,14); assert.equal(programme.filter(p=>p.day===2).length,12);
  for(const p of programme) for(const id of p.links||[]) assert(reports.some(r=>r.id===id),'broken report link '+id);
  pass('Source coverage','14 source entries, 13 full report texts, 57 source pages; 6 Day 1 and 6 Day 2 uploads indexed.');
  browser=await chromium.launch({headless:true});
@@ -95,7 +95,7 @@ try {
  assert.deepEqual(jsErrors,[]); pass('Runtime','No browser JavaScript exceptions.');
  try {
   const response=await page.request.get('https://las.org.sg/conference/',{timeout:45000});
-  if(response.ok()) { const html=await response.text(); const clean=await page.evaluate(html=>{const d=new DOMParser().parseFromString(html,'text/html');d.querySelectorAll('script,style,nav,header,footer').forEach(n=>n.remove());return d.body.textContent.replace(/\n\s*\n/g,'\n').trim()},html); await writeFile(resolve(evidence,'official-programme.json'),JSON.stringify({url:response.url(),retrievedAt:new Date().toISOString(),text:clean},null,2)); }
+  if(response.ok()) { const html=await response.text(); const clean=await page.evaluate(html=>{const d=new DOMParser().parseFromString(html,'text/html');d.querySelectorAll('script,style,nav,header,footer').forEach(n=>n.remove());return d.body.textContent.replace(/\n\s*\n/g,'\n').trim()},html); await writeFile(resolve(evidence,'official-programme.json'),JSON.stringify({url:response.url(),retrievedAt:new Date().toISOString(),text:clean.match(/Programme\s*\n([\s\S]*?)Conference Speakers/)?.[1] || 'Programme section could not be isolated.'},null,2)); }
  }catch(e){result.officialProgrammeRetrieval=e.message;}
  for(let attempt=0;attempt<12;attempt++) {
   try {const live=await page.request.get('https://sweemingxx.github.io/las-conference-2026/',{timeout:20000}); const html=await live.text(); if(live.ok()&&html.includes('Libraries for Tomorrow')&&html.includes('app.js')) {result.live={url:live.url(),status:live.status(),verifiedAt:new Date().toISOString()}; break;}}catch{}
