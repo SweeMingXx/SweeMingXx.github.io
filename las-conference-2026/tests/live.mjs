@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import {reports,programme} from '../data.js';
 const base='https://sweemingxx.github.io/las-conference-2026/';
 const digest=b=>createHash('sha256').update(b).digest('hex');
-const files=['index.html','styles.css','theme.css','app.js','data.js',...new Set(reports.map(r=>'reports/'+r.file+'.md'))];
+const files=['index.html','styles.css','theme.css','landing.css','hero-art.svg','favicon.svg','app.js','data.js',...new Set(reports.map(r=>'reports/'+r.file+'.md'))];
 const result={url:base,testedAt:new Date().toISOString(),success:false,checks:[],assetHashes:{}};
 await mkdir('verification',{recursive:true});
 const browser=await chromium.launch();
@@ -21,7 +21,7 @@ try{
   if(!lastMismatch.length){ready=true;break;}await new Promise(r=>setTimeout(r,5000));
  }
  assert(ready,'Deployment has not converged: '+lastMismatch.join(', '));
- result.checks.push('All 18 runtime assets, including 13 complete report texts, match the tested repository bytes exactly.');
+ result.checks.push(`All ${files.length} runtime assets, including 13 complete report texts and the new hero artwork, match the tested repository bytes exactly.`);
  const response=await page.goto(base,{waitUntil:'networkidle'});assert.equal(response.status(),200);
  await page.waitForFunction(()=>document.querySelector('#search-status').textContent.includes('Full-text search is ready'));
  assert.equal(await page.locator('#archive-list .archive-item').count(),14);
