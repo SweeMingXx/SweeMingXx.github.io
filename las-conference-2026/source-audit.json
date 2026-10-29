@@ -1,0 +1,11 @@
+{
+  "source_documents": 14,
+  "source_pages": 57,
+  "distinct_web_report_texts": 13,
+  "method": "Full PDF extraction for every supplied document, complete manual reading, Unicode NFKC word-occurrence comparison between source text and web text, excluding running page furniture. Tables and diagram labels reformatted; original PDF visual layouts are not reproduced on the website.",
+  "missing_normalized_source_word_occurrences": 0,
+  "documents_checked": ["overview", "quotes", "opening", "libraries-panel", "morning-posters", "libraries-papers", "yokoyama", "final-posters", "technology-panel", "technology-papers", "librarianship-papers", "librarianship-panel", "librarianship-panel-copy", "closing"],
+  "duplicate_policy": "Both uploaded librarianship panel documents remain separately indexed. Their identical extracted content shares one web text.",
+  "source_discrepancies": "Preserved and explained in the reader and source index; no unsupported factual corrections applied.",
+  "programme": "All scheduled times and concurrent room assignments checked against the official LAS conference page. Programme-only sessions are labelled where no standalone report was supplied."
+}
