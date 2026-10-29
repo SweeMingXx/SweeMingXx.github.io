@@ -1,0 +1,34 @@
+{
+  "url": "https://sweemingxx.github.io/las-conference-2026/",
+  "testedAt": "2026-10-29T13:25:41.571Z",
+  "success": true,
+  "checks": [
+    "All 17 runtime assets, including 13 complete report texts, match the tested repository bytes exactly.",
+    "Live official Day 2 programme has all 12 schedule rows, including separate closing and awards times, with no missing-time placeholders.",
+    "Live anthology renders all 33 quotations.",
+    "Fresh 375px live load: no horizontal overflow or fixed-header overlap; mobile contents navigation works with reduced motion."
+  ],
+  "assetHashes": {
+    "index.html": "7fdfea4c4c955d446ceffca24b07508e49823e473b9e0407411e7657b86cd320",
+    "styles.css": "b1ea65ff7b404c333b53f16aeb91af19281495e83f0c9b6edd4d0dc29a0a51ca",
+    "app.js": "26970c4b1b6fec2b7fc7f3f0fe97d4006bdf7585c811bc8c117e6953e156cf71",
+    "data.js": "cbe45f4fe6624a78e1987d7f7b75dd096715bf8821f249f028ab7ec81a0b1636",
+    "reports/overview.md": "00ec1644e6111a32462b1fb47cd57c5482b8560c2a42031cd5da3203259d38b3",
+    "reports/quotes.md": "b1afef3b45cc8a7453d4a4b61f02fa308c3a3233305b4830be3f7003e9a93b9f",
+    "reports/opening.md": "f644436b3e1c36a56ec6a6fd078ec797b6cf98f2bc20312939965f018d7bb06d",
+    "reports/libraries-panel.md": "c05374249515ca2ec1842c269f029904d9b4e9cb6e180e4ca006e205aab799c3",
+    "reports/morning-posters.md": "f55f2e66fa5202951cdad61cc591bd53c7f3ed73a4ef53f434f974c6b59c262f",
+    "reports/libraries-papers.md": "59c73428978ba33537fe47fe5266d298f492f1c9b5b42c6f20a567c49dace80b",
+    "reports/yokoyama.md": "3d48c58ad9966cc8fc1a36168f2cc5bba4525628bfafdce609101cc7174c9f8a",
+    "reports/final-posters.md": "70714bb4eefd116cbb5d6b0c47a42f7b98f395d9c105000e154f144ea5865bdc",
+    "reports/technology-panel.md": "b25a9e3a182f22d6a4ed23c38f9040e8b400d3da163affa34175816a58631069",
+    "reports/technology-papers.md": "ee40bf65876b319665fcae1e793f1f1182601eb47c417feafa0292307b258d10",
+    "reports/librarianship-papers.md": "3b42824c37380311d010f77d19dee6ec79658451904bed3412b8ccedf67abfcc",
+    "reports/librarianship-panel.md": "2d9ce080bfe85679acbfd4d76c13f33011b9696bb9a1b26de6d888eac2117859",
+    "reports/closing.md": "0b5b7f58089c45db7cea73d2ee31987b4e263bcefe1607115099ac8ead8938f4"
+  },
+  "sourceEntries": 14,
+  "sourcePages": 57,
+  "programmeRows": 26,
+  "httpStatus": 200
+}
