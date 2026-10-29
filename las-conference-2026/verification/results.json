@@ -1,6 +1,6 @@
 {
-  "testedAt": "2026-10-29T13:16:06.777Z",
-  "commit": "85257ca3e0d5561c000ef7e3f5390ea9ff2ba8bb",
+  "testedAt": "2026-10-29T13:18:36.040Z",
+  "commit": "048e4bc1c00f68ac93263366b65270d3ce350765",
   "checks": [
     {
       "name": "Source coverage",
@@ -21,14 +21,38 @@
       "name": "Search and recovery",
       "status": "passed",
       "detail": "Full-text matches, empty state and reset tested."
+    },
+    {
+      "name": "All report readers",
+      "status": "passed",
+      "detail": "Every one of 14 entries opens complete text, quotations, source notes and contents. All 12 distinct non-anthology reports render a comparison table."
+    },
+    {
+      "name": "Reader interactions",
+      "status": "passed",
+      "detail": "Text resizing, section navigation, saved reports, Escape, and conference return."
     }
   ],
   "errors": [
-    "AssertionError [ERR_ASSERTION]: overview quotations missing\n    at file:///home/runner/work/SweeMingXx.github.io/SweeMingXx.github.io/las-conference-2026/tests/verify.mjs:54:3"
+    "AssertionError [ERR_ASSERTION]: [{\"id\":\"color-contrast\",\"impact\":\"serious\",\"description\":\"Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds\",\"nodes\":[[\"#day1 > .day-heading.visible.reveal > .giant-number[aria-hidden=\\\"true\\\"]\"]]}]\n\n1 !== 0\n\n    at file:///home/runner/work/SweeMingXx.github.io/SweeMingXx.github.io/las-conference-2026/tests/verify.mjs:78:9"
   ],
   "screenshots": [
-    "desktop.png"
+    "desktop.png",
+    "reader.png"
   ],
   "live": null,
+  "readerAccessibility": [],
+  "pageAccessibility": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "nodes": [
+        [
+          "#day1 > .day-heading.visible.reveal > .giant-number[aria-hidden=\"true\"]"
+        ]
+      ]
+    }
+  ],
   "success": false
 }
