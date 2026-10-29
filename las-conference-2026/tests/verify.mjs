@@ -61,7 +61,7 @@ try {
  await page.locator('#font-larger').click(); assert.equal(await page.evaluate(()=>getComputedStyle(document.documentElement).getPropertyValue('--reading-size').trim()),'19px');
  await page.locator('#font-smaller').click(); await page.locator('#save-report').click(); assert.equal(await page.locator('#save-report').getAttribute('aria-pressed'),'true');
  await page.locator('#reader-toc button').nth(2).click(); await page.waitForTimeout(700); assert((await page.locator('#reader-scroll').evaluate(e=>e.scrollTop))>100);
- await page.locator('#reader-scroll').evaluate(e=>e.scrollTop=0); await page.screenshot({path:resolve(evidence,'reader.png')}); result.screenshots.push('reader.png');
+ await page.locator('#reader-scroll').evaluate(e=>e.scrollTo({top:0,behavior:'instant'})); await page.screenshot({path:resolve(evidence,'reader.png')}); result.screenshots.push('reader.png');
  await page.keyboard.press('Escape'); assert(!(await page.locator('#reader').isVisible()));
  await page.locator('[data-filter="saved"]').click(); assert.equal(await page.locator('#archive-list .archive-item').count(),1); await page.locator('[data-filter="all"]').click();
  pass('Reader interactions','Text resizing, section navigation, saved reports, Escape, and conference return.');
@@ -78,12 +78,12 @@ try {
  assert.equal(a11y.filter(v=>['serious','critical'].includes(v.impact)).length,0,JSON.stringify(a11y));
  pass('Accessibility and print','No serious/critical axe WCAG A/AA findings in the page or reader. Print CSS exposes full report. Direct anthology link renders all 33 quotations.');
  for(const width of [375,768,1024,1440]) {
-  await page.setViewportSize({width,height:900}); await page.evaluate(()=>scrollTo(0,0)); await page.waitForTimeout(150);
+  await page.setViewportSize({width,height:900}); await page.evaluate(()=>scrollTo({top:0,behavior:'instant'})); await page.waitForTimeout(150);
   const sizes=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,client:document.documentElement.clientWidth})); assert(sizes.scroll<=sizes.client+1,JSON.stringify({width,...sizes}));
   if(width===375) { await page.screenshot({path:resolve(evidence,'mobile.png')}); result.screenshots.push('mobile.png'); }
  }
  pass('Responsive layouts','375px, 768px, 1024px and 1440px: no page-level horizontal overflow.');
- await page.emulateMedia({reducedMotion:'reduce'}); assert.equal(await page.locator('#motion-toggle').textContent(),'Motion: off');
+ await page.emulateMedia({reducedMotion:'reduce'}); await page.waitForFunction(()=>document.querySelector('#motion-toggle').textContent==='Motion: off'); assert.equal(await page.locator('#motion-toggle').textContent(),'Motion: off');
  await page.keyboard.press('/'); assert.equal(await page.locator('#search').evaluate(e=>e===document.activeElement),true);
  pass('Motion and keyboard','System reduced-motion preference respected; / shortcut focuses search.');
  const errorContext=await browser.newContext({viewport:{width:375,height:900}}); const errorPage=await errorContext.newPage();

@@ -1,6 +1,6 @@
 {
-  "testedAt": "2026-10-29T13:20:22.001Z",
-  "commit": "7ea2d594a8c46dbb3c9839f974bf88008a56aa28",
+  "testedAt": "2026-10-29T13:22:00.705Z",
+  "commit": "bf3d1635ea4f5d95f18210d6cbabfcdb3e0bb477",
   "checks": [
     {
       "name": "Source coverage",
@@ -41,18 +41,40 @@
       "name": "Responsive layouts",
       "status": "passed",
       "detail": "375px, 768px, 1024px and 1440px: no page-level horizontal overflow."
+    },
+    {
+      "name": "Motion and keyboard",
+      "status": "passed",
+      "detail": "System reduced-motion preference respected; / shortcut focuses search."
+    },
+    {
+      "name": "Network-error recovery",
+      "status": "passed",
+      "detail": "Clear error, working retry and no horizontal overflow in the 375px reader."
+    },
+    {
+      "name": "Runtime",
+      "status": "passed",
+      "detail": "No browser JavaScript exceptions."
+    },
+    {
+      "name": "LIVE GitHub Pages",
+      "status": "passed",
+      "detail": "HTTPS 200, 14 report entries, all full texts indexed, and live full report navigation verified."
     }
   ],
-  "errors": [
-    "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ 'Motion: on'\n- 'Motion: off'\n            ^\n\n    at file:///home/runner/work/SweeMingXx.github.io/SweeMingXx.github.io/las-conference-2026/tests/verify.mjs:86:60"
-  ],
+  "errors": [],
   "screenshots": [
     "desktop.png",
     "reader.png",
     "mobile.png"
   ],
-  "live": null,
+  "live": {
+    "url": "https://sweemingxx.github.io/las-conference-2026/",
+    "status": 200,
+    "verifiedAt": "2026-10-29T13:22:07.647Z"
+  },
   "readerAccessibility": [],
   "pageAccessibility": [],
-  "success": false
+  "success": true
 }

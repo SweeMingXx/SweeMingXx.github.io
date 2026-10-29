@@ -166,7 +166,7 @@ async function openReport(id) {
   $('#report-content').innerHTML = '<p role="status">Loading the complete report…</p>';
   $('#report-content').setAttribute('aria-busy','true');
   $('#reader-toc').replaceChildren(); $('#reader-next').replaceChildren();
-  $('#reader-scroll').scrollTop = 0; readerProgress(); updateSave();
+  $('#reader-scroll').scrollTo({top:0,behavior:'instant'}); readerProgress(); updateSave();
   $('#reader-title').focus({preventScroll:true});
   try {
     const text = await loadReport(report);
@@ -193,6 +193,7 @@ function closeDialog() {
   document.title = 'Libraries for Tomorrow — LAS Conference 2026';
   currentReport = null;
   if (opener && opener.isConnected) opener.focus({preventScroll:true});
+  else $('#search').focus({preventScroll:true});
 }
 function returnToConference() {
   history.pushState(null,'',returnHash);
