@@ -1,6 +1,6 @@
 {
-  "testedAt": "2026-10-29T14:04:23.405Z",
-  "commit": "3bf72b48ebe5691216505f2b48014aa2c20a88b7",
+  "testedAt": "2026-10-29T14:05:44.130Z",
+  "commit": "399ccd2cef8afb3bb178d050081a4638fd140c69",
   "checks": [
     {
       "name": "Source coverage",
@@ -72,7 +72,7 @@
   "live": {
     "url": "https://sweemingxx.github.io/las-conference-2026/",
     "status": 200,
-    "verifiedAt": "2026-10-29T14:04:32.034Z"
+    "verifiedAt": "2026-10-29T14:05:50.999Z"
   },
   "readerAccessibility": [],
   "pageAccessibility": [],

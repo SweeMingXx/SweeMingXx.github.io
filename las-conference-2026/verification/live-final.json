@@ -1,16 +1,16 @@
 {
   "url": "https://sweemingxx.github.io/las-conference-2026/",
-  "testedAt": "2026-10-29T14:04:33.566Z",
+  "testedAt": "2026-10-29T14:05:52.525Z",
   "success": true,
   "checks": [
-    "All 17 runtime assets, including 13 complete report texts, match the tested repository bytes exactly.",
+    "All 18 runtime assets, including 13 complete report texts, match the tested repository bytes exactly.",
     "Live official Day 2 programme has all 12 schedule rows, including separate closing and awards times, with no missing-time placeholders.",
     "Live anthology renders all 33 quotations.",
     "Fresh 375px live load: no horizontal overflow or fixed-header overlap; mobile contents navigation works with reduced motion."
   ],
   "assetHashes": {
-    "index.html": "7fdfea4c4c955d446ceffca24b07508e49823e473b9e0407411e7657b86cd320",
     "styles.css": "b1ea65ff7b404c333b53f16aeb91af19281495e83f0c9b6edd4d0dc29a0a51ca",
+    "theme.css": "f4241b327486ff8a52ed36c78042c6f868d987830b86b2456475514affe6efe6",
     "app.js": "26970c4b1b6fec2b7fc7f3f0fe97d4006bdf7585c811bc8c117e6953e156cf71",
     "data.js": "cbe45f4fe6624a78e1987d7f7b75dd096715bf8821f249f028ab7ec81a0b1636",
     "reports/overview.md": "00ec1644e6111a32462b1fb47cd57c5482b8560c2a42031cd5da3203259d38b3",
@@ -25,7 +25,8 @@
     "reports/technology-papers.md": "ee40bf65876b319665fcae1e793f1f1182601eb47c417feafa0292307b258d10",
     "reports/librarianship-papers.md": "3b42824c37380311d010f77d19dee6ec79658451904bed3412b8ccedf67abfcc",
     "reports/librarianship-panel.md": "2d9ce080bfe85679acbfd4d76c13f33011b9696bb9a1b26de6d888eac2117859",
-    "reports/closing.md": "0b5b7f58089c45db7cea73d2ee31987b4e263bcefe1607115099ac8ead8938f4"
+    "reports/closing.md": "0b5b7f58089c45db7cea73d2ee31987b4e263bcefe1607115099ac8ead8938f4",
+    "index.html": "2379ce5a1ced4209948a37eabc1828bce2ab383903c33fe04bf525fa057b360d"
   },
   "sourceEntries": 14,
   "sourcePages": 57,
