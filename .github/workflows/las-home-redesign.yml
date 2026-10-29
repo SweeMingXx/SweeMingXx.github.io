@@ -1,0 +1,34 @@
+name: Publish LAS landing redesign
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'las-conference-2026/tests/redesign-home.mjs'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: las-home-redesign
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Replace the hero and homepage navigation
+        working-directory: las-conference-2026
+        run: node tests/redesign-home.mjs
+      - name: Publish the redesigned entry point
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add las-conference-2026/index.html las-conference-2026/tests/live.mjs
+          if ! git diff --cached --quiet; then
+            git commit -m 'Launch redesigned LAS homepage and original hero artwork'
+            git pull --rebase origin main
+            git push origin main
+          fi
