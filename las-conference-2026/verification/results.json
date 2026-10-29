@@ -1,6 +1,6 @@
 {
-  "testedAt": "2026-10-29T13:18:36.040Z",
-  "commit": "048e4bc1c00f68ac93263366b65270d3ce350765",
+  "testedAt": "2026-10-29T13:20:22.001Z",
+  "commit": "7ea2d594a8c46dbb3c9839f974bf88008a56aa28",
   "checks": [
     {
       "name": "Source coverage",
@@ -31,28 +31,28 @@
       "name": "Reader interactions",
       "status": "passed",
       "detail": "Text resizing, section navigation, saved reports, Escape, and conference return."
+    },
+    {
+      "name": "Accessibility and print",
+      "status": "passed",
+      "detail": "No serious/critical axe WCAG A/AA findings in the page or reader. Print CSS exposes full report. Direct anthology link renders all 33 quotations."
+    },
+    {
+      "name": "Responsive layouts",
+      "status": "passed",
+      "detail": "375px, 768px, 1024px and 1440px: no page-level horizontal overflow."
     }
   ],
   "errors": [
-    "AssertionError [ERR_ASSERTION]: [{\"id\":\"color-contrast\",\"impact\":\"serious\",\"description\":\"Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds\",\"nodes\":[[\"#day1 > .day-heading.visible.reveal > .giant-number[aria-hidden=\\\"true\\\"]\"]]}]\n\n1 !== 0\n\n    at file:///home/runner/work/SweeMingXx.github.io/SweeMingXx.github.io/las-conference-2026/tests/verify.mjs:78:9"
+    "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ 'Motion: on'\n- 'Motion: off'\n            ^\n\n    at file:///home/runner/work/SweeMingXx.github.io/SweeMingXx.github.io/las-conference-2026/tests/verify.mjs:86:60"
   ],
   "screenshots": [
     "desktop.png",
-    "reader.png"
+    "reader.png",
+    "mobile.png"
   ],
   "live": null,
   "readerAccessibility": [],
-  "pageAccessibility": [
-    {
-      "id": "color-contrast",
-      "impact": "serious",
-      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
-      "nodes": [
-        [
-          "#day1 > .day-heading.visible.reveal > .giant-number[aria-hidden=\"true\"]"
-        ]
-      ]
-    }
-  ],
+  "pageAccessibility": [],
   "success": false
 }
