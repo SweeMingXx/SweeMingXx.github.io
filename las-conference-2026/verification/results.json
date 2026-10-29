@@ -1,0 +1,34 @@
+{
+  "testedAt": "2026-10-29T13:16:06.777Z",
+  "commit": "85257ca3e0d5561c000ef7e3f5390ea9ff2ba8bb",
+  "checks": [
+    {
+      "name": "Source coverage",
+      "status": "passed",
+      "detail": "14 source entries, 13 full report texts, 57 source pages; 6 Day 1 and 6 Day 2 uploads indexed."
+    },
+    {
+      "name": "Initial load and full-text index",
+      "status": "passed",
+      "detail": "All report requests loaded successfully."
+    },
+    {
+      "name": "Programme",
+      "status": "passed",
+      "detail": "Both-day and single-day filters, expandable sessions and report link targets."
+    },
+    {
+      "name": "Search and recovery",
+      "status": "passed",
+      "detail": "Full-text matches, empty state and reset tested."
+    }
+  ],
+  "errors": [
+    "AssertionError [ERR_ASSERTION]: overview quotations missing\n    at file:///home/runner/work/SweeMingXx.github.io/SweeMingXx.github.io/las-conference-2026/tests/verify.mjs:54:3"
+  ],
+  "screenshots": [
+    "desktop.png"
+  ],
+  "live": null,
+  "success": false
+}

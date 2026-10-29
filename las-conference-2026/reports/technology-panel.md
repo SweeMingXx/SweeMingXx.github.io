@@ -87,5 +87,5 @@ Dr. Ngui emphasized that because foundation models merely statistically approxim
 > "Developing connections in neurons is painful... It is proved a physical pain that you experience. But people who go through this develop knowledge inside their heart."
 > — Dr. Natalia Grincheva, on cognitive struggle vs. instant AI outputs
 
-> "AI lives in a box... Any breakthrough in human history either occurred in serendipity or was sparked by human inspiration. I don't think it's possible to qualify inspiration and serendipitous discovery within the AI box."
+> "AI lives in a box... Any breakthrough in human history either occurred in serendipity or was sparked by human inspiration. I don't think it's possible to qualify inspiration and serendipity within the AI box."
 > — Lim Bee Kwan, on the primacy of human agency
