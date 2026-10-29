@@ -37,12 +37,12 @@ jobs:
       - name: Browser, content, accessibility and live checks
         working-directory: las-conference-2026
         run: npm test
-      - name: Verify exact deployed files and final official programme
-        working-directory: las-conference-2026
-        run: node tests/live.mjs
       - name: Verify redesigned hero at mobile, tablet and desktop widths
         working-directory: las-conference-2026
         run: node tests/verify-home.mjs
+      - name: Verify exact deployed files and final official programme
+        working-directory: las-conference-2026
+        run: node tests/live.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
