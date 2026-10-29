@@ -20,6 +20,7 @@ try {
         art:box('.folio').toJSON(),imageLoaded:img.naturalWidth>0,
         jumpLinks:[...document.querySelectorAll('.landing-jump a')].map(a=>a.getAttribute('href'))};
     });
+    console.log(`LAYOUT ${width}px ${JSON.stringify(state)}`);
     assert(state.imageLoaded,`Hero art not loaded at ${width}px`);
     assert(state.scrollWidth<=width+1,`Horizontal page overflow at ${width}px: ${state.scrollWidth}`);
     assert(state.eyebrow.top>=state.header.bottom-1,`Header overlaps introduction at ${width}px`);
@@ -32,4 +33,7 @@ try {
     await page.close();
     console.log(`PASS landing ${width}px — heading, art, CTA, header and navigation`);
   }
+} catch(error) {
+  console.error(`::error file=las-conference-2026/tests/verify-home.mjs,line=1::${error.message.replace(/\n/g,' ')}`);
+  process.exitCode=1;
 } finally { await browser.close(); }
