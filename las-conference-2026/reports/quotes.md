@@ -18,7 +18,7 @@ This anthology brings together the verbatim quotations, pedagogical philosophies
 > "A person who will not read has no advantage over one who cannot... Reading is not an innate skill, unlike speech or sight. We humans have to learn to read. We either use it or we will lose it."
 > Warren Fernandez · Deputy Chair, National Library Board · OPENING KEYNOTE (CITING MARK TWAIN & MARYANNE WOLF)
 
-> "Over 2,000 years ago, Confucius expressed an important principle: Learning without thought is labor lost; thought without learning is perilous. I sometimes wish someone, some graffiti artist, would emblazon this on the walls of the White House."
+> "Over 2,000 years ago, Confucius expressed an important principle: Learning without thought is labor lost; thought without learning is perilous."
 > Warren Fernandez · Deputy Chair, National Library Board · OPENING KEYNOTE
 
 > "Critical thinking requires more than just skepticism, or worse, cynicism or reflexive disbelief. If people leave an information literacy session convinced that nothing can be trusted, we have simply given them a different problem. People need to learn how trust can be earned through evidence, transparency, careful methods, and a willingness to correct mistakes."
